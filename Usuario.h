@@ -3,36 +3,36 @@
 
 class Usuario {
 private:
-   int _id;
-   std::string _nombre;
-   std::string _apellido;
-   std::string _email;
-   std::string _contrasena;
-   std::string _contacto;
-   std::string _fechaNacimiento;
+   int _id ;
+   char _nombre[50];
+   char _apellido[50];
+   char _email[50];
+   char _contrasena[50];
+   char _contacto[50];
+   char _fechaNacimiento[50];
    bool _admin;
 
 public:
     Usuario();
-    Usuario(int id,  std::string nombre,  std::string apellido,  std::string email,
-            std::string contrasena,  std::string contacto,  std::string fechaNacimiento, bool admin);
+    Usuario(int id,   const char* nombre,   const char* apellido,   const char* email,
+             const char* contrasena,   const char* contacto,   const char* fechaNacimiento, bool admin);
    // Getters
    int getId() ;
-   std::string getNombre() ;
-   std::string getApellido() ;
-   std::string getEmail() ;
-   std::string getContrasena() ;
-   std::string getContacto() ;
-   std::string getFechaNacimiento() ;
+    const char* getNombre() ;
+    const char* getApellido() ;
+    const char* getEmail() ;
+    const char* getContrasena() ;
+    const char* getContacto() ;
+    const char* getFechaNacimiento() ;
    bool isAdmin() ;
 
    // Setters
    void setId(int id);
-   void setNombre( std::string nombre);
-   void setApellido( std::string apellido);
-   void setEmail( std::string email);
-   void setContrasena( std::string contrasena);
-   void setContacto( std::string contacto);
-   void setFechaNacimiento( std::string fechaNacimiento);
+   void setNombre(  const char* nombre);
+   void setApellido(  const char* apellido);
+   void setEmail(  const char* email);
+   void setContrasena(  const char* contrasena);
+   void setContacto(  const char* contacto);
+   void setFechaNacimiento(  const char* fechaNacimiento);
    void setAdmin(bool admin);
 };

@@ -1,5 +1,5 @@
 #include "ArchivoUsuario.h"
-
+#include <cstring>
 
 ArchivoUsuario::ArchivoUsuario(std::string nombreArchivo){
     _nombreArchivo = nombreArchivo;
@@ -15,26 +15,26 @@ bool ArchivoUsuario::GuardarUsuario(Usuario usuario){
     return ok;
 }
 
-bool ArchivoServicioMesa::Guardar(ServicioMesa servicioMesa, int posicion){
+bool ArchivoUsuario::GuardarUsuario(Usuario usuario, int posicion){
     FILE *pArchivo = fopen(_nombreArchivo.c_str(), "rb+");
     if(pArchivo == NULL){
         return false;
     }
-    fseek(pArchivo, sizeof(ServicioMesa) * posicion, SEEK_SET);
-    bool ok = fwrite(&servicioMesa, sizeof(ServicioMesa), 1, pArchivo);
+    fseek(pArchivo, sizeof(Usuario) * posicion, SEEK_SET);
+    bool ok = fwrite(&usuario, sizeof(Usuario), 1, pArchivo);
     fclose(pArchivo);
     return ok;
 }
 
-int ArchivoServicioMesa::Buscar(int IDServicioMesa){
+int ArchivoUsuario::BuscarUsuario(int idUsuario){
     FILE *pArchivo = fopen(_nombreArchivo.c_str(), "rb");
     if(pArchivo == NULL){
         return -1;
     }
-    ServicioMesa servicioMesa;
+    Usuario usuario;
     int i = 0;
-    while(fread(&servicioMesa, sizeof(ServicioMesa), 1, pArchivo)){
-        if(servicioMesa.getIDServicioMesa() == IDServicioMesa){
+    while(fread(&usuario, sizeof(Usuario), 1, pArchivo)){
+        if(usuario.getId() == idUsuario){
             fclose(pArchivo);
             return i;
         }
@@ -44,36 +44,42 @@ int ArchivoServicioMesa::Buscar(int IDServicioMesa){
     return -1;
 }
 
-ServicioMesa ArchivoServicioMesa::Leer(int posicion){
+Usuario ArchivoUsuario::LeerUsuario(int posicion){
     FILE *pArchivo = fopen(_nombreArchivo.c_str(), "rb");
+
     if(pArchivo == NULL){
-        return ServicioMesa();
+        return Usuario();
     }
-    ServicioMesa servicioMesa;
-    fseek(pArchivo, sizeof(ServicioMesa) * posicion, SEEK_SET);
-    fread(&servicioMesa, sizeof(ServicioMesa), 1, pArchivo);
+
+    Usuario usuario ;
+
+    fseek(pArchivo, sizeof(Usuario) * posicion, SEEK_SET);
+    fread(&usuario, sizeof(Usuario), 1, pArchivo);
     fclose(pArchivo);
-    return servicioMesa;
+
+    return usuario;
 }
 
-int ArchivoServicioMesa::CantidadRegistros(){
+int ArchivoUsuario::CantidadUsuarios(){
     FILE *pArchivo = fopen(_nombreArchivo.c_str(), "rb");
     if(pArchivo == NULL){
         return 0;
     }
     fseek(pArchivo, 0, SEEK_END);
-    int cantidadRegistros = ftell(pArchivo) / sizeof(ServicioMesa);
+    int cantidadRegistros = ftell(pArchivo) / sizeof(Usuario);
     fclose(pArchivo);
     return cantidadRegistros;
 }
 
-void ArchivoServicioMesa::Leer(int cantidadRegistros, ServicioMesa *vector){
+void ArchivoUsuario::LeerUsuarios(int cantidadRegistros, Usuario *vector){
     FILE *pArchivo = fopen(_nombreArchivo.c_str(), "rb");
     if(pArchivo == NULL){
         return;
     }
     for(int i = 0; i < cantidadRegistros; i++){
-        fread(&vector[i], sizeof(ServicioMesa), 1, pArchivo);
+        fread(&vector[i], sizeof(Usuario), 1, pArchivo);
     }
     fclose(pArchivo);
+
 }
+

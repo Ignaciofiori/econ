@@ -9,3 +9,23 @@
 1729792884 c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\usuario.h
 	<string>
 
+1729808266 source:c:\users\nacho\desktop\work\econ\usuario.cpp
+	"Usuario.h"
+	<cstring>
+
+1729808266 c:\users\nacho\desktop\work\econ\usuario.h
+	<string>
+
+1729809615 source:c:\users\nacho\desktop\work\econ\main.cpp
+	<iostream>
+	"Usuario.h"
+	"ArchivoUsuario.h"
+
+1729809438 source:c:\users\nacho\desktop\work\econ\archivousuario.cpp
+	"ArchivoUsuario.h"
+	<cstring>
+
+1729802629 c:\users\nacho\desktop\work\econ\archivousuario.h
+	<string>
+	"Usuario.h"
+

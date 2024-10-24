@@ -1,17 +1,17 @@
 #include "Usuario.h"
-
+#include <cstring>
 // Constructor por defecto
 Usuario::Usuario(){}
 
- Usuario::Usuario(int id, std::string nombre, std::string apellido, std::string email,
-                 std::string contrasena, std::string contacto, std::string fechaNacimiento, bool admin) {
+ Usuario::Usuario(int id,  const char* nombre,  const char* apellido,  const char* email,
+                  const char* contrasena,  const char* contacto,  const char* fechaNacimiento, bool admin) {
     _id = id;
-    _nombre = nombre;
-    _apellido = apellido;
-    _email = email;
-    _contrasena = contrasena;
-    _contacto = contacto;
-    _fechaNacimiento = fechaNacimiento;
+    strcpy(_nombre, nombre);
+    strcpy(_apellido, apellido);
+    strcpy(_email, email);
+    strcpy(_contrasena, contrasena);
+    strcpy(_contacto, contacto);
+    strcpy(_fechaNacimiento, fechaNacimiento);
     _admin = admin;
 }
 
@@ -20,27 +20,27 @@ int Usuario::getId()  {
     return _id;
 }
 
-std::string Usuario::getNombre()  {
+const char* Usuario::getNombre()  {
     return _nombre;
 }
 
-std::string Usuario::getApellido()  {
+const char* Usuario::getApellido()  {
     return _apellido;
 }
 
-std::string Usuario::getEmail()  {
+const char* Usuario::getEmail()  {
     return _email;
 }
 
-std::string Usuario::getContrasena()  {
+const char* Usuario::getContrasena()  {
     return _contrasena;
 }
 
-std::string Usuario::getContacto()  {
+const char* Usuario::getContacto()  {
     return _contacto;
 }
 
-std::string Usuario::getFechaNacimiento()  {
+const char* Usuario::getFechaNacimiento()  {
     return _fechaNacimiento;
 }
 
@@ -53,28 +53,28 @@ void Usuario::setId(int id) {
     _id = id;
 }
 
-void Usuario::setNombre( std::string nombre) {
-    _nombre = nombre;
+void Usuario::setNombre(const char* nombre) {
+    strcpy(_nombre, nombre);
 }
 
-void Usuario::setApellido( std::string apellido) {
-    _apellido = apellido;
+void Usuario::setApellido(const char* apellido) {
+    strcpy(_apellido, apellido);
 }
 
-void Usuario::setEmail( std::string email) {
-    _email = email;
+void Usuario::setEmail(const char* email) {
+    strcpy(_email, email);
 }
 
-void Usuario::setContrasena( std::string contrasena) {
-    _contrasena = contrasena;
+void Usuario::setContrasena(const char* contrasena) {
+    strcpy(_contrasena, contrasena);
 }
 
-void Usuario::setContacto( std::string contacto) {
-    _contacto = contacto;
+void Usuario::setContacto(const char* contacto) {
+    strcpy(_contacto, contacto);
 }
 
-void Usuario::setFechaNacimiento( std::string fechaNacimiento) {
-    _fechaNacimiento = fechaNacimiento;
+void Usuario::setFechaNacimiento(const char* fechaNacimiento) {
+    strcpy(_fechaNacimiento, fechaNacimiento);
 }
 
 void Usuario::setAdmin(bool admin) {
