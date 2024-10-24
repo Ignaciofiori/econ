@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1729794546 source:c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\main.cpp
+	<iostream>
+	"Usuario.h"
+
+1729793128 source:c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\usuario.cpp
+	"Usuario.h"
+
+1729792884 c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\usuario.h
+	<string>
+
