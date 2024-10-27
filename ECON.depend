@@ -9,23 +9,54 @@
 1729792884 c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\usuario.h
 	<string>
 
-1729808266 source:c:\users\nacho\desktop\work\econ\usuario.cpp
+1730062623 source:c:\users\nacho\desktop\work\econ\usuario.cpp
 	"Usuario.h"
 	<cstring>
+	<iostream>
 
-1729808266 c:\users\nacho\desktop\work\econ\usuario.h
+1730062512 c:\users\nacho\desktop\work\econ\usuario.h
 	<string>
 
-1729809615 source:c:\users\nacho\desktop\work\econ\main.cpp
+1730070170 source:c:\users\nacho\desktop\work\econ\main.cpp
 	<iostream>
 	"Usuario.h"
+	"Suministros.h"
 	"ArchivoUsuario.h"
+	"ArchivoSuministro.h"
+	"Funciones.h"
 
-1729809438 source:c:\users\nacho\desktop\work\econ\archivousuario.cpp
+1729969477 source:c:\users\nacho\desktop\work\econ\archivousuario.cpp
 	"ArchivoUsuario.h"
 	<cstring>
 
-1729802629 c:\users\nacho\desktop\work\econ\archivousuario.h
+1729969280 c:\users\nacho\desktop\work\econ\archivousuario.h
 	<string>
 	"Usuario.h"
+
+1730070158 source:c:\users\nacho\desktop\work\econ\funciones.cpp
+	<iostream>
+	"Funciones.h"
+	<cstdlib>
+	<limits>
+	<cstring>
+
+1730064598 c:\users\nacho\desktop\work\econ\funciones.h
+	"Usuario.h"
+	"Suministros.h"
+	"ArchivoUsuario.h"
+	"ArchivoSuministro.h"
+
+1729979267 source:c:\users\nacho\desktop\work\econ\suministro.cpp
+	<cstring>
+	"Suministros.h"
+
+1729979306 c:\users\nacho\desktop\work\econ\suministros.h
+
+1729981033 source:c:\users\nacho\desktop\work\econ\archivosuministro.cpp
+	"ArchivoSuministro.h"
+	<cstring>
+
+1729981217 c:\users\nacho\desktop\work\econ\archivosuministro.h
+	<string>
+	"Suministros.h"
 

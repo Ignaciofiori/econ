@@ -10,7 +10,7 @@ class ArchivoUsuario{
 
         ArchivoUsuario(std::string nombreArchivo);
         bool GuardarUsuario(Usuario usuario);
-        bool GuardarUsuario(Usuario usuario, int posicion);
+        bool EditarUsuario(Usuario usuario, int posicion);
         int BuscarUsuario(int idUsuario);
         Usuario LeerUsuario(int posicion);
         int CantidadUsuarios();

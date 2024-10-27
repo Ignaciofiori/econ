@@ -15,7 +15,7 @@ bool ArchivoUsuario::GuardarUsuario(Usuario usuario){
     return ok;
 }
 
-bool ArchivoUsuario::GuardarUsuario(Usuario usuario, int posicion){
+bool ArchivoUsuario::EditarUsuario(Usuario usuario, int posicion){
     FILE *pArchivo = fopen(_nombreArchivo.c_str(), "rb+");
     if(pArchivo == NULL){
         return false;
@@ -71,15 +71,21 @@ int ArchivoUsuario::CantidadUsuarios(){
     return cantidadRegistros;
 }
 
-void ArchivoUsuario::LeerUsuarios(int cantidadRegistros, Usuario *vector){
+
+void ArchivoUsuario::LeerUsuarios(int cantidadRegistros, Usuario *vector) {
     FILE *pArchivo = fopen(_nombreArchivo.c_str(), "rb");
-    if(pArchivo == NULL){
+    if (pArchivo == NULL) {
         return;
     }
-    for(int i = 0; i < cantidadRegistros; i++){
-        fread(&vector[i], sizeof(Usuario), 1, pArchivo);
+    int i = 0;
+    Usuario usuario;
+    while (i < cantidadRegistros && fread(&usuario, sizeof(Usuario), 1, pArchivo)) {
+        if (usuario.isActivo()) {  // Solo guarda usuarios activos en el vector
+            vector[i] = usuario;
+            i++;
+        }
+        // Si no está activo, no se incrementa la i y se sobrescribirá en la próxima iteración
     }
     fclose(pArchivo);
-
 }
 
