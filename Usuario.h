@@ -1,4 +1,6 @@
 #pragma once
+#include "Fecha.h"
+#include "ArchivoFecha.h"
 #include <string>
 
 class Usuario {
@@ -10,14 +12,14 @@ private:
    char _email[50];
    char _contrasena[50];
    char _contacto[50];
-   char _fechaNacimiento[50];
+   int _fechaNacimiento;
    bool _admin;
    bool _activo;
 
 public:
     Usuario();
     Usuario(int id,   const char* nombre, const char* apellido,int dni ,const char* email,
-             const char* contrasena,   const char* contacto,   const char* fechaNacimiento, bool admin);
+             const char* contrasena,   const char* contacto, int fechaNacimiento, bool admin);
    // Getters
     int getId() ;
     const char* getNombre() ;
@@ -26,7 +28,7 @@ public:
     const char* getEmail() ;
     const char* getContrasena() ;
     const char* getContacto() ;
-    const char* getFechaNacimiento() ;
+    int getFechaNacimiento() ;
     bool isAdmin();
     bool isActivo();
 
@@ -38,9 +40,10 @@ public:
    void setEmail(  const char* email);
    void setContrasena(  const char* contrasena);
    void setContacto(  const char* contacto);
-   void setFechaNacimiento(  const char* fechaNacimiento);
+   void setFechaNacimiento(int fechaNacimiento);
    void setAdmin(bool admin);
    void setActivo(bool activo);
 
    void mostrarUsuario();
+   void cargarUsuario();
 };

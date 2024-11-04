@@ -32,9 +32,20 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="AcumuladorId.cpp" />
+		<Unit filename="AcumuladorId.h" />
+		<Unit filename="ArchivoAcumulador.cpp" />
+		<Unit filename="ArchivoAcumulador.h" />
+		<Unit filename="ArchivoSuministro.cpp" />
+		<Unit filename="ArchivoSuministro.h" />
 		<Unit filename="ArchivoUsuario.cpp" />
 		<Unit filename="ArchivoUsuario.h" />
+		<Unit filename="Fecha.cpp" />
+		<Unit filename="Fecha.h" />
+		<Unit filename="Funciones.cpp" />
 		<Unit filename="Funciones.h" />
+		<Unit filename="Suministro.cpp" />
+		<Unit filename="Suministros.h" />
 		<Unit filename="Usuario.cpp" />
 		<Unit filename="Usuario.h" />
 		<Unit filename="main.cpp" />

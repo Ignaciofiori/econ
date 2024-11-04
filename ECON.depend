@@ -9,21 +9,24 @@
 1729792884 c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\usuario.h
 	<string>
 
-1730062623 source:c:\users\nacho\desktop\work\econ\usuario.cpp
+1730235997 source:c:\users\nacho\desktop\work\econ\usuario.cpp
 	"Usuario.h"
 	<cstring>
 	<iostream>
 
-1730062512 c:\users\nacho\desktop\work\econ\usuario.h
+1730235997 c:\users\nacho\desktop\work\econ\usuario.h
+	"Fecha.h"
+	"ArchivoFecha.h"
 	<string>
 
-1730070170 source:c:\users\nacho\desktop\work\econ\main.cpp
+1730235360 source:c:\users\nacho\desktop\work\econ\main.cpp
 	<iostream>
 	"Usuario.h"
 	"Suministros.h"
 	"ArchivoUsuario.h"
 	"ArchivoSuministro.h"
 	"Funciones.h"
+	"Fecha.h"
 
 1729969477 source:c:\users\nacho\desktop\work\econ\archivousuario.cpp
 	"ArchivoUsuario.h"
@@ -33,18 +36,22 @@
 	<string>
 	"Usuario.h"
 
-1730070158 source:c:\users\nacho\desktop\work\econ\funciones.cpp
+1730756963 source:c:\users\nacho\desktop\work\econ\funciones.cpp
 	<iostream>
 	"Funciones.h"
 	<cstdlib>
 	<limits>
-	<cstring>
+	<string>
 
-1730064598 c:\users\nacho\desktop\work\econ\funciones.h
+1730229257 c:\users\nacho\desktop\work\econ\funciones.h
 	"Usuario.h"
 	"Suministros.h"
 	"ArchivoUsuario.h"
 	"ArchivoSuministro.h"
+	"Fecha.h"
+	"ArchivoFecha.h"
+	"ArchivoAcumulador.h"
+	"AcumuladorId.h"
 
 1729979267 source:c:\users\nacho\desktop\work\econ\suministro.cpp
 	<cstring>
@@ -56,7 +63,45 @@
 	"ArchivoSuministro.h"
 	<cstring>
 
-1729981217 c:\users\nacho\desktop\work\econ\archivosuministro.h
+1730146092 c:\users\nacho\desktop\work\econ\archivosuministro.h
 	<string>
 	"Suministros.h"
+
+1730223414 source:c:\users\nacho\desktop\work\econ\fecha.cpp
+	"Fecha.h"
+
+1730223414 c:\users\nacho\desktop\work\econ\fecha.h
+	<iostream>
+	"ArchivoAcumulador.h"
+	"AcumuladorId.h"
+	<cstring>
+	<ctime>
+
+1730158228 source:c:\users\nacho\desktop\work\econ\acumuladorid.cpp
+	"AcumuladorId.h"
+
+1730158228 c:\users\nacho\desktop\work\econ\acumuladorid.h
+
+1730152849 source:c:\users\nacho\desktop\work\econ\archivoacumuladorid.cpp
+	"ArchivoAcumuladorId.h"
+	<cstring>
+
+1730154912 c:\users\nacho\desktop\work\econ\archivoacumuladorid.h
+	"AcumuladorId.h"
+
+1730213332 source:c:\users\nacho\desktop\work\econ\archivoacumulador.cpp
+	"ArchivoAcumulador.h"
+	"AcumuladorId.h"
+
+1730756673 c:\users\nacho\desktop\work\econ\archivoacumulador.h
+	<string>
+	"AcumuladorId.h"
+
+1730228056 source:c:\users\nacho\desktop\work\econ\archivofecha.cpp
+	"ArchivoFecha.h"
+	<cstring>
+
+1730228040 c:\users\nacho\desktop\work\econ\archivofecha.h
+	"Fecha.h"
+	<string>
 

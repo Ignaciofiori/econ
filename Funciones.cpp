@@ -2,7 +2,79 @@
 #include "Funciones.h"
 #include <cstdlib>
 #include <limits> // Para std::numeric_limits
-#include <cstring>
+#include <string>
+
+void mostrarFechas(Fecha *vectorFechas, int cantidadFechas) {
+    for (int i = 0; i < cantidadFechas; i++) {
+        std::cout << "FECHA ID: " << vectorFechas[i].getId() << std::endl;
+        std::cout << "DÍA: " << vectorFechas[i].getDia() << std::endl;
+        std::cout << "MES: " << vectorFechas[i].getMes() << std::endl;
+        std::cout << "AÑO: " << vectorFechas[i].getAnio() << std::endl;
+        std::cout << "------------------------" << std::endl;
+    }
+}
+
+
+void cargarFecha(Fecha &fecha) {
+    int dia, mes, anio;
+    ArchivoAcumuladorId archivo("acumulador.dat");
+    AcumuladorId acum = archivo.LeerAcumuladorId(0);
+    int id = acum.getIdFechas(); // Lee el ID inicial
+
+    bool fechaValida = false;
+
+    while (!fechaValida) {
+        std::cout << "Ingrese el dia de nacimiento: ";
+        std::cin >> dia;
+        // Verificar si la entrada es válida
+        if (std::cin.fail()) {
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cout << "Por favor, ingrese numeros validos." << std::endl;
+            continue;
+        }
+
+        std::cout << "Ingrese el mes de nacimiento: ";
+        std::cin >> mes;
+
+        // Verificar si la entrada es válida
+        if (std::cin.fail()) {
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cout << "Por favor, ingrese numeros validos." << std::endl;
+            continue;
+        }
+
+
+        std::cout << "Ingrese el año de nacimiento: ";
+        std::cin >> anio;
+
+            // Verificar si la entrada es válida
+        if (std::cin.fail()) {
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cout << "Por favor, ingrese numeros validos." << std::endl;
+            continue;
+        }
+
+        Fecha fechaTemp(id, dia, mes, anio);
+
+        // Verifica si la fecha es válida
+        if (fechaTemp.getId() == 0) {
+            std::cout << "La fecha ingresada es inválida. Por favor, intente nuevamente." << std::endl;
+        } else {
+            fecha.setId(id); // Asigna el ID a la fecha
+            fecha.setDia(dia);
+            fecha.setMes(mes);
+            fecha.setAnio(anio);
+            std::cout << "Fecha ingresada correctamente: "
+                      << dia << "/" << mes << "/" << anio << std::endl;
+            fechaValida = true; // La fecha es válida, salimos del bucle
+        }
+    }
+
+
+}
 
 void mostrarUsuarios(Usuario *vectorUsuarios, int cantidadUsuarios) {
     for (int i = 0; i < cantidadUsuarios; i++) {
@@ -46,8 +118,13 @@ void mostrarSuministros(Suministro *vectorSuministros, int cantidadSuministros) 
 
 
 void bannerBienvenida(){
+
+    Fecha fecha;
+    fecha.FechaActual();
+
  std::cout << "\n\n";
-    std::cout << "======== BIENVENIDO A LA OFICINA VIRTUAL DE ECON ========\n\n";
+    std::cout << "====================== "<< fecha.toString() <<" ======================\n";
+    std::cout << "======== BIENVENIDO A LA OFICINA VIRTUAL DE ECON =======\n\n";
 
     std::cout << "EEEEEEEEEE      CCCCCCCCC     OOOOOOOOO     NNN     NNN\n";
     std::cout << "EEE             CCC           OOO   OOO     NNNN    NNN\n";
@@ -91,17 +168,15 @@ int leerEntero() {
 
 Usuario registrarse() {
 
-    int id;
+    ArchivoAcumuladorId archivo("acumulador.dat");
+    AcumuladorId acum = archivo.LeerAcumuladorId(0);
+    int idUsuario = acum.getIdUsuarios();
 
     std::cout << "===== REGISTRO =====\n";
 
-    std::cout << "Ingrese su ID (numero entero): ";
-    std::cin >> id;
-
-
     char nombre[50];
     std::cout << "Ingrese su nombre: ";
-    std::cin.ignore(); // Limpiar el buffer de entrada
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Limpiar el buffer
     std::cin.getline(nombre, 50);
 
 
@@ -117,29 +192,25 @@ Usuario registrarse() {
 
     char email[50];
     std::cout << "Ingrese su correo electronico: ";
-     // Limpiar el buffer de entrada
     std::cin.getline(email, 50);
-
-
 
     bool contrasenaValida = false;
       char contrasena[50];
     while(!contrasenaValida){
 
+            std::cout << "Ingrese una contrasena: ";
+            std::cin.getline(contrasena, 50);
 
-    std::cout << "Ingrese una contrasena: ";
-    std::cin.getline(contrasena, 50);
 
+                char contrasenaConfirmacion[50];
+            std::cout << "Repita la contrasena: ";
+            std::cin.getline(contrasenaConfirmacion, 50);
 
-        char contrasenaConfirmacion[50];
-    std::cout << "Repita la contrasena: ";
-    std::cin.getline(contrasenaConfirmacion, 50);
-
-    if (confirmarContrasena(contrasena, contrasenaConfirmacion)) {
-            contrasenaValida = true;
-        } else {
-            std::cout << "Las contrasenas no coinciden. Intente nuevamente.\n";
-        }
+            if (confirmarContrasena(contrasena, contrasenaConfirmacion)) {
+                    contrasenaValida = true;
+                } else {
+                    std::cout << "Las contrasenas no coinciden. Intente nuevamente.\n";
+                }
 
     }
 
@@ -149,30 +220,48 @@ Usuario registrarse() {
     std::cin.getline(contacto, 50);
 
 
-    char fechaNacimiento[50];
-    std::cout << "Ingrese su fecha de nacimiento (DD/MM/AAAA): ";
-    std::cin.getline(fechaNacimiento, 50);
+    Fecha fechaNacimiento ;
+    cargarFecha(fechaNacimiento);
+    int fechaId = fechaNacimiento.getId();
 
 
    // Crear el nuevo usuario utilizando el constructor que recibe todos los parámetros
-    Usuario nuevoUsuario(id, nombre, apellido, dni, email, contrasena, contacto, fechaNacimiento, false);
+    Usuario nuevoUsuario(idUsuario, nombre, apellido, dni, email, contrasena, contacto, fechaId, false);
 
-    system("cls");
+
+    //system("cls");
     if (nuevoUsuario.getId() == 0) {
                     std::cout << "Error al registrarse. Inténtelo nuevamente.\n";
                 }else {
 
+    system("cls");
+
     std::cout << "\nRegistro exitoso!\n";
     std::cout << "Usuario registrado: " << nombre << " " << apellido << "\n";
+
+
+    ArchivoFecha archivoF("fechas.dat");
+
+    archivoF.GuardarFecha(fechaNacimiento);
+
+    int nuevoFechaId = fechaNacimiento.getId() + 1 ;
+
+    idUsuario++;
+    acum.setIdFechas(nuevoFechaId);
+    acum.setIdUsuarios(idUsuario);
+    archivo.EditarAcumuladorId(acum, 0);
+
                 }
+
+
     return nuevoUsuario;
 }
 
 
 void menuSecundario(Usuario usu) {
     int opcion = -1;
-
-    while (opcion != 0) {
+    //MENU USUARIOS CLIENTES
+               while (opcion != 0) {
         std::cout << "\n===== MENU SECUNDARIO =====\n";
         std::cout << "1. Ver Perfil\n";
         std::cout << "0. Cerrar Sesion (Desloguearse)\n";
@@ -197,8 +286,8 @@ void menuSecundario(Usuario usu) {
                 break;
         }
     }
-}
-Usuario busquedaUsuarioPorEmail(const char *email) {
+    }
+Usuario busquedaUsuarioPorEmail( char *email) {
     ArchivoUsuario archivo("usuarios.dat");
 
     int cantidad = archivo.CantidadUsuarios();
@@ -227,26 +316,29 @@ Usuario busquedaUsuarioPorEmail(const char *email) {
 
 Usuario login() {
     char email[50];
+    char contrasenaIngresada[50];
     char contrasena[50];
-
     std::cout << "===== LOGIN =====\n";
 
     // Solicitar el email al usuario
     std::cout << "Ingrese su correo electronico: ";
-    std::cin.ignore(); // Limpiar el buffer de entrada
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Limpiar el buffer
     std::cin.getline(email, 50);
+
 
     Usuario usuarioALoguear = busquedaUsuarioPorEmail(email);
 
     if (usuarioALoguear.getId() != 0) {
         std::cout << "Ingrese su Contrasena: ";
-
-        std::cin.getline(contrasena, 50);
+        std::cin.getline(contrasenaIngresada, 50);
         system("cls");
 
+        strcpy(contrasena,usuarioALoguear.getContrasena());
+
         // Verificar la contraseña
-        if (confirmarContrasena(contrasena, usuarioALoguear.getContrasena())) {
+        if (confirmarContrasena(contrasenaIngresada,contrasena)) {
             std::cout << "Bienvenido, " << usuarioALoguear.getNombre() << "!\n";
+
             return usuarioALoguear; // Retorna el usuario autenticado
         } else {
             std::cout << "Las Credenciales Son Invalidas.\n";
@@ -290,7 +382,7 @@ void menuPrincipal(){
                 ArchivoUsuario archivo("usuarios.dat");
                 logueado =  archivo.GuardarUsuario(usuarioLogueado);
                 }
-                system("cls");
+
                 if(logueado){
                     menuSecundario(usuarioLogueado);                }
 

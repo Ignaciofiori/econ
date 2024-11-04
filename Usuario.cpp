@@ -10,12 +10,12 @@ Usuario::Usuario() {
     strcpy(_email, "");
     strcpy(_contrasena, "");
     strcpy(_contacto, "");
-    strcpy(_fechaNacimiento, "");
+    _fechaNacimiento = 0;
     _admin = false;
     _activo = false;
 }
  Usuario::Usuario(int id,  const char* nombre,  const char* apellido,int dni  ,const char* email,
-                  const char* contrasena,  const char* contacto,  const char* fechaNacimiento, bool admin) {
+                  const char* contrasena,  const char* contacto,  int fechaNacimiento, bool admin) {
     _id = id;
     strcpy(_nombre, nombre);
     strcpy(_apellido, apellido);
@@ -23,7 +23,7 @@ Usuario::Usuario() {
     strcpy(_email, email);
     strcpy(_contrasena, contrasena);
     strcpy(_contacto, contacto);
-    strcpy(_fechaNacimiento, fechaNacimiento);
+    _fechaNacimiento = fechaNacimiento;
     _admin = admin;
     _activo = true;
 }
@@ -56,7 +56,7 @@ const char* Usuario::getContacto()  {
     return _contacto;
 }
 
-const char* Usuario::getFechaNacimiento()  {
+int Usuario::getFechaNacimiento()  {
     return _fechaNacimiento;
 }
 
@@ -95,8 +95,8 @@ void Usuario::setContacto(const char* contacto) {
     strcpy(_contacto, contacto);
 }
 
-void Usuario::setFechaNacimiento(const char* fechaNacimiento) {
-    strcpy(_fechaNacimiento, fechaNacimiento);
+void Usuario::setFechaNacimiento(int fechaNacimiento) {
+    _fechaNacimiento = fechaNacimiento;
 }
 
 void Usuario::setAdmin(bool admin) {
@@ -107,6 +107,10 @@ void Usuario::setActivo(bool activo) {
 }
 
      void Usuario::mostrarUsuario() {
+ArchivoFecha archivo("fechas.dat");
+int pos = archivo.BuscarFecha(getFechaNacimiento());
+Fecha fecha = archivo.LeerFecha(pos);
+
     std::cout << "===== INFORMACION DEL USUARIO =====\n";
     std::cout << "ID: " << getId() << std::endl;
     std::cout << "Nombre: " << getNombre() << std::endl;
@@ -115,7 +119,7 @@ void Usuario::setActivo(bool activo) {
     std::cout << "Email: " << getEmail() << std::endl;
     std::cout << "Contrasena: " << getContrasena() << std::endl;
     std::cout << "Contacto: " << getContacto() << std::endl;
-    std::cout << "Fecha de Nacimiento: " << getFechaNacimiento() << std::endl;
+    std::cout << "Fecha de Nacimiento: " << fecha.toString() << std::endl;
     std::cout << "Administrador: " << (isAdmin() ? "Si" : "No") << std::endl;
     std::cout << "Activo: " << (isActivo() ? "Si" : "No") << std::endl;
     std::cout << "===================================\n";
