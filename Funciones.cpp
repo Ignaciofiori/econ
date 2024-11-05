@@ -4,6 +4,40 @@
 #include <limits> // Para std::numeric_limits
 #include <string>
 
+void mostrarPedidos(PedidoSuministro* pedidos, int cantidad) {
+    for (int i = 0; i < cantidad; ++i) {
+        std::cout << "Pedido #" << (i + 1) << ":\n";
+        std::cout << "ID de Pedido: " << pedidos[i].getPedidoId() << "\n";
+        std::cout << "ID de Usuario: " << pedidos[i].getUsuarioId() << "\n";
+        std::cout << "Tipo de Suministro: " << pedidos[i].getTipoSuministro() << "\n";
+        std::cout << "Direccion: " << pedidos[i].getDireccion() << "\n";
+        std::cout << "Codigo Postal: " << pedidos[i].getCodigoPostal() << "\n";
+        std::cout << "Fecha de Pedido: " << pedidos[i].getFechaPedido() << "\n";
+        std::cout << "Contacto: " << pedidos[i].getContacto() << "\n";
+        std::cout << "Medidor: " << pedidos[i].getMedidor() << "\n";
+        std::cout << "Comentarios: " << pedidos[i].getComentarios() << "\n";
+        std::cout << "-----------------------------\n";
+    }
+}
+
+
+void mostrarReclamos(Reclamo* reclamos, int cantidad) {
+    for (int i = 0; i < cantidad; ++i) {
+        std::cout << "Reclamo #" << (i + 1) << ":\n";
+        std::cout << "ID de Reclamo: " << reclamos[i].getReclamoId() << "\n";
+        std::cout << "ID de Usuario: " << reclamos[i].getUsuarioId() << "\n";
+        std::cout << "ID de Suministro: " << reclamos[i].getSuministroId() << "\n";
+        std::cout << "Descripcion: " << reclamos[i].getDescripcion() << "\n";
+        std::cout << "Fecha de Reclamo: " << reclamos[i].getFechaReclamo() << "\n";
+        std::cout << "Estado: " << reclamos[i].getEstado() << "\n";
+        std::cout << "Tipo de Reclamo: " << reclamos[i].getTipoDeReclamo() << "\n";
+        std::cout << "Responsable de Atencion: " << reclamos[i].getResponsableDeAtencion() << "\n";
+        std::cout << "Respuesta: " << reclamos[i].getRespuesta() << "\n";
+        std::cout << "Prioridad: " << reclamos[i].getPrioridad() << "\n";
+        std::cout << "-----------------------------\n";
+    }
+}
+
 void mostrarFechas(Fecha *vectorFechas, int cantidadFechas) {
     for (int i = 0; i < cantidadFechas; i++) {
         std::cout << "FECHA ID: " << vectorFechas[i].getId() << std::endl;

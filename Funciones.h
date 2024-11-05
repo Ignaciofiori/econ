@@ -1,14 +1,17 @@
 #pragma once
-#include "Usuario.h"
-#include "Suministros.h"
+
 #include "ArchivoUsuario.h"
 #include "ArchivoSuministro.h"
-#include "Fecha.h"
 #include "ArchivoFecha.h"
 #include "ArchivoAcumulador.h"
-#include "AcumuladorId.h"
+#include "ArchivoReclamo.h"
+#include "ArchivoPedido.h"
+
+void mostrarPedidos(PedidoSuministro *vectorPedidos, int cantidad);
 void mostrarUsuarios(Usuario* vectorUsuarios, int cantidadUsuarios);
 void mostrarUsuarios(Suministro* vectorSuministros, int cantidadSuministros);
+void mostrarFechas(Fecha *vectorFechas, int cantidadFechas) ;
+void mostrarReclamos(Reclamo* reclamos, int cantidad);
 void bannerBienvenida();
 void menuPrincipal();
 Usuario registrarse();
@@ -18,4 +21,4 @@ void menuSecundario(Usuario usu);
 Usuario login();
 Usuario busquedaUsuarioPorEmail(const char *email);
 void cargarFecha(Fecha &fecha );
-void mostrarFechas(Fecha *vectorFechas, int cantidadFechas) ;
+

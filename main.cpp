@@ -1,16 +1,23 @@
 #include <iostream>
-#include "Usuario.h"
-#include "Suministros.h"
-#include "ArchivoUsuario.h"
-#include "ArchivoSuministro.h"
 #include "Funciones.h"
-#include "Fecha.h"
 using namespace std;
 
 int main() {
 
-bannerBienvenida();
-menuPrincipal();
+ArchivoPedido archivoP("pedidos.dat");
 
+int cantidad = archivoP.CantidadPedidos();
+
+PedidoSuministro *vectorPedidos = NULL;
+vectorPedidos = new PedidoSuministro[cantidad];
+
+archivoP.LeerPedidos(cantidad,vectorPedidos);
+
+mostrarPedidos(vectorPedidos,cantidad);
+
+/*bannerBienvenida();
+menuPrincipal();
+*/
+delete []vectorPedidos ;
     return 0;
 }
