@@ -13,6 +13,7 @@ private:
     int _responsableDeAtencion;
     char _respuesta[50];
     char _prioridad[50];
+    bool _activo;
 
 public:
     Reclamo();
@@ -31,7 +32,7 @@ public:
     int getResponsableDeAtencion() ;
     const char* getRespuesta() ;
     const char* getPrioridad() ;
-
+    bool isActivo();
     // Setters
     void setReclamoId(int id);
     void setUsuarioId(int id);
@@ -43,5 +44,6 @@ public:
     void setResponsableDeAtencion(int responsable);
     void setRespuesta(const char* respuesta);
     void setPrioridad(const char* prioridad);
+    void setActivo(bool activo);
 
 };

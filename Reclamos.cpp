@@ -12,6 +12,7 @@ Reclamo::Reclamo() {
     _responsableDeAtencion = 0;
     strcpy(_respuesta, "");
     strcpy(_prioridad, "");
+    _activo = false;
 }
 
 Reclamo::Reclamo(int reclamoId,int usuarioId,int suministroId, const char* descripcion,
@@ -28,6 +29,7 @@ Reclamo::Reclamo(int reclamoId,int usuarioId,int suministroId, const char* descr
     _responsableDeAtencion = responsableDeAtencion;
     strcpy(_respuesta, respuesta);
     strcpy(_prioridad, prioridad);
+    _activo = true;
 
 }
 
@@ -72,6 +74,9 @@ const char* Reclamo::getPrioridad() {
     return _prioridad;
 }
 
+bool Reclamo::isActivo(){
+    return _activo;
+}
 
 // Setters
 void Reclamo::setReclamoId(int reclamoId) {
@@ -112,6 +117,9 @@ void Reclamo::setRespuesta(const char* respuesta) {
 
 void Reclamo::setPrioridad(const char* prioridad) {
     strcpy(_prioridad, prioridad);
+}
+void Reclamo::setActivo(bool activo){
+    _activo = activo;
 }
 
 

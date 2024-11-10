@@ -12,6 +12,7 @@ private:
     int _contacto;
     char _medidor[50];
     char _comentarios[100];
+    bool _activo;
 
 public:
 
@@ -29,6 +30,7 @@ public:
     int getContacto() ;
     const char* getMedidor() ;
     const char* getComentarios() ;
+    bool isActivo();
 
     // Setters
     void setPedidoId(int pedidoId);
@@ -40,5 +42,6 @@ public:
     void setContacto(int contacto);
     void setMedidor(const char* medidor);
     void setComentarios(const char* comentarios);
+    void setActivo(bool activo);
 };
 

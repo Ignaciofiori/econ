@@ -12,6 +12,7 @@ PedidoSuministro::PedidoSuministro() {
     strcpy(_direccion, "");
     strcpy(_medidor, "");
     strcpy(_comentarios, "");
+    _activo = false;
 }
 
 // Constructor con parámetros
@@ -26,6 +27,7 @@ PedidoSuministro::PedidoSuministro(int pedidoId, int usuarioId, const char* tipo
     strcpy(_direccion, direccion);
     strcpy(_medidor, medidor);
     strcpy(_comentarios, comentarios);
+    _activo = true;
 }
 
 // Getters
@@ -65,6 +67,9 @@ const char* PedidoSuministro::getComentarios() {
     return _comentarios;
 }
 
+bool PedidoSuministro::isActivo(){
+    return _activo;
+}
 // Setters
 void PedidoSuministro::setPedidoId(int pedidoId) {
     _pedidoId = pedidoId;
@@ -100,4 +105,7 @@ void PedidoSuministro::setMedidor(const char* medidor) {
 
 void PedidoSuministro::setComentarios(const char* comentarios) {
     strcpy(_comentarios, comentarios);
+}
+void PedidoSuministro::setActivo(bool activo){
+    _activo = activo;
 }
