@@ -4,21 +4,69 @@
 #include <limits> // Para std::numeric_limits
 #include <string>
 
-void mostrarPedidos(PedidoSuministro* pedidos, int cantidad) {
+#include <iostream>
+#include "ArchivoFecha.h"  // Asegúrate de incluir el archivo correcto
+
+void mostrarSuministros(Suministro* suministros, int cantidad) {
+    ArchivoFecha archivoF("fechas.dat");
     for (int i = 0; i < cantidad; ++i) {
+        if (suministros[i].isActivo()) {
+
+            // Buscar y leer la fecha de alta
+            int posAlta = archivoF.BuscarFecha(suministros[i].getFechaAlta());
+            Fecha fechaAlta = archivoF.LeerFecha(posAlta);
+
+            Fecha fechaBaja;
+            bool tieneFechaBaja = suministros[i].getFechaBaja() != 0;
+
+            if (tieneFechaBaja) {
+                // Buscar y leer la fecha de baja si existe
+                int posBaja = archivoF.BuscarFecha(suministros[i].getFechaBaja());
+                fechaBaja = archivoF.LeerFecha(posBaja);
+            }
+
+            // Mostrar los detalles del suministro
+            std::cout << "ID de Suministro: " << suministros[i].getSuministroId() << "\n";
+            std::cout << "ID de Usuario: " << suministros[i].getUsuarioId() << "\n";
+            std::cout << "Tipo de Suministro: " << suministros[i].getTipoSuministro() << "\n";
+            std::cout << "Direccion: " << suministros[i].getDireccion() << "\n";
+            std::cout << "Codigo Postal: " << suministros[i].getCodigoPostal() << "\n";
+            std::cout << "Fecha de Alta: " << fechaAlta.toString() << "\n";
+            std::cout << "Fecha de Baja: "
+                      << (tieneFechaBaja ? fechaBaja.toString() : "Sigue Activo") << "\n";
+            std::cout << "Contacto: " << suministros[i].getContacto() << "\n";
+            std::cout << "Medidor: " << suministros[i].getMedidor() << "\n";
+            std::cout << "Consumo por Mes: " << suministros[i].getConsumoPorMes() << " kWh\n";
+            std::cout << "Precio por kWh: $" << suministros[i].getPrecioKwh() << "\n";
+            std::cout << "Deuda: " << (suministros[i].hasDeuda() ? "Sí" : "No") << "\n";
+            std::cout << "Monto de Deuda: $" << suministros[i].getMontoDeuda() << "\n";
+            std::cout << "Reclamo: " << (suministros[i].hasReclamo() ? "Sí" : "No") << "\n";
+            std::cout << "-----------------------------\n";
+        }
+    }
+}
+
+void mostrarPedidos(PedidoSuministro* pedidos, int cantidad) {
+    ArchivoFecha archivoF("fechas.dat");
+    for (int i = 0; i < cantidad; ++i) {
+        if(pedidos[i].isActivo()){
+
+        int pos = archivoF.BuscarFecha(pedidos[i].getFechaPedido());
+        Fecha fechaPedido = archivoF.LeerFecha(pos);
+
         std::cout << "ID de Pedido: " << pedidos[i].getPedidoId() << "\n";
         std::cout << "ID de Usuario: " << pedidos[i].getUsuarioId() << "\n";
         std::cout << "Tipo de Suministro: " << pedidos[i].getTipoSuministro() << "\n";
         std::cout << "Direccion: " << pedidos[i].getDireccion() << "\n";
         std::cout << "Codigo Postal: " << pedidos[i].getCodigoPostal() << "\n";
-        std::cout << "Fecha de Pedido: " << pedidos[i].getFechaPedido() << "\n";
+        std::cout << "Fecha de Pedido: " << fechaPedido.toString() << "\n";
         std::cout << "Contacto: " << pedidos[i].getContacto() << "\n";
         std::cout << "Medidor: " << pedidos[i].getMedidor() << "\n";
         std::cout << "Comentarios: " << pedidos[i].getComentarios() << "\n";
         std::cout << "-----------------------------\n";
+        }
     }
 }
-
 
 void mostrarReclamos(Reclamo* reclamos, int cantidad) {
     for (int i = 0; i < cantidad; ++i) {
@@ -46,6 +94,7 @@ void mostrarFechas(Fecha *vectorFechas, int cantidadFechas) {
         std::cout << "------------------------" << std::endl;
     }
 }
+
 void seleccionarTipoSuministro(char* tipoSuministro) {
     int opcion;
     bool opcionValida = false;
@@ -57,7 +106,8 @@ void seleccionarTipoSuministro(char* tipoSuministro) {
         std::cout << "3. Agricola\n";
         std::cout << "4. Residencial\n";
         std::cout << "Seleccione una opcion (1-4): ";
-        std::cin >> opcion;
+
+        opcion = leerEntero();
 
         // Validar la opcion seleccionada y asignar el tipo correspondiente
         switch (opcion) {
@@ -84,6 +134,7 @@ void seleccionarTipoSuministro(char* tipoSuministro) {
         }
     }
 }
+
 void seleccionarTipoMedidor(char* tipoMedidor) {
     int opcion;
     bool opcionValida = false;
@@ -226,30 +277,6 @@ void mostrarUsuarios(Usuario *vectorUsuarios, int cantidadUsuarios) {
     }
 }
 
-void mostrarSuministros(Suministro *vectorSuministros, int cantidadSuministros) {
-    for (int i = 0; i < cantidadSuministros; i++) {
-        if (vectorSuministros[i].isActivo()) {  // Solo muestra suministros activos
-            std::cout << "SUMINISTRO ID: " << vectorSuministros[i].getSuministroId() << std::endl;
-            std::cout << "USUARIO ID: " << vectorSuministros[i].getUsuarioId() << std::endl;
-            std::cout << "TIPO DE SUMINISTRO: " << vectorSuministros[i].getTipoSuministro() << std::endl;
-            std::cout << "DIRECCION: " << vectorSuministros[i].getDireccion() << std::endl;
-            std::cout << "CODIGO POSTAL: " << vectorSuministros[i].getCodigoPostal() << std::endl;
-            std::cout << "FECHA DE ALTA: " << vectorSuministros[i].getFechaAlta() << std::endl;
-            std::cout << "FECHA DE BAJA: " << vectorSuministros[i].getFechaBaja() << std::endl;
-            std::cout << "CONTACTO: " << vectorSuministros[i].getContacto() << std::endl;
-            std::cout << "MEDIDOR: " << vectorSuministros[i].getMedidor() << std::endl;
-            std::cout << "CONSUMO POR MES: " << vectorSuministros[i].getConsumoPorMes() << " kWh" << std::endl;
-            std::cout << "PRECIO POR KWH: $" << vectorSuministros[i].getPrecioKwh() << std::endl;
-            std::cout << "DEUDA PENDIENTE: " << (vectorSuministros[i].hasDeuda() ? "Si" : "No") << std::endl;
-            if (vectorSuministros[i].hasDeuda()) {
-                std::cout << "MONTO DE DEUDA: $" << vectorSuministros[i].getMontoDeuda() << std::endl;
-            }
-            std::cout << "RECLAMOS PENDIENTES: " << (vectorSuministros[i].hasReclamo() ? "Si" : "No") << std::endl;
-            std::cout << "------------------------" << std::endl;
-        }
-    }
-}
-
 void bannerBienvenida(){
 
     Fecha fecha;
@@ -278,24 +305,13 @@ bool confirmarContrasena(const char* contrasena1, const char* contrasena2) {
 }
 
 int leerEntero() {
-    int valor;
-    while (true) {
-        std::cin >> valor;
-
-
-        if (std::cin.fail()) {
-            std::cout << "Error: Entrada invalida. Por favor, ingrese un numero entero: ";
-
-
-            std::cin.clear(); // Limpia el estado de error
-
-            // Ignorar los caracteres no válidos en el buffer
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Ignora hasta el siguiente salto de línea
-        } else {
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Ignorar el salto de línea restante
-            return valor; // Retorna el valor válido
-        }
+    int numero;
+    while (!(std::cin >> numero)) {
+        std::cin.clear(); // Limpiar el estado de error
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Limpiar el buffer
+        std::cout << "Entrada invalida. Por favor, ingrese un número entero válido: ";
     }
+    return numero;
 }
 
 Usuario registrarse() {
@@ -385,14 +401,13 @@ Usuario registrarse() {
     return nuevoUsuario;
 }
 
-
 PedidoSuministro cargarPedidoSuministro(int idUsuario) {
     ArchivoAcumuladorId archivo("acumulador.dat");
     AcumuladorId acum = archivo.LeerAcumuladorId(0);
 
 
-    int pedidoId, codigoPostal, fechaPedidoid, contacto, fechaId;
-    char tipoSuministro[50], direccion[50], medidor[50], comentarios[100];
+    int pedidoId, codigoPostal, fechaPedidoid, fechaId;
+    char tipoSuministro[50], direccion[50], medidor[50], comentarios[100], contacto[50];
 
     pedidoId = acum.getIdSuministro();
     fechaId = acum.getIdFechas();
@@ -404,11 +419,11 @@ PedidoSuministro cargarPedidoSuministro(int idUsuario) {
     std::cin.getline(direccion, 50);
 
     std::cout << "Ingrese el codigo postal: ";
-    std::cin >> codigoPostal;
+    codigoPostal = leerEntero();
     std::cin.ignore(); // Limpiar el buffer después de la entrada numérica
 
     std::cout << "Ingrese numero de contacto del domicilio: ";
-    std::cin >> contacto;
+    std::cin.getline(contacto, 50);
     std::cin.ignore(); // Limpiar el buffer después de la entrada numérica
 
     seleccionarTipoMedidor(medidor);
@@ -443,12 +458,38 @@ PedidoSuministro cargarPedidoSuministro(int idUsuario) {
     return pedido;
 }
 
+PedidoSuministro buscarPedidoPorId(int id){
+
+ArchivoPedido archivoP("pedidos.dat");
+
+int cant = archivoP.CantidadPedidos();
+
+PedidoSuministro *vectorPedidos;
+
+vectorPedidos = new PedidoSuministro[cant];
+
+archivoP.LeerPedidos(cant,vectorPedidos);
+
+ for (int i = 0; i < cant; ++i) {
+        if(vectorPedidos[i].getPedidoId() == id){
+
+            PedidoSuministro pedidoEncontrado = vectorPedidos[i]; // Copia el pedido encontrado
+            delete[] vectorPedidos; // Libera la memoria antes de retornar
+            return pedidoEncontrado;
+
+        }
+    }
+
+delete []vectorPedidos;
+return PedidoSuministro ();
+}
+
 void listaPedidos(){
 
 ArchivoPedido archivoP("pedidos.dat");
 
 int cant = archivoP.CantidadPedidos();
-a
+
 PedidoSuministro *vectorPedidos;
 
 vectorPedidos = new PedidoSuministro[cant];
@@ -460,9 +501,100 @@ mostrarPedidos(vectorPedidos,cant);
 delete []vectorPedidos;
 }
 
+PedidoSuministro seleccionarPedido(){
+int idPedido = 0;
+PedidoSuministro pedido;
+std::cout << "Ingrese el ID del Pedido que desea Atender: \n";
+ idPedido = leerEntero();
+ pedido = buscarPedidoPorId(idPedido);
+
+ return pedido;
+
+};
+
+
+void creacionSuministro(PedidoSuministro pedido) {
+    system("cls");
+    ArchivoUsuario archivoU("usuarios.dat");
+    int pos = archivoU.BuscarUsuario(pedido.getUsuarioId());
+    Usuario usuarioPedido = archivoU.LeerUsuario(pos);
+
+    std::cout << "Informacion del Perfil del Solicitante: \n";
+    usuarioPedido.mostrarUsuario();
+
+    std::cout << "Informacion del Pedido: \n";
+    pedido.mostrarPedido();
+
+    int acepted;
+    bool opcionValida = false;
+
+    while (!opcionValida) {
+        std::cout << "Desea Aceptar Esta Solicitud?: (En caso de Si insertar 1/ En caso de NO insertar 0)\n";
+        acepted = leerEntero();
+
+        if (acepted == 1) {
+                //CREAMOS SUMINISTRO NUEVO
+    ArchivoAcumuladorId archivoId("acumulador.dat");
+    ArchivoFecha archivoF("fechas.dat");
+    ArchivoSuministro archivoS("suministros.dat");
+    ArchivoPedido archivoP("pedidos.dat");
+    AcumuladorId acum = archivoId.LeerAcumuladorId(0);
+
+
+    //tenemos ids
+    int idFecha = acum.getIdFechas();
+    //
+    Fecha fechaAlta;
+    fechaAlta.FechaActual();
+    fechaAlta.setId(idFecha);
+
+    //logica para asignar consumo y kilowats
+
+
+    Suministro suministroNuevo(pedido.getPedidoId(),pedido.getUsuarioId(),pedido.getTipoSuministro(),pedido.getDireccion(),pedido.getCodigoPostal(),fechaAlta.getId(),0,pedido.getContacto(),pedido.getMedidor(),0,0,false,false,0);
+
+    if(suministroNuevo.getSuministroId()== 0){
+
+        std::cout << "ERROR AL CREAR EL SUMINISTRO!!\n";
+        opcionValida = true; //termino bucle
+    }else{
+
+            //guardo fecha nueva
+            archivoF.GuardarFecha(fechaAlta);
+            //guardo suministro
+            archivoS.GuardarSuministro(suministroNuevo);
+            //borro pedido, no activo
+            pedido.setActivo(false);
+            int pos = archivoP.BuscarPedido(pedido.getPedidoId());
+            archivoP.EditarPedido(pedido,pos);
+            //Guardo
+
+            acum.setIdFechas(idFecha + 1);
+            archivoId.EditarAcumuladorId(acum,0);
+
+            system("cls");
+            std::cout << "Pedido Aceptado, y Suministro Creado Exitosamente.\n";
+            opcionValida = true;  // Salir del bucle porque la opción es válida
+
+        }}
+    else if (acepted == 0) {
+            system("cls");
+            std::cout << "Se Rechazo el Pedido.\n";
+            //CREAR LOGICA PARA CREAR UNA RESPUESTA DE PEDIDO FALSE
+            opcionValida = true;  // Salir del bucle porque la opción es válida
+
+        } else {
+            system("cls");
+            std::cout << "Opcion invalida. Por favor, ingrese 1 para aceptar o 0 para rechazar.\n";
+        }
+    }
+}
+
+
 void menuSecundario(Usuario usu) {
     int idUsuario = usu.getId();
     int opcion = -1;
+    PedidoSuministro pedido;
     //MENU USUARIOS ADMIN
     if(usu.isAdmin()){
                while (opcion != 0) {
@@ -485,6 +617,16 @@ void menuSecundario(Usuario usu) {
             case 2:
                 std::cout << "Pedidos de Suministros Solicitados:\n";
                 listaPedidos();
+                pedido = seleccionarPedido();
+                if(pedido.getPedidoId() == 0){
+                system("cls");
+                std::cout << "No se encontro un Pedido con el Id Ingresado. \n";
+
+                }else{
+
+                    creacionSuministro(pedido);
+                }
+
 
                 break;
 
@@ -609,7 +751,7 @@ void menuPrincipal(){
     int opcion = -1;
     while(opcion != 0){
 
-
+    bannerBienvenida();
     std::cout << "===== MENU PRINCIPAL =====\n";
     std::cout << "1. Registrarse\n";
     std::cout << "2. Login\n";

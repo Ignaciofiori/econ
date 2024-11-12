@@ -7,6 +7,7 @@
 #include "ArchivoReclamo.h"
 #include "ArchivoPedido.h"
 
+void mostrarSuministros(Suministro *vectorSuministro, int cantidad);
 void mostrarPedidos(PedidoSuministro *vectorPedidos, int cantidad);
 void listaPedidos();
 void mostrarUsuarios(Usuario* vectorUsuarios, int cantidadUsuarios);
@@ -24,3 +25,6 @@ Usuario busquedaUsuarioPorEmail(const char *email);
 void cargarFecha(Fecha &fecha );
 PedidoSuministro cargarPedidoSuministro(int idUsuario);
 void seleccionarTipoSuministro(char* tipoSuministro);
+void creacionSuministro(PedidoSuministro pedido);
+PedidoSuministro buscarPedidoPorId(int id);
+

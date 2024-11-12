@@ -1,4 +1,5 @@
 #include "PedidoSuministro.h"
+#include "ArchivoFecha.h"
 #include <cstring>
 
 // Constructor por defecto
@@ -7,7 +8,7 @@ PedidoSuministro::PedidoSuministro() {
     _usuarioId = 0;
     _codigoPostal = 0;
     _fechaPedido = 0;
-    _contacto = 0;
+    strcpy(_contacto, "");  // Inicialización como cadena vacía
     strcpy(_tipoSuministro, "");
     strcpy(_direccion, "");
     strcpy(_medidor, "");
@@ -17,12 +18,12 @@ PedidoSuministro::PedidoSuministro() {
 
 // Constructor con parámetros
 PedidoSuministro::PedidoSuministro(int pedidoId, int usuarioId, const char* tipoSuministro, const char* direccion,
-                                   int codigoPostal, int fechaPedido, int contacto, const char* medidor, const char* comentarios) {
+                                   int codigoPostal, int fechaPedido, const char* contacto, const char* medidor, const char* comentarios) {
     _pedidoId = pedidoId;
     _usuarioId = usuarioId;
     _codigoPostal = codigoPostal;
     _fechaPedido = fechaPedido;
-    _contacto = contacto;
+    strcpy(_contacto, contacto);  // Guardar como cadena
     strcpy(_tipoSuministro, tipoSuministro);
     strcpy(_direccion, direccion);
     strcpy(_medidor, medidor);
@@ -55,7 +56,7 @@ int PedidoSuministro::getFechaPedido() {
     return _fechaPedido;
 }
 
-int PedidoSuministro::getContacto() {
+const char* PedidoSuministro::getContacto() {  // Cambiado para devolver un const char*
     return _contacto;
 }
 
@@ -70,6 +71,7 @@ const char* PedidoSuministro::getComentarios() {
 bool PedidoSuministro::isActivo(){
     return _activo;
 }
+
 // Setters
 void PedidoSuministro::setPedidoId(int pedidoId) {
     _pedidoId = pedidoId;
@@ -95,8 +97,8 @@ void PedidoSuministro::setFechaPedido(int fechaPedido) {
     _fechaPedido = fechaPedido;
 }
 
-void PedidoSuministro::setContacto(int contacto) {
-    _contacto = contacto;
+void PedidoSuministro::setContacto(const char* contacto) {  // Cambiado a const char*
+    strcpy(_contacto, contacto);
 }
 
 void PedidoSuministro::setMedidor(const char* medidor) {
@@ -106,6 +108,26 @@ void PedidoSuministro::setMedidor(const char* medidor) {
 void PedidoSuministro::setComentarios(const char* comentarios) {
     strcpy(_comentarios, comentarios);
 }
+
 void PedidoSuministro::setActivo(bool activo){
     _activo = activo;
+}
+
+void PedidoSuministro::mostrarPedido() {
+    ArchivoFecha archivo("fechas.dat");
+    int pos = archivo.BuscarFecha(getFechaPedido());
+    Fecha fecha = archivo.LeerFecha(pos);
+
+    std::cout << "===== INFORMACION DEL PEDIDO DE SUMINISTRO =====\n";
+    std::cout << "ID del Pedido: " << getPedidoId() << std::endl;
+    std::cout << "ID del Usuario: " << getUsuarioId() << std::endl;
+    std::cout << "Tipo de Suministro: " << getTipoSuministro() << std::endl;
+    std::cout << "Direccion: " << getDireccion() << std::endl;
+    std::cout << "Codigo Postal: " << getCodigoPostal() << std::endl;
+    std::cout << "Fecha del Pedido: " << fecha.toString() << std::endl;
+    std::cout << "Contacto: " << getContacto() << std::endl;
+    std::cout << "Medidor: " << getMedidor() << std::endl;
+    std::cout << "Comentarios: " << getComentarios() << std::endl;
+    std::cout << "Activo: " << (isActivo() ? "Si" : "No") << std::endl;
+    std::cout << "===============================================\n";
 }

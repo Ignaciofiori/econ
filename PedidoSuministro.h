@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <cstring>
 
 class PedidoSuministro {
 private:
@@ -9,7 +10,7 @@ private:
     char _direccion[50];
     int _codigoPostal;
     int _fechaPedido;
-    int _contacto;
+    char _contacto[50]; // Cambiado de int a char[]
     char _medidor[50];
     char _comentarios[100];
     bool _activo;
@@ -18,18 +19,18 @@ public:
 
     PedidoSuministro();
     PedidoSuministro(int pedidoId, int usuarioId, const char* tipoSuministro, const char* direccion, int codigoPostal,
-                     int fechaPedido, int contacto, const char* medidor, const char* comentarios);
+                     int fechaPedido, const char* contacto, const char* medidor, const char* comentarios); // Actualizado
 
     // Getters
-    int getPedidoId() ;
-    int getUsuarioId() ;
-    const char* getTipoSuministro() ;
-    const char* getDireccion() ;
-    int getCodigoPostal() ;
-    int getFechaPedido() ;
-    int getContacto() ;
-    const char* getMedidor() ;
-    const char* getComentarios() ;
+    int getPedidoId();
+    int getUsuarioId();
+    const char* getTipoSuministro();
+    const char* getDireccion();
+    int getCodigoPostal();
+    int getFechaPedido();
+    const char* getContacto(); // Actualizado
+    const char* getMedidor();
+    const char* getComentarios();
     bool isActivo();
 
     // Setters
@@ -39,9 +40,10 @@ public:
     void setDireccion(const char* direccion);
     void setCodigoPostal(int codigoPostal);
     void setFechaPedido(int fechaPedido);
-    void setContacto(int contacto);
+    void setContacto(const char* contacto); // Actualizado
     void setMedidor(const char* medidor);
     void setComentarios(const char* comentarios);
     void setActivo(bool activo);
-};
 
+    void mostrarPedido();
+};
