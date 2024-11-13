@@ -733,7 +733,7 @@ PedidoSuministro cargarPedidoSuministro(int idUsuario) {
             std::cout << "Error al realizar el pedido de suministro. Intentelo nuevamente.\n";
     }else{
          system("cls");
-        std::cout << "\Pedido Enviado al Administrador Exitosamente!\n";
+        std::cout << "Pedido Enviado al Administrador Exitosamente!\n";
         std::cout << "Se estara revisando la peticion y se brindara el servicio lo antes posible.\n";
 
 
@@ -1128,6 +1128,271 @@ void creacionSuministro(PedidoSuministro pedido) {
     }
 }
 
+void EstadisticaReclamos(){
+    ArchivoReclamo archivoR("reclamos.dat");
+    ArchivoUsuario archivoU("usuarios.dat");
+
+    int cantidadReclamos = archivoR.CantidadReclamos();
+    if (cantidadReclamos == 0) {
+        std::cout << "No hay reclamos para contar." << std::endl;
+        return;
+    }
+
+    Reclamo* vectorReclamos = new Reclamo[cantidadReclamos];
+    archivoR.LeerReclamos(cantidadReclamos, vectorReclamos);
+
+    int* usuarios = new int[cantidadReclamos];  // Usamos cantidadReclamos como tamaño inicial, ya que no sabemos cuántos usuarios únicos hay
+    int* conteoReclamos = new int[cantidadReclamos]{0};  // Inicializamos el array de conteos a 0
+    int cantidadUsuarios = 0;
+
+    // Contar reclamos por usuario
+    for (int i = 0; i < cantidadReclamos; ++i) {
+        int usuarioId = vectorReclamos[i].getUsuarioId();
+        bool usuarioExistente = false;
+
+        for (int j = 0; j < cantidadUsuarios; ++j) {
+            if (usuarios[j] == usuarioId) {
+                conteoReclamos[j]++;
+                usuarioExistente = true;
+                break;
+            }
+        }
+
+        if (!usuarioExistente) {
+            usuarios[cantidadUsuarios] = usuarioId;
+            conteoReclamos[cantidadUsuarios] = 1;
+            cantidadUsuarios++;
+        }
+    }
+
+    delete[] vectorReclamos;
+
+    if (cantidadUsuarios == 0) {
+        std::cout << "No se encontraron reclamos." << std::endl;
+        delete[] usuarios;
+        delete[] conteoReclamos;
+        return;
+    }
+
+    // Encontrar el usuario con más reclamos
+    int maxReclamos = 0;
+    int usuarioConMasReclamos = -1;
+
+    for (int i = 0; i < cantidadUsuarios; ++i) {
+        if (conteoReclamos[i] > maxReclamos) {
+            maxReclamos = conteoReclamos[i];
+            usuarioConMasReclamos = usuarios[i];
+        }
+    }
+
+    // Leer todos los usuarios
+    int cantidadUsuariosTotales = archivoU.CantidadUsuarios();
+    Usuario* vectorUsuarios = new Usuario[cantidadUsuariosTotales];
+    archivoU.LeerUsuarios(cantidadUsuariosTotales, vectorUsuarios);
+
+    // Obtener información del usuario con más reclamos
+    char nombreUsuarioConMasReclamos[50];
+    char apellidoUsuarioConMasReclamos[50];
+
+    for (int i = 0; i < cantidadUsuariosTotales; ++i) {
+        if (vectorUsuarios[i].getId() == usuarioConMasReclamos) {
+            strcpy(nombreUsuarioConMasReclamos, vectorUsuarios[i].getNombre());
+            strcpy(apellidoUsuarioConMasReclamos, vectorUsuarios[i].getApellido());
+            break;
+        }
+    }
+
+    delete[] vectorUsuarios;
+    delete[] usuarios;
+    delete[] conteoReclamos;
+
+    // Mostrar estadísticas
+    if (strlen(nombreUsuarioConMasReclamos) > 0 && strlen(apellidoUsuarioConMasReclamos) > 0) {
+        std::cout << "El usuario con más reclamos es: " << nombreUsuarioConMasReclamos << " "
+                  << apellidoUsuarioConMasReclamos << " con un total de " << maxReclamos << " reclamos." << std::endl;
+    } else {
+        std::cout << "No se encontraron usuarios con reclamos." << std::endl;
+    }
+}
+
+
+void EstadisticaSuministros(){
+    ArchivoSuministro archivoS("suministros.dat");
+    ArchivoUsuario archivoU("usuarios.dat");
+
+    int cantidadSuministros = archivoS.CantidadSuministros();
+    if (cantidadSuministros == 0) {
+        std::cout << "No hay suministros para contar." << std::endl;
+        return;
+    }
+
+    Suministro* vectorSuministros = new Suministro[cantidadSuministros];
+    archivoS.LeerSuministros(cantidadSuministros, vectorSuministros);
+
+    int* usuarios = new int[cantidadSuministros];  // Usamos cantidadSuministros como tamaño inicial, ya que no sabemos cuántos usuarios únicos hay
+    int* conteoSuministros = new int[cantidadSuministros]{0};  // Inicializamos el array de conteos a 0
+    int cantidadUsuarios = 0;
+
+    // Contar suministros por usuario
+    for (int i = 0; i < cantidadSuministros; ++i) {
+        int usuarioId = vectorSuministros[i].getUsuarioId();
+        bool usuarioExistente = false;
+
+        for (int j = 0; j < cantidadUsuarios; ++j) {
+            if (usuarios[j] == usuarioId) {
+                conteoSuministros[j]++;
+                usuarioExistente = true;
+                break;
+            }
+        }
+
+        if (!usuarioExistente) {
+            usuarios[cantidadUsuarios] = usuarioId;
+            conteoSuministros[cantidadUsuarios] = 1;
+            cantidadUsuarios++;
+        }
+    }
+
+    delete[] vectorSuministros;
+
+    if (cantidadUsuarios == 0) {
+        std::cout << "No se encontraron suministros." << std::endl;
+        delete[] usuarios;
+        delete[] conteoSuministros;
+        return;
+    }
+
+    // Encontrar el usuario con más suministros
+    int maxSuministros = 0;
+    int usuarioConMasSuministros = -1;
+
+    for (int i = 0; i < cantidadUsuarios; ++i) {
+        if (conteoSuministros[i] > maxSuministros) {
+            maxSuministros = conteoSuministros[i];
+            usuarioConMasSuministros = usuarios[i];
+        }
+    }
+
+    // Leer todos los usuarios
+    int cantidadUsuariosTotales = archivoU.CantidadUsuarios();
+    Usuario* vectorUsuarios = new Usuario[cantidadUsuariosTotales];
+    archivoU.LeerUsuarios(cantidadUsuariosTotales, vectorUsuarios);
+
+    // Obtener información del usuario con más suministros
+    char nombreUsuarioConMasSuministros[50];
+    char apellidoUsuarioConMasSuministros[50];
+
+    for (int i = 0; i < cantidadUsuariosTotales; ++i) {
+        if (vectorUsuarios[i].getId() == usuarioConMasSuministros) {
+            strcpy(nombreUsuarioConMasSuministros, vectorUsuarios[i].getNombre());
+            strcpy(apellidoUsuarioConMasSuministros, vectorUsuarios[i].getApellido());
+            break;
+        }
+    }
+
+    delete[] vectorUsuarios;
+    delete[] usuarios;
+    delete[] conteoSuministros;
+
+    // Mostrar estadísticas
+    if (strlen(nombreUsuarioConMasSuministros) > 0 && strlen(apellidoUsuarioConMasSuministros) > 0) {
+        std::cout << "El usuario con más suministros es: " << nombreUsuarioConMasSuministros << " "
+                  << apellidoUsuarioConMasSuministros << " con un total de " << maxSuministros << " suministros." << std::endl;
+    } else {
+        std::cout << "No se encontraron usuarios con suministros." << std::endl;
+    }
+}
+
+void EstadisticaPedidos(){
+    ArchivoPedido archivoP("pedidos.dat");
+    ArchivoUsuario archivoU("usuarios.dat");
+
+    int cantidadPedidos = archivoP.CantidadPedidos();
+    if (cantidadPedidos == 0) {
+        std::cout << "No hay pedidos para contar." << std::endl;
+        return;
+    }
+
+    PedidoSuministro* vectorPedidos = new PedidoSuministro[cantidadPedidos];
+    archivoP.LeerPedidos(cantidadPedidos, vectorPedidos);
+
+    int* usuarios = new int[cantidadPedidos];  // Usamos cantidadPedidos como tamaño inicial, ya que no sabemos cuántos usuarios únicos hay
+    int* conteoPedidos = new int[cantidadPedidos]{0};  // Inicializamos el array de conteos a 0
+    int cantidadUsuarios = 0;
+
+    // Contar pedidos por usuario
+    for (int i = 0; i < cantidadPedidos; ++i) {
+        int usuarioId = vectorPedidos[i].getUsuarioId();
+        bool usuarioExistente = false;
+
+        for (int j = 0; j < cantidadUsuarios; ++j) {
+            if (usuarios[j] == usuarioId) {
+                conteoPedidos[j]++;
+                usuarioExistente = true;
+                break;
+            }
+        }
+
+        if (!usuarioExistente) {
+            usuarios[cantidadUsuarios] = usuarioId;
+            conteoPedidos[cantidadUsuarios] = 1;
+            cantidadUsuarios++;
+        }
+    }
+
+    delete[] vectorPedidos;
+
+    if (cantidadUsuarios == 0) {
+        std::cout << "No se encontraron pedidos." << std::endl;
+        delete[] usuarios;
+        delete[] conteoPedidos;
+        return;
+    }
+
+    // Encontrar el usuario con más pedidos
+    int maxPedidos = 0;
+    int usuarioConMasPedidos = -1;
+
+    for (int i = 0; i < cantidadUsuarios; ++i) {
+        if (conteoPedidos[i] > maxPedidos) {
+            maxPedidos = conteoPedidos[i];
+            usuarioConMasPedidos = usuarios[i];
+        }
+    }
+
+    // Leer todos los usuarios
+    int cantidadUsuariosTotales = archivoU.CantidadUsuarios();
+    Usuario* vectorUsuarios = new Usuario[cantidadUsuariosTotales];
+    archivoU.LeerUsuarios(cantidadUsuariosTotales, vectorUsuarios);
+
+    // Obtener información del usuario con más pedidos
+    char nombreUsuarioConMasPedidos[50] = "";
+    char apellidoUsuarioConMasPedidos[50] = "";
+
+    for (int i = 0; i < cantidadUsuariosTotales; ++i) {
+        if (vectorUsuarios[i].getId() == usuarioConMasPedidos) {
+            strcpy(nombreUsuarioConMasPedidos, vectorUsuarios[i].getNombre());
+            strcpy(apellidoUsuarioConMasPedidos, vectorUsuarios[i].getApellido());
+            break;
+        }
+    }
+
+    delete[] vectorUsuarios;
+    delete[] usuarios;
+    delete[] conteoPedidos;
+
+    // Mostrar estadísticas
+    if (strlen(nombreUsuarioConMasPedidos) > 0 && strlen(apellidoUsuarioConMasPedidos) > 0) {
+        std::cout << "El usuario con más pedidos es: " << nombreUsuarioConMasPedidos << " "
+                  << apellidoUsuarioConMasPedidos << " con un total de " << maxPedidos << " pedidos." << std::endl;
+    } else {
+        std::cout << "No se encontraron usuarios con pedidos." << std::endl;
+    }
+}
+
+
+
+
 
 void menuSecundario(Usuario usu) {
     int idUsuario = usu.getId();
@@ -1178,6 +1443,9 @@ void menuSecundario(Usuario usu) {
                 break;
             case 3:
                 std::cout << "Menu de Estadisticas :\n";
+                EstadisticaReclamos();
+                EstadisticaSuministros();
+                EstadisticaPedidos();
                  break;
             case 5:{
                 std::cout << "Agregar Usuario ADMIN :\n";
