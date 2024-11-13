@@ -94,6 +94,38 @@ void mostrarReclamos(Reclamo* reclamos, int cantidad) {
     }
 }
 
+void mostrarReclamosCliente(int idUsuario) {
+    ArchivoReclamo archivoR("reclamos.dat");
+
+    int cantidadReclamos = archivoR.CantidadReclamos();
+    if (cantidadReclamos == 0) {
+        std::cout << "No hay reclamos para mostrar." << std::endl;
+        return;
+    }
+
+    Reclamo* vectorReclamos = new Reclamo[cantidadReclamos];
+    archivoR.LeerReclamos(cantidadReclamos, vectorReclamos);
+
+    for (int i = 0; i < cantidadReclamos; ++i) {
+        if (vectorReclamos[i].getUsuarioId() == idUsuario) {
+            std::cout << "Reclamo #" << (i + 1) << ":\n";
+            std::cout << "ID de Reclamo: " << vectorReclamos[i].getReclamoId() << "\n";
+            std::cout << "ID de Suministro: " << vectorReclamos[i].getSuministroId() << "\n";
+            std::cout << "Descripcion: " << vectorReclamos[i].getDescripcion() << "\n";
+            std::cout << "Fecha de Reclamo: " << vectorReclamos[i].getFechaReclamo() << "\n";
+            std::cout << "Estado: " << vectorReclamos[i].getEstado() << "\n";
+            std::cout << "Tipo de Reclamo: " << vectorReclamos[i].getTipoDeReclamo() << "\n";
+            std::cout << "Responsable de Atencion: " << vectorReclamos[i].getResponsableDeAtencion() << "\n";
+            std::cout << "Respuesta: " << vectorReclamos[i].getRespuesta() << "\n";
+            std::cout << "Prioridad: " << vectorReclamos[i].getPrioridad() << "\n";
+            std::cout << "-----------------------------\n";
+        }
+    }
+
+    delete[] vectorReclamos;
+}
+
+
 void mostrarFechas(Fecha *vectorFechas, int cantidadFechas) {
     for (int i = 0; i < cantidadFechas; i++) {
         std::cout << "FECHA ID: " << vectorFechas[i].getId() << std::endl;
@@ -1080,6 +1112,7 @@ void menuSecundario(Usuario usu) {
         std::cout << "3. Ver Suministros Asociados\n";
         std::cout << "4. Ver Respuestas a tu pedidos\n";
         std::cout << "5. Generar Reclamo\n";
+        std::cout << "6. Ver Reclamos\n";
         std::cout << "0. Cerrar Sesion (Desloguearse)\n";
         std::cout << "===========================\n";
         std::cout << "Seleccione una opcion: ";
@@ -1118,6 +1151,10 @@ void menuSecundario(Usuario usu) {
     }else{
     std::cout << "Hubo un error al cargar tu reclamo, intentalo nuevamente. \n";
     }
+        break;
+    case 6:
+        std::cout << "Reclamos de " << usu.getNombre() << "\n"<< std::endl;
+        mostrarReclamosCliente(usu.getId());
         break;
     case 0:
         std::cout << "Sesion Cerrada Exitosamente...\n";

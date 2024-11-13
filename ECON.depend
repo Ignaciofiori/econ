@@ -248,3 +248,261 @@
 	<string>
 	"RespuestaPedido.h"
 
+1731530447 source:c:\users\ivan_\downloads\econ-main (3)\econ-main\acumuladorid.cpp
+	"AcumuladorId.h"
+
+1731530447 c:\users\ivan_\downloads\econ-main (3)\econ-main\acumuladorid.h
+
+1731530447 source:c:\users\ivan_\downloads\econ-main (3)\econ-main\archivoacumulador.cpp
+	"ArchivoAcumulador.h"
+	"AcumuladorId.h"
+
+1731530447 c:\users\ivan_\downloads\econ-main (3)\econ-main\archivoacumulador.h
+	<string>
+	"AcumuladorId.h"
+
+1731530447 source:c:\users\ivan_\downloads\econ-main (3)\econ-main\archivofecha.cpp
+	"ArchivoFecha.h"
+	<cstring>
+
+1731530447 c:\users\ivan_\downloads\econ-main (3)\econ-main\archivofecha.h
+	"Fecha.h"
+	<string>
+
+1731530448 c:\users\ivan_\downloads\econ-main (3)\econ-main\fecha.h
+	<iostream>
+	"ArchivoAcumulador.h"
+	"AcumuladorId.h"
+	<cstring>
+	<ctime>
+
+1731530447 source:c:\users\ivan_\downloads\econ-main (3)\econ-main\archivopedido.cpp
+	"ArchivoPedido.h"
+	<cstring>
+
+1731530447 c:\users\ivan_\downloads\econ-main (3)\econ-main\archivopedido.h
+	"PedidoSuministro.h"
+	<string>
+
+1731530448 c:\users\ivan_\downloads\econ-main (3)\econ-main\pedidosuministro.h
+	<cstring>
+
+1731530447 source:c:\users\ivan_\downloads\econ-main (3)\econ-main\archivoreclamo.cpp
+	"ArchivoReclamo.h"
+	<cstring>
+
+1731530447 c:\users\ivan_\downloads\econ-main (3)\econ-main\archivoreclamo.h
+	"Reclamos.h"
+	<string>
+
+1731530448 c:\users\ivan_\downloads\econ-main (3)\econ-main\reclamos.h
+
+1731530447 source:c:\users\ivan_\downloads\econ-main (3)\econ-main\archivorespuestas.cpp
+	"ArchivoRespuestas.h"
+	<cstring>
+
+1731530448 c:\users\ivan_\downloads\econ-main (3)\econ-main\archivorespuestas.h
+	<string>
+	"RespuestaPedido.h"
+
+1731530448 c:\users\ivan_\downloads\econ-main (3)\econ-main\respuestapedido.h
+
+1731530448 source:c:\users\ivan_\downloads\econ-main (3)\econ-main\archivosuministro.cpp
+	"ArchivoSuministro.h"
+	<cstring>
+
+1731530448 c:\users\ivan_\downloads\econ-main (3)\econ-main\archivosuministro.h
+	<string>
+	"Suministros.h"
+
+1731530448 c:\users\ivan_\downloads\econ-main (3)\econ-main\suministros.h
+
+1731530448 source:c:\users\ivan_\downloads\econ-main (3)\econ-main\archivousuario.cpp
+	"ArchivoUsuario.h"
+	<cstring>
+
+1731530448 c:\users\ivan_\downloads\econ-main (3)\econ-main\archivousuario.h
+	<string>
+	"Usuario.h"
+
+1731530448 c:\users\ivan_\downloads\econ-main (3)\econ-main\usuario.h
+	"Fecha.h"
+	"ArchivoFecha.h"
+	<string>
+
+1731530448 source:c:\users\ivan_\downloads\econ-main (3)\econ-main\fecha.cpp
+	"Fecha.h"
+
+1731531695 source:c:\users\ivan_\downloads\econ-main (3)\econ-main\main.cpp
+	<iostream>
+	"Funciones.h"
+
+1731530448 c:\users\ivan_\downloads\econ-main (3)\econ-main\funciones.h
+	"ArchivoUsuario.h"
+	"ArchivoSuministro.h"
+	"ArchivoFecha.h"
+	"ArchivoAcumulador.h"
+	"ArchivoReclamo.h"
+	"ArchivoPedido.h"
+	"ArchivoRespuestas.h"
+
+1731530448 source:c:\users\ivan_\downloads\econ-main (3)\econ-main\pedidosuministro.cpp
+	"PedidoSuministro.h"
+	"ArchivoFecha.h"
+	<cstring>
+
+1731530448 source:c:\users\ivan_\downloads\econ-main (3)\econ-main\reclamos.cpp
+	<cstring>
+	"Reclamos.h"
+
+1731530448 source:c:\users\ivan_\downloads\econ-main (3)\econ-main\respuestapedido.cpp
+	<cstring>
+	"RespuestaPedido.h"
+
+1731530448 source:c:\users\ivan_\downloads\econ-main (3)\econ-main\suministro.cpp
+	<cstring>
+	"Suministros.h"
+
+1731530448 source:c:\users\ivan_\downloads\econ-main (3)\econ-main\usuario.cpp
+	"Usuario.h"
+	<cstring>
+	<iostream>
+
+1731532289 source:c:\users\ivan_\downloads\econ-main (3)\econ-main\funciones.cpp
+	<iostream>
+	"Funciones.h"
+	<cstdlib>
+	<limits>
+	<string>
+	<iostream>
+	"ArchivoFecha.h"
+
+1731530447 source:c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\tp final\econ\acumuladorid.cpp
+	"AcumuladorId.h"
+
+1731530447 c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\tp final\econ\acumuladorid.h
+
+1731530447 source:c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\tp final\econ\archivoacumulador.cpp
+	"ArchivoAcumulador.h"
+	"AcumuladorId.h"
+
+1731530447 c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\tp final\econ\archivoacumulador.h
+	<string>
+	"AcumuladorId.h"
+
+1731530447 source:c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\tp final\econ\archivofecha.cpp
+	"ArchivoFecha.h"
+	<cstring>
+
+1731530447 c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\tp final\econ\archivofecha.h
+	"Fecha.h"
+	<string>
+
+1731530448 c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\tp final\econ\fecha.h
+	<iostream>
+	"ArchivoAcumulador.h"
+	"AcumuladorId.h"
+	<cstring>
+	<ctime>
+
+1731530447 source:c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\tp final\econ\archivopedido.cpp
+	"ArchivoPedido.h"
+	<cstring>
+
+1731530447 c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\tp final\econ\archivopedido.h
+	"PedidoSuministro.h"
+	<string>
+
+1731530448 c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\tp final\econ\pedidosuministro.h
+	<cstring>
+
+1731530447 source:c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\tp final\econ\archivoreclamo.cpp
+	"ArchivoReclamo.h"
+	<cstring>
+
+1731530447 c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\tp final\econ\archivoreclamo.h
+	"Reclamos.h"
+	<string>
+
+1731530448 c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\tp final\econ\reclamos.h
+
+1731530447 source:c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\tp final\econ\archivorespuestas.cpp
+	"ArchivoRespuestas.h"
+	<cstring>
+
+1731530448 c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\tp final\econ\archivorespuestas.h
+	<string>
+	"RespuestaPedido.h"
+
+1731530448 c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\tp final\econ\respuestapedido.h
+
+1731530448 source:c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\tp final\econ\archivosuministro.cpp
+	"ArchivoSuministro.h"
+	<cstring>
+
+1731530448 c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\tp final\econ\archivosuministro.h
+	<string>
+	"Suministros.h"
+
+1731530448 c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\tp final\econ\suministros.h
+
+1731530448 source:c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\tp final\econ\archivousuario.cpp
+	"ArchivoUsuario.h"
+	<cstring>
+
+1731530448 c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\tp final\econ\archivousuario.h
+	<string>
+	"Usuario.h"
+
+1731530448 c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\tp final\econ\usuario.h
+	"Fecha.h"
+	"ArchivoFecha.h"
+	<string>
+
+1731530448 source:c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\tp final\econ\fecha.cpp
+	"Fecha.h"
+
+1731532289 source:c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\tp final\econ\funciones.cpp
+	<iostream>
+	"Funciones.h"
+	<cstdlib>
+	<limits>
+	<string>
+	<iostream>
+	"ArchivoFecha.h"
+
+1731530448 c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\tp final\econ\funciones.h
+	"ArchivoUsuario.h"
+	"ArchivoSuministro.h"
+	"ArchivoFecha.h"
+	"ArchivoAcumulador.h"
+	"ArchivoReclamo.h"
+	"ArchivoPedido.h"
+	"ArchivoRespuestas.h"
+
+1731531695 source:c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\tp final\econ\main.cpp
+	<iostream>
+	"Funciones.h"
+
+1731530448 source:c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\tp final\econ\pedidosuministro.cpp
+	"PedidoSuministro.h"
+	"ArchivoFecha.h"
+	<cstring>
+
+1731530448 source:c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\tp final\econ\reclamos.cpp
+	<cstring>
+	"Reclamos.h"
+
+1731530448 source:c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\tp final\econ\respuestapedido.cpp
+	<cstring>
+	"RespuestaPedido.h"
+
+1731530448 source:c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\tp final\econ\suministro.cpp
+	<cstring>
+	"Suministros.h"
+
+1731530448 source:c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\tp final\econ\usuario.cpp
+	"Usuario.h"
+	<cstring>
+	<iostream>
+
