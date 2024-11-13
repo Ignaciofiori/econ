@@ -515,7 +515,94 @@ int leerEntero() {
     }
     return numero;
 }
+Usuario nuevoAdmin(){
+    ArchivoFecha archivoFecha("fechas.dat");
+    ArchivoAcumuladorId archivo("acumulador.dat");
+    AcumuladorId acum = archivo.LeerAcumuladorId(0);
+    int idUsuario = acum.getIdUsuarios();
 
+    std::cout << "===== REGISTRO =====\n";
+
+    char nombre[50];
+    std::cout << "Ingrese su nombre: ";
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Limpiar el buffer
+    std::cin.getline(nombre, 50);
+
+
+    char apellido[50];
+    std::cout << "Ingrese su apellido: ";
+    std::cin.getline(apellido, 50);
+
+
+
+    std::cout << "Ingrese su DNI (numero entero): ";
+    int dni = leerEntero(); // Usamos la función para leer y validar el DNI
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+    char email[50];
+    std::cout << "Ingrese su correo electronico: ";
+    std::cin.getline(email, 50);
+
+    bool contrasenaValida = false;
+      char contrasena[50];
+    while(!contrasenaValida){
+
+            std::cout << "Ingrese una contrasena: ";
+            std::cin.getline(contrasena, 50);
+
+
+                char contrasenaConfirmacion[50];
+            std::cout << "Repita la contrasena: ";
+            std::cin.getline(contrasenaConfirmacion, 50);
+
+            if (confirmarContrasena(contrasena, contrasenaConfirmacion)) {
+                    contrasenaValida = true;
+                } else {
+                    std::cout << "Las contrasenas no coinciden. Intente nuevamente.\n";
+                }
+
+    }
+
+
+    char contacto[50];
+    std::cout << "Ingrese su numero de contacto: ";
+    std::cin.getline(contacto, 50);
+
+
+    Fecha fechaNacimiento ;
+    int idFecha = acum.getIdFechas();
+    cargarFecha(fechaNacimiento);
+    fechaNacimiento.setId(idFecha);
+
+
+   // Crear el nuevo usuario utilizando el constructor que recibe todos los parámetros
+    Usuario nuevoUsuario(idUsuario, nombre, apellido, dni, email, contrasena, contacto, idFecha,true);
+
+
+    //system("cls");
+    if (nuevoUsuario.getId() == 0) {
+                    std::cout << "Error al registrarse. Inténtelo nuevamente.\n";
+                }else {
+
+    archivoFecha.GuardarFecha(fechaNacimiento);
+    system("cls");
+
+    std::cout << "\nRegistro exitoso!\n";
+    std::cout << "Usuario registrado: " << nombre << " " << apellido << "\n";
+
+
+    int nuevoFechaId = fechaNacimiento.getId() + 1 ;
+
+    idUsuario++;
+    acum.setIdFechas(nuevoFechaId);
+    acum.setIdUsuarios(idUsuario);
+    archivo.EditarAcumuladorId(acum, 0);
+
+                }
+
+
+    return nuevoUsuario;
+}
 Usuario registrarse() {
     ArchivoFecha archivoFecha("fechas.dat");
     ArchivoAcumuladorId archivo("acumulador.dat");
@@ -1054,6 +1141,7 @@ void menuSecundario(Usuario usu) {
         std::cout << "1. Ver Perfil\n";
         std::cout << "2. Ver Pedidos de Suministros\n";
         std::cout << "3. Estadisticas \n";
+        std::cout << "5. Crear Usuario Admin \n";
         std::cout << "0. Cerrar Sesion (Desloguearse)\n";
 
         std::cout << "===========================\n";
@@ -1091,6 +1179,16 @@ void menuSecundario(Usuario usu) {
             case 3:
                 std::cout << "Menu de Estadisticas :\n";
                  break;
+            case 5:{
+                std::cout << "Agregar Usuario ADMIN :\n";
+                Usuario adminNuevo = nuevoAdmin();
+                if(adminNuevo.getId() != 0){
+                //guardo Usuario
+                    ArchivoUsuario archivo("usuarios.dat");
+                    archivo.GuardarUsuario(adminNuevo);
+                }
+                break;
+                }
             case 0:
                 std::cout << "Sesion Cerrada Exitosamente...\n";
                 break;
