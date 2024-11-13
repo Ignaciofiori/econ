@@ -35,7 +35,7 @@
 	<string>
 	"Usuario.h"
 
-1731519454 source:c:\users\nacho\desktop\work\econ\funciones.cpp
+1731529785 source:c:\users\nacho\desktop\work\econ\funciones.cpp
 	<iostream>
 	"Funciones.h"
 	<cstdlib>
@@ -44,7 +44,7 @@
 	<iostream>
 	"ArchivoFecha.h"
 
-1731518192 c:\users\nacho\desktop\work\econ\funciones.h
+1731528232 c:\users\nacho\desktop\work\econ\funciones.h
 	"ArchivoUsuario.h"
 	"ArchivoSuministro.h"
 	"ArchivoFecha.h"

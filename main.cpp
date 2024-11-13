@@ -5,18 +5,19 @@ using namespace std ;
 int main() {
 
 
-menuPrincipal();
+/*menuPrincipal();*/
 
-/*ArchivoRespuesta archivo("respuestas.dat");
-int cantidad = archivo.CantidadRespuestas();
-RespuestaPedido *vectorRespuestas;
+ArchivoReclamo archivo("reclamos.dat");  // Archivo donde se almacenan los reclamos
+int cantidad = archivo.CantidadReclamos();  // Obtiene la cantidad de reclamos
 
-vectorRespuestas = new RespuestaPedido[cantidad];
+Reclamo *vectorReclamos;  // Puntero para almacenar los reclamos
 
-archivo.LeerRespuestas(cantidad,vectorRespuestas);
+vectorReclamos = new Reclamo[cantidad];  // Reserva memoria para los reclamos
 
-mostrarRespuestasPedido(vectorRespuestas,cantidad);
+archivo.LeerReclamos(cantidad, vectorReclamos);  // Lee los reclamos desde el archivo
 
-*/
+mostrarReclamos(vectorReclamos, cantidad);  // Muestra los reclamos
+
+
     return 0;
 }

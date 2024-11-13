@@ -33,3 +33,7 @@ float determinarConsumoPorMes( char* tipoSuministro);
 float determinarPrecioKwh( char* tipoMedidor);
 void mostrarSuministrosAsociados(Usuario &usu);
 void  mostrarRespuestas(Usuario &usu);
+Reclamo cargarReclamo(Usuario &usu);
+void seleccionarTipoReclamo(char* tipoReclamo);
+void seleccionarNivelPrioridad(char* nivelPrioridad);
+Suministro buscarSuministroPorId(int id,Usuario &usu);
