@@ -42,6 +42,8 @@
 		<Unit filename="ArchivoPedido.h" />
 		<Unit filename="ArchivoReclamo.cpp" />
 		<Unit filename="ArchivoReclamo.h" />
+		<Unit filename="ArchivoRespuestas.cpp" />
+		<Unit filename="ArchivoRespuestas.h" />
 		<Unit filename="ArchivoSuministro.cpp" />
 		<Unit filename="ArchivoSuministro.h" />
 		<Unit filename="ArchivoUsuario.cpp" />
@@ -54,6 +56,8 @@
 		<Unit filename="PedidoSuministro.h" />
 		<Unit filename="Reclamos.cpp" />
 		<Unit filename="Reclamos.h" />
+		<Unit filename="RespuestaPedido.cpp" />
+		<Unit filename="RespuestaPedido.h" />
 		<Unit filename="Suministro.cpp" />
 		<Unit filename="Suministros.h" />
 		<Unit filename="Usuario.cpp" />

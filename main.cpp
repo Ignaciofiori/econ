@@ -1,19 +1,22 @@
 #include <iostream>
 #include "Funciones.h"
-using namespace std;
+using namespace std ;
 
 int main() {
 
-/*menuPrincipal();*/
-ArchivoSuministro archivo("suministros.dat");
-int cantidad = archivo.CantidadSuministros();
-Suministro *vectorSuministros;
 
-vectorSuministros = new Suministro[cantidad];
+menuPrincipal();
 
-archivo.LeerSuministros(cantidad,vectorSuministros);
+/*ArchivoRespuesta archivo("respuestas.dat");
+int cantidad = archivo.CantidadRespuestas();
+RespuestaPedido *vectorRespuestas;
 
-mostrarSuministros(vectorSuministros,cantidad);
+vectorRespuestas = new RespuestaPedido[cantidad];
 
+archivo.LeerRespuestas(cantidad,vectorRespuestas);
+
+mostrarRespuestasPedido(vectorRespuestas,cantidad);
+
+*/
     return 0;
 }

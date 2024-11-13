@@ -23,7 +23,7 @@
 	"ArchivoFecha.h"
 	<string>
 
-1731178771 source:c:\users\nacho\desktop\work\econ\main.cpp
+1731515924 source:c:\users\nacho\desktop\work\econ\main.cpp
 	<iostream>
 	"Funciones.h"
 
@@ -35,20 +35,23 @@
 	<string>
 	"Usuario.h"
 
-1731178757 source:c:\users\nacho\desktop\work\econ\funciones.cpp
+1731519454 source:c:\users\nacho\desktop\work\econ\funciones.cpp
 	<iostream>
 	"Funciones.h"
 	<cstdlib>
 	<limits>
 	<string>
+	<iostream>
+	"ArchivoFecha.h"
 
-1731178732 c:\users\nacho\desktop\work\econ\funciones.h
+1731518192 c:\users\nacho\desktop\work\econ\funciones.h
 	"ArchivoUsuario.h"
 	"ArchivoSuministro.h"
 	"ArchivoFecha.h"
 	"ArchivoAcumulador.h"
 	"ArchivoReclamo.h"
 	"ArchivoPedido.h"
+	"ArchivoRespuestas.h"
 
 1731088933 source:c:\users\nacho\desktop\work\econ\suministro.cpp
 	<cstring>
@@ -74,10 +77,10 @@
 	<cstring>
 	<ctime>
 
-1730158228 source:c:\users\nacho\desktop\work\econ\acumuladorid.cpp
+1731431434 source:c:\users\nacho\desktop\work\econ\acumuladorid.cpp
 	"AcumuladorId.h"
 
-1730158228 c:\users\nacho\desktop\work\econ\acumuladorid.h
+1731431422 c:\users\nacho\desktop\work\econ\acumuladorid.h
 
 1730152849 source:c:\users\nacho\desktop\work\econ\archivoacumuladorid.cpp
 	"ArchivoAcumuladorId.h"
@@ -116,12 +119,13 @@
 	"Reclamos.h"
 	<string>
 
-1731080468 source:c:\users\nacho\desktop\work\econ\pedidosuministro.cpp
+1731422728 source:c:\users\nacho\desktop\work\econ\pedidosuministro.cpp
 	"PedidoSuministro.h"
+	"ArchivoFecha.h"
 	<cstring>
 
-1731080468 c:\users\nacho\desktop\work\econ\pedidosuministro.h
-	<string>
+1731432786 c:\users\nacho\desktop\work\econ\pedidosuministro.h
+	<cstring>
 
 1730764840 source:c:\users\nacho\desktop\work\econ\archivopedido.cpp
 	"ArchivoPedido.h"
@@ -229,4 +233,18 @@
 1731274804 source:c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\suministro.cpp
 	<cstring>
 	"Suministros.h"
+
+1731432786 source:c:\users\nacho\desktop\work\econ\respuestapedido.cpp
+	<cstring>
+	"RespuestaPedido.h"
+
+1731432786 c:\users\nacho\desktop\work\econ\respuestapedido.h
+
+1731442212 source:c:\users\nacho\desktop\work\econ\archivorespuestas.cpp
+	"ArchivoRespuestas.h"
+	<cstring>
+
+1731442124 c:\users\nacho\desktop\work\econ\archivorespuestas.h
+	<string>
+	"RespuestaPedido.h"
 

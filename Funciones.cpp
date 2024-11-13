@@ -3,9 +3,18 @@
 #include <cstdlib>
 #include <limits> // Para std::numeric_limits
 #include <string>
-
 #include <iostream>
 #include "ArchivoFecha.h"  // Asegúrate de incluir el archivo correcto
+
+int contarPedidosActivos(PedidoSuministro* pedidos, int cantidad) {
+    int contador = 0;
+    for (int i = 0; i < cantidad; ++i) {
+        if (pedidos[i].isActivo()) {
+            ++contador;
+        }
+    }
+    return contador;
+}
 
 void mostrarSuministros(Suministro* suministros, int cantidad) {
     ArchivoFecha archivoF("fechas.dat");
@@ -95,6 +104,20 @@ void mostrarFechas(Fecha *vectorFechas, int cantidadFechas) {
     }
 }
 
+void mostrarRespuestasPedido(RespuestaPedido* respuestas, int cantidad) {
+    for (int i = 0; i < cantidad; ++i) {
+        std::cout << "Respuesta Pedido #" << (i + 1) << ":\n";
+        std::cout << "ID de Respuesta: " << respuestas[i].getRespuestaId() << "\n";
+        std::cout << "ID de Usuario: " << respuestas[i].getUsuarioId() << "\n";
+        std::cout << "ID de Pedido: " << respuestas[i].getPedidoId() << "\n";
+        std::cout << "Aceptado: " << (respuestas[i].getAceptado() ? "SI" : "No") << "\n";
+        std::cout << "Fecha de Respuesta: " << respuestas[i].getFechaDeRespuesta() << "\n";
+        std::cout << "Comentarios: " << respuestas[i].getComentarios() << "\n";
+        std::cout << "Activo: " << (respuestas[i].isActivo() ? "SI" : "No") << "\n";
+        std::cout << "-----------------------------\n";
+    }
+}
+
 void seleccionarTipoSuministro(char* tipoSuministro) {
     int opcion;
     bool opcionValida = false;
@@ -141,25 +164,25 @@ void seleccionarTipoMedidor(char* tipoMedidor) {
 
     while (!opcionValida) {
         std::cout << "Seleccione el tipo de medidor de energia electrica que desea:\n";
-        std::cout << "1. Medidor Electromecánico\n";
+        std::cout << "1. Medidor Electromecanico\n";
         std::cout << "2. Medidor Digital\n";
         std::cout << "3. Medidor Inteligente\n";
         std::cout << "4. Medidor Bidireccional\n";
-        std::cout << "5. Medidor Trifásico\n";
-        std::cout << "6. Medidor Monofásico\n";
+        std::cout << "5. Medidor Trifasico\n";
+        std::cout << "6. Medidor Monofasico\n";
         std::cout << "7. Medidor de Prepago\n";
         std::cout << "Seleccione una opcion (1-7): ";
 
         if (!(std::cin >> opcion)) {
-            std::cin.clear(); // Clear error flag
-            system("cls");
+            std::cin.clear(); // Limpiar el estado de error
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Limpiar el buffer
             std::cout << "Entrada invalida. Por favor, intente nuevamente.\n";
         } else {
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Limpiar buffer
 
             switch (opcion) {
                 case 1:
-                    strcpy(tipoMedidor, "Medidor Electromecánico");
+                    strcpy(tipoMedidor, "Medidor Electromecanico");
                     opcionValida = true;
                     break;
                 case 2:
@@ -175,11 +198,11 @@ void seleccionarTipoMedidor(char* tipoMedidor) {
                     opcionValida = true;
                     break;
                 case 5:
-                    strcpy(tipoMedidor, "Medidor Trifásico");
+                    strcpy(tipoMedidor, "Medidor Trifasico");
                     opcionValida = true;
                     break;
                 case 6:
-                    strcpy(tipoMedidor, "Medidor Monofásico");
+                    strcpy(tipoMedidor, "Medidor Monofasico");
                     opcionValida = true;
                     break;
                 case 7:
@@ -194,9 +217,42 @@ void seleccionarTipoMedidor(char* tipoMedidor) {
 
         if (!opcionValida) {
             std::cin.clear();
-            system("cls");
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         }
+    }
+}
+
+float determinarConsumoPorMes(char* tipoSuministro) {
+    if (strcmp(tipoSuministro, "Comercial") == 0) {
+        return 500.0f; // Consumo medio-bajo
+    } else if (strcmp(tipoSuministro, "Industrial") == 0) {
+        return 2000.0f; // Mayor consumo
+    } else if (strcmp(tipoSuministro, "Agricola") == 0) {
+        return 1000.0f; // Consumo medio-alto
+    } else if (strcmp(tipoSuministro, "Residencial") == 0) {
+        return 300.0f; // Menor consumo
+    } else {
+        return 0.0f;
+    }
+}
+
+float determinarPrecioKwh(char* tipoMedidor) {
+    if (strcmp(tipoMedidor, "Medidor Electromecanico") == 0) {
+        return 100.0f;
+    } else if (strcmp(tipoMedidor, "Medidor Digital") == 0) {
+        return 150.0f;
+    } else if (strcmp(tipoMedidor, "Medidor Inteligente") == 0) {
+        return 300.0f;
+    } else if (strcmp(tipoMedidor, "Medidor Bidireccional") == 0) {
+        return 350.0f;
+    } else if (strcmp(tipoMedidor, "Medidor Trifasico") == 0) {
+        return 370.0f;
+    } else if (strcmp(tipoMedidor, "Medidor Monofasico") == 0) {
+        return 280.0f;
+    } else if (strcmp(tipoMedidor, "Medidor de Prepago") == 0) {
+        return 180.0f;
+    } else {
+        return 0.0f; // Por si ocurre un error
     }
 }
 
@@ -277,6 +333,120 @@ void mostrarUsuarios(Usuario *vectorUsuarios, int cantidadUsuarios) {
     }
 }
 
+void mostrarSuministrosAsociados(Usuario &usu) {
+    // Cargar los suministros desde el archivo
+    ArchivoSuministro archivoSuministro("suministros.dat");
+    ArchivoFecha archivoFecha("fechas.dat");
+
+    int cantidad = archivoSuministro.CantidadSuministros();
+    Suministro *vectorSuministros;
+
+    vectorSuministros = new Suministro[cantidad];
+
+    archivoSuministro.LeerSuministros(cantidad, vectorSuministros);
+
+    std::cout << "Suministros asociados al usuario " << usu.getNombre() << ":\n";
+
+   for (int i = 0; i < cantidad; ++i) {
+    if (vectorSuministros[i].getUsuarioId() == usu.getId() && vectorSuministros[i].isActivo()) {
+        int posAlta = archivoFecha.BuscarFecha(vectorSuministros[i].getFechaAlta());
+        int posBaja = archivoFecha.BuscarFecha(vectorSuministros[i].getFechaBaja());
+        Fecha fechaAlta = archivoFecha.LeerFecha(posAlta);
+        Fecha fechaBaja = archivoFecha.LeerFecha(posBaja);
+
+        // Filtra por ID de usuario y estado activo
+        std::cout << "ID de Suministro: " << vectorSuministros[i].getSuministroId() << "\n";
+        std::cout << "Tipo de Suministro: " << vectorSuministros[i].getTipoSuministro() << "\n";
+        std::cout << "Activo: " << (vectorSuministros[i].isActivo() ? "Si" : "No") << "\n";
+        std::cout << "Direccion: " << vectorSuministros[i].getDireccion() << "\n";
+        std::cout << "Codigo Postal: " << vectorSuministros[i].getCodigoPostal() << "\n";
+        std::cout << "Fecha Alta: " << fechaAlta.toString() << "\n"; // O ajusta si tienes una clase Fecha
+        std::cout << "Fecha Baja: " << (vectorSuministros[i].getFechaBaja() == 0 ? "Sigue Activo." : fechaBaja.toString()) << "\n"; // O ajusta si tienes una clase Fecha
+        std::cout << "Contacto: " << vectorSuministros[i].getContacto() << "\n";
+        std::cout << "Medidor: " << vectorSuministros[i].getMedidor() << "\n";
+        std::cout << "Consumo por Mes: " << vectorSuministros[i].getConsumoPorMes() << " kWh\n";
+        std::cout << "Precio por kWh: $" << vectorSuministros[i].getPrecioKwh() << "\n";
+        std::cout << "Deuda: " << (vectorSuministros[i].hasDeuda() ? "Si" : "No") << "\n";
+        std::cout << "Reclamo: " << (vectorSuministros[i].hasReclamo() ? "Si" : "No") << "\n";
+        std::cout << "Monto de Deuda: $" << vectorSuministros[i].getMontoDeuda() << "\n";
+        std::cout << "-----------------------------\n";
+    }
+}
+
+
+    // Liberar la memoria dinámica
+    delete[] vectorSuministros;
+}
+
+void mostrarRespuestas(Usuario &usu) {
+
+    ArchivoRespuesta archivoRespuesta("respuestas.dat");
+    ArchivoFecha archivoFechas("fechas.dat");
+    int cantidadRespuestas = archivoRespuesta.CantidadRespuestas();
+    RespuestaPedido *vectorRespuestas;
+
+
+    vectorRespuestas = new RespuestaPedido[cantidadRespuestas];
+
+
+    archivoRespuesta.LeerRespuestas(cantidadRespuestas, vectorRespuestas);
+
+
+    ArchivoPedido archivoPedido("pedidos.dat");
+    int cantidadPedidos = archivoPedido.CantidadPedidos();
+    PedidoSuministro *vectorPedidos;
+
+    vectorPedidos = new PedidoSuministro[cantidadPedidos];
+
+
+    archivoPedido.LeerPedidos(cantidadPedidos, vectorPedidos);
+
+    std::cout << "Respuestas asociadas al usuario " << usu.getNombre() << ":\n";
+
+
+    for (int i = 0; i < cantidadRespuestas; ++i) {
+        if (vectorRespuestas[i].getUsuarioId() == usu.getId() && vectorRespuestas[i].isActivo()) {
+
+            PedidoSuministro pedidoRelacionado;
+            for (int j = 0; j < cantidadPedidos; ++j) {
+                if (vectorRespuestas[i].getPedidoId() == vectorPedidos[j].getPedidoId()) {
+                    pedidoRelacionado = vectorPedidos[j];
+                    break;
+                }
+            }
+
+            int posFechaRespuesta = archivoFechas.BuscarFecha(vectorRespuestas[i].getFechaDeRespuesta());
+            Fecha fechaRespuesta = archivoFechas.LeerFecha(posFechaRespuesta);
+            int posFechaPedido = archivoFechas.BuscarFecha(pedidoRelacionado.getFechaPedido());
+            Fecha fechaPedido = archivoFechas.LeerFecha(posFechaPedido);
+            // Mostrar la información del pedido relacionado
+            std::cout << "\n--- Informacion del Pedido ---\n";
+            std::cout << "ID de Pedido: " << pedidoRelacionado.getPedidoId() << "\n";
+            std::cout << "Tipo de Suministro: " << pedidoRelacionado.getTipoSuministro() << "\n";
+            std::cout << "Direccion: " << pedidoRelacionado.getDireccion() << "\n";
+            std::cout << "Codigo Postal: " << pedidoRelacionado.getCodigoPostal() << "\n";
+            std::cout << "Fecha de Pedido: " << fechaPedido.toString() << "\n";
+            std::cout << "Contacto: " << pedidoRelacionado.getContacto() << "\n";
+            std::cout << "Medidor: " << pedidoRelacionado.getMedidor() << "\n";
+            std::cout << "Comentarios: " << pedidoRelacionado.getComentarios() << "\n";
+            std::cout << "Activo: " << (pedidoRelacionado.isActivo() ? "Si" : "No") << "\n";
+            std::cout << "-----------------------------\n";
+
+            // Mostrar la información de la respuesta
+            std::cout << "ID de Respuesta: " << vectorRespuestas[i].getRespuestaId() << "\n";
+            std::cout << "Aceptado: " << (vectorRespuestas[i].getAceptado() ? "Si" : "No") << "\n";
+            std::cout << "Fecha de Respuesta: " << fechaRespuesta.toString()<< "\n";
+            std::cout << "Comentarios: " << vectorRespuestas[i].getComentarios() << "\n";
+            std::cout << "Activo: " << (vectorRespuestas[i].isActivo() ? "Si" : "No") << "\n";
+            std::cout << "-----------------------------\n";
+        }
+    }
+
+
+    delete[] vectorRespuestas;
+    delete[] vectorPedidos;
+}
+
 void bannerBienvenida(){
 
     Fecha fecha;
@@ -315,7 +485,7 @@ int leerEntero() {
 }
 
 Usuario registrarse() {
-
+    ArchivoFecha archivoFecha("fechas.dat");
     ArchivoAcumuladorId archivo("acumulador.dat");
     AcumuladorId acum = archivo.LeerAcumuladorId(0);
     int idUsuario = acum.getIdUsuarios();
@@ -336,7 +506,7 @@ Usuario registrarse() {
 
     std::cout << "Ingrese su DNI (numero entero): ";
     int dni = leerEntero(); // Usamos la función para leer y validar el DNI
-
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
     char email[50];
     std::cout << "Ingrese su correo electronico: ";
@@ -369,12 +539,13 @@ Usuario registrarse() {
 
 
     Fecha fechaNacimiento ;
+    int idFecha = acum.getIdFechas();
     cargarFecha(fechaNacimiento);
-    int fechaId = fechaNacimiento.getId();
+    fechaNacimiento.setId(idFecha);
 
 
    // Crear el nuevo usuario utilizando el constructor que recibe todos los parámetros
-    Usuario nuevoUsuario(idUsuario, nombre, apellido, dni, email, contrasena, contacto, fechaId,false);
+    Usuario nuevoUsuario(idUsuario, nombre, apellido, dni, email, contrasena, contacto, idFecha,true);
 
 
     //system("cls");
@@ -382,6 +553,7 @@ Usuario registrarse() {
                     std::cout << "Error al registrarse. Inténtelo nuevamente.\n";
                 }else {
 
+    archivoFecha.GuardarFecha(fechaNacimiento);
     system("cls");
 
     std::cout << "\nRegistro exitoso!\n";
@@ -424,9 +596,9 @@ PedidoSuministro cargarPedidoSuministro(int idUsuario) {
 
     std::cout << "Ingrese numero de contacto del domicilio: ";
     std::cin.getline(contacto, 50);
-    std::cin.ignore(); // Limpiar el buffer después de la entrada numérica
 
     seleccionarTipoMedidor(medidor);
+
 
     std::cout << "Ingrese comentarios adicionales: ";
     std::cin.getline(comentarios, 100);
@@ -443,7 +615,7 @@ PedidoSuministro cargarPedidoSuministro(int idUsuario) {
     }else{
          system("cls");
         std::cout << "\Pedido Enviado al Administrador Exitosamente!\n";
-        std::cout << " Se estara revisando la peticion y se brindara el servicio lo antes posible.\n";
+        std::cout << "Se estara revisando la peticion y se brindara el servicio lo antes posible.\n";
 
 
     ArchivoFecha archiF("fechas.dat");
@@ -484,7 +656,7 @@ delete []vectorPedidos;
 return PedidoSuministro ();
 }
 
-void listaPedidos(){
+int listaPedidos(){
 
 ArchivoPedido archivoP("pedidos.dat");
 
@@ -496,9 +668,14 @@ vectorPedidos = new PedidoSuministro[cant];
 
 archivoP.LeerPedidos(cant,vectorPedidos);
 
-mostrarPedidos(vectorPedidos,cant);
+int cantidadActivos = contarPedidosActivos(vectorPedidos,cant);
 
+if(cantidadActivos!=0){
+mostrarPedidos(vectorPedidos,cant);
+}else{ std::cout<<"No tienes pedidos de suministros por el momento." << std::endl;}
 delete []vectorPedidos;
+
+return cantidadActivos;
 }
 
 PedidoSuministro seleccionarPedido(){
@@ -510,7 +687,7 @@ std::cout << "Ingrese el ID del Pedido que desea Atender: \n";
 
  return pedido;
 
-};
+}
 
 
 void creacionSuministro(PedidoSuministro pedido) {
@@ -527,31 +704,38 @@ void creacionSuministro(PedidoSuministro pedido) {
 
     int acepted;
     bool opcionValida = false;
+     ArchivoAcumuladorId archivoId("acumulador.dat");
+    AcumuladorId acum = archivoId.LeerAcumuladorId(0);
+    int idRespuesta = acum.getIdRespuestas();
+
 
     while (!opcionValida) {
         std::cout << "Desea Aceptar Esta Solicitud?: (En caso de Si insertar 1/ En caso de NO insertar 0)\n";
         acepted = leerEntero();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Limpiar el buffer
 
         if (acepted == 1) {
                 //CREAMOS SUMINISTRO NUEVO
-    ArchivoAcumuladorId archivoId("acumulador.dat");
+
     ArchivoFecha archivoF("fechas.dat");
     ArchivoSuministro archivoS("suministros.dat");
     ArchivoPedido archivoP("pedidos.dat");
-    AcumuladorId acum = archivoId.LeerAcumuladorId(0);
-
+    ArchivoRespuesta archivoResp("respuestas.dat");
 
     //tenemos ids
     int idFecha = acum.getIdFechas();
+
     //
     Fecha fechaAlta;
     fechaAlta.FechaActual();
     fechaAlta.setId(idFecha);
 
     //logica para asignar consumo y kilowats
+    float consumo = determinarConsumoPorMes(pedido.getTipoSuministro());
+    float precio = determinarPrecioKwh(pedido.getMedidor());
 
-
-    Suministro suministroNuevo(pedido.getPedidoId(),pedido.getUsuarioId(),pedido.getTipoSuministro(),pedido.getDireccion(),pedido.getCodigoPostal(),fechaAlta.getId(),0,pedido.getContacto(),pedido.getMedidor(),0,0,false,false,0);
+    Suministro suministroNuevo(pedido.getPedidoId(),pedido.getUsuarioId(),pedido.getTipoSuministro(),pedido.getDireccion(),pedido.getCodigoPostal(),
+                               fechaAlta.getId(),0,pedido.getContacto(),pedido.getMedidor(),consumo,precio,false,false,0);
 
     if(suministroNuevo.getSuministroId()== 0){
 
@@ -567,7 +751,17 @@ void creacionSuministro(PedidoSuministro pedido) {
             pedido.setActivo(false);
             int pos = archivoP.BuscarPedido(pedido.getPedidoId());
             archivoP.EditarPedido(pedido,pos);
-            //Guardo
+
+            //mensaje de respuesta exitoso
+             char comentarios[50];
+            strcpy(comentarios, "Se acepto exitosamente la solicitud y se asigno el Suministro");
+
+            //Guardo respuesta
+            RespuestaPedido respuesta(idRespuesta,pedido.getUsuarioId(),pedido.getPedidoId(),true,fechaAlta.getId(),comentarios);
+            if(respuesta.getRespuestaId()!= 0){
+            archivoResp.GuardarRespuesta(respuesta);
+            acum.setIdRespuestas(idRespuesta + 1);
+            }else{std::cout << "ERROR AL GUARDAR LA RESPUESTA.\n";}
 
             acum.setIdFechas(idFecha + 1);
             archivoId.EditarAcumuladorId(acum,0);
@@ -577,11 +771,43 @@ void creacionSuministro(PedidoSuministro pedido) {
             opcionValida = true;  // Salir del bucle porque la opción es válida
 
         }}
-    else if (acepted == 0) {
-            system("cls");
-            std::cout << "Se Rechazo el Pedido.\n";
-            //CREAR LOGICA PARA CREAR UNA RESPUESTA DE PEDIDO FALSE
-            opcionValida = true;  // Salir del bucle porque la opción es válida
+                                else if (acepted == 0) {
+                                    system("cls");
+
+                                char comentarios[50];
+                                std::cout << "Ingrese comentarios relacionados al rechazo del pedido: ";
+                                std::cin.getline(comentarios, 50);
+
+                                Fecha fechaRespuesta;
+                                fechaRespuesta.FechaActual();
+
+                                int idFecha = acum.getIdFechas();
+                                int idRespuesta = acum.getIdRespuestas();
+                                fechaRespuesta.setId(idFecha);
+
+                                          RespuestaPedido respuesta(idRespuesta,pedido.getUsuarioId(),pedido.getPedidoId(),false,fechaRespuesta.getId(),comentarios);
+
+                                    ArchivoPedido archivoP("pedidos.dat");
+                                    ArchivoRespuesta archivoRes("respuestas.dat");
+                                    ArchivoFecha archivoF("fechas.dat");
+                                    archivoF.GuardarFecha(fechaRespuesta);
+                                    archivoRes.GuardarRespuesta(respuesta);
+
+                                    pedido.setActivo(false);
+                                    int pos = archivoP.BuscarPedido(pedido.getPedidoId());
+                                    archivoP.EditarPedido(pedido,pos);
+
+
+                                    acum.setIdFechas(idFecha+1);
+                                    acum.setIdRespuestas(idRespuesta + 1);
+
+                                    archivoId.EditarAcumuladorId(acum,0);
+
+
+                                    system("cls");
+                                        std::cout << "Se Rechazo el Pedido.\n";
+                                        //CREAR LOGICA PARA CREAR UNA RESPUESTA DE PEDIDO FALSE
+                                        opcionValida = true;  // Salir del bucle porque la opción es válida
 
         } else {
             system("cls");
@@ -595,6 +821,7 @@ void menuSecundario(Usuario usu) {
     int idUsuario = usu.getId();
     int opcion = -1;
     PedidoSuministro pedido;
+    int cantidadPedidos;
     //MENU USUARIOS ADMIN
     if(usu.isAdmin()){
                while (opcion != 0) {
@@ -616,17 +843,23 @@ void menuSecundario(Usuario usu) {
                 break;
             case 2:
                 std::cout << "Pedidos de Suministros Solicitados:\n";
-                listaPedidos();
+                cantidadPedidos = listaPedidos();
+
+                if(cantidadPedidos!=0){
                 pedido = seleccionarPedido();
+
                 if(pedido.getPedidoId() == 0){
                 system("cls");
                 std::cout << "No se encontro un Pedido con el Id Ingresado. \n";
 
+
+
                 }else{
 
                     creacionSuministro(pedido);
+                     break;
                 }
-
+                }
 
                 break;
 
@@ -647,6 +880,8 @@ void menuSecundario(Usuario usu) {
         std::cout << "\n===== MENU Cliente =====\n";
         std::cout << "1. Ver Perfil\n";
         std::cout << "2. Pedir Suministro\n";
+        std::cout << "3. Ver Suministros Asociados\n";
+        std::cout << "4. Ver Respuestas a tu pedidos\n";
         std::cout << "0. Cerrar Sesion (Desloguearse)\n";
         std::cout << "===========================\n";
         std::cout << "Seleccione una opcion: ";
@@ -654,27 +889,39 @@ void menuSecundario(Usuario usu) {
         std::cin >> opcion;
         system("cls"); // Limpiar pantalla después de cada selección
 
-        switch (opcion) {
-            case 1:
-                std::cout << "Perfil de "<<usu.getNombre() <<":\n";
-                usu.mostrarUsuario(); // Método para mostrar el perfil del usuario
-                break;
-            case 2:
-                std::cout << "Perfil de "<<usu.getNombre() <<":\n";
-                pedido = cargarPedidoSuministro(idUsuario);
-                cargado = archivoP.GuardarPedido(pedido);
-                if(!cargado){
-                    std::cout << "Error al Crear el Pedido de Suministro.";
-                }
-                break;
-            case 0:
-                std::cout << "Sesion Cerrada Exitosamente...\n";
-                break;
+       switch (opcion) {
+    case 1:
+        std::cout << "Perfil de " << usu.getNombre() << ":\n";
+        usu.mostrarUsuario(); // Método para mostrar el perfil del usuario
+        break;
 
-            default:
-                std::cout << "Opcion invalida. Por favor, intente nuevamente.\n";
-                break;
+    case 2:
+        pedido = cargarPedidoSuministro(idUsuario);
+        cargado = archivoP.GuardarPedido(pedido);
+        if (!cargado) {
+            std::cout << "Error al Crear el Pedido de Suministro.";
         }
+        break;
+
+    case 3:
+       mostrarSuministrosAsociados(usu);
+
+        break;
+
+    case 4:
+        // Código para ver respuestas a los pedidos
+        mostrarRespuestas(usu);
+        break;
+
+    case 0:
+        std::cout << "Sesion Cerrada Exitosamente...\n";
+        break;
+
+    default:
+        std::cout << "Opcion invalida. Por favor, intente nuevamente.\n";
+        break;
+}
+
     }
         }
         }

@@ -17,8 +17,8 @@ PedidoSuministro::PedidoSuministro() {
 }
 
 // Constructor con parámetros
-PedidoSuministro::PedidoSuministro(int pedidoId, int usuarioId, const char* tipoSuministro, const char* direccion,
-                                   int codigoPostal, int fechaPedido, const char* contacto, const char* medidor, const char* comentarios) {
+PedidoSuministro::PedidoSuministro(int pedidoId, int usuarioId,  char* tipoSuministro,  char* direccion,
+                                   int codigoPostal, int fechaPedido,  char* contacto,  char* medidor,  char* comentarios) {
     _pedidoId = pedidoId;
     _usuarioId = usuarioId;
     _codigoPostal = codigoPostal;
@@ -40,11 +40,11 @@ int PedidoSuministro::getUsuarioId() {
     return _usuarioId;
 }
 
-const char* PedidoSuministro::getTipoSuministro() {
+ char* PedidoSuministro::getTipoSuministro() {
     return _tipoSuministro;
 }
 
-const char* PedidoSuministro::getDireccion() {
+ char* PedidoSuministro::getDireccion() {
     return _direccion;
 }
 
@@ -56,15 +56,15 @@ int PedidoSuministro::getFechaPedido() {
     return _fechaPedido;
 }
 
-const char* PedidoSuministro::getContacto() {  // Cambiado para devolver un const char*
+ char* PedidoSuministro::getContacto() {  // Cambiado para devolver un const char*
     return _contacto;
 }
 
-const char* PedidoSuministro::getMedidor() {
+ char* PedidoSuministro::getMedidor() {
     return _medidor;
 }
 
-const char* PedidoSuministro::getComentarios() {
+ char* PedidoSuministro::getComentarios() {
     return _comentarios;
 }
 
@@ -81,11 +81,11 @@ void PedidoSuministro::setUsuarioId(int usuarioId) {
     _usuarioId = usuarioId;
 }
 
-void PedidoSuministro::setTipoSuministro(const char* tipoSuministro) {
+void PedidoSuministro::setTipoSuministro( char* tipoSuministro) {
     strcpy(_tipoSuministro, tipoSuministro);
 }
 
-void PedidoSuministro::setDireccion(const char* direccion) {
+void PedidoSuministro::setDireccion( char* direccion) {
     strcpy(_direccion, direccion);
 }
 
@@ -97,15 +97,15 @@ void PedidoSuministro::setFechaPedido(int fechaPedido) {
     _fechaPedido = fechaPedido;
 }
 
-void PedidoSuministro::setContacto(const char* contacto) {  // Cambiado a const char*
+void PedidoSuministro::setContacto( char* contacto) {  // Cambiado a const char*
     strcpy(_contacto, contacto);
 }
 
-void PedidoSuministro::setMedidor(const char* medidor) {
+void PedidoSuministro::setMedidor( char* medidor) {
     strcpy(_medidor, medidor);
 }
 
-void PedidoSuministro::setComentarios(const char* comentarios) {
+void PedidoSuministro::setComentarios( char* comentarios) {
     strcpy(_comentarios, comentarios);
 }
 
