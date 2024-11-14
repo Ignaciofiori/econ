@@ -23,10 +23,9 @@
 	"ArchivoFecha.h"
 	<string>
 
-1731605188 source:c:\users\nacho\desktop\work\econ\main.cpp
+1731616328 source:c:\users\nacho\desktop\work\econ\main.cpp
 	<iostream>
 	"Funciones.h"
-	<iomanip>
 
 1729969477 source:c:\users\nacho\desktop\work\econ\archivousuario.cpp
 	"ArchivoUsuario.h"
@@ -36,7 +35,7 @@
 	<string>
 	"Usuario.h"
 
-1731610035 source:c:\users\nacho\desktop\work\econ\funciones.cpp
+1731617175 source:c:\users\nacho\desktop\work\econ\funciones.cpp
 	<iostream>
 	"Funciones.h"
 	<cstdlib>
