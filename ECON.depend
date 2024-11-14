@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1731379063 source:c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\main.cpp
+1731590874 source:c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\main.cpp
 	<iostream>
 	"Funciones.h"
 
@@ -135,10 +135,10 @@
 	"PedidoSuministro.h"
 	<string>
 
-1731274804 source:c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\acumuladorid.cpp
+1731543186 source:c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\acumuladorid.cpp
 	"AcumuladorId.h"
 
-1731274804 c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\acumuladorid.h
+1731543186 c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\acumuladorid.h
 
 1731274804 source:c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\archivoacumulador.cpp
 	"ArchivoAcumulador.h"
@@ -171,8 +171,7 @@
 	"PedidoSuministro.h"
 	<string>
 
-1731286069 c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\pedidosuministro.h
-	<string>
+1731543186 c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\pedidosuministro.h
 	<cstring>
 
 1731274804 source:c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\archivoreclamo.cpp
@@ -193,7 +192,7 @@
 	<string>
 	"Suministros.h"
 
-1731274804 c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\suministros.h
+1731590171 c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\suministros.h
 
 1731274804 source:c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\archivousuario.cpp
 	"ArchivoUsuario.h"
@@ -206,22 +205,25 @@
 1731274804 source:c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\fecha.cpp
 	"Fecha.h"
 
-1731378808 source:c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\funciones.cpp
+1731593116 source:c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\funciones.cpp
 	<iostream>
 	"Funciones.h"
 	<cstdlib>
 	<limits>
 	<string>
+	<iostream>
+	"ArchivoFecha.h"
 
-1731379571 c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\funciones.h
+1731593116 c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\funciones.h
 	"ArchivoUsuario.h"
 	"ArchivoSuministro.h"
 	"ArchivoFecha.h"
 	"ArchivoAcumulador.h"
 	"ArchivoReclamo.h"
 	"ArchivoPedido.h"
+	"ArchivoRespuestas.h"
 
-1731286255 source:c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\pedidosuministro.cpp
+1731543186 source:c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\pedidosuministro.cpp
 	"PedidoSuministro.h"
 	"ArchivoFecha.h"
 	<cstring>
@@ -230,9 +232,11 @@
 	<cstring>
 	"Reclamos.h"
 
-1731274804 source:c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\suministro.cpp
+1731590561 source:c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\suministro.cpp
 	<cstring>
 	"Suministros.h"
+	"ArchivoFecha.h"
+	"Fecha.h"
 
 1731432786 source:c:\users\nacho\desktop\work\econ\respuestapedido.cpp
 	<cstring>
@@ -505,4 +509,18 @@
 	"Usuario.h"
 	<cstring>
 	<iostream>
+
+1731543186 source:c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\archivorespuestas.cpp
+	"ArchivoRespuestas.h"
+	<cstring>
+
+1731543186 c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\archivorespuestas.h
+	<string>
+	"RespuestaPedido.h"
+
+1731543186 c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\respuestapedido.h
+
+1731543186 source:c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\respuestapedido.cpp
+	<cstring>
+	"RespuestaPedido.h"
 

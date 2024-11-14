@@ -59,4 +59,5 @@ public:
     void setDeuda(bool tieneDeuda);
     void setReclamo(bool tieneReclamo);
     void setMontoDeuda(float monto);
+    void mostrarSuministro();
 };

@@ -103,19 +103,26 @@ void mostrarReclamosCliente(int idUsuario) {
         return;
     }
 
+    ArchivoFecha archivoFechas("fechas.dat");
+    ArchivoUsuario archivoU("usuarios.dat");
     Reclamo* vectorReclamos = new Reclamo[cantidadReclamos];
     archivoR.LeerReclamos(cantidadReclamos, vectorReclamos);
 
     for (int i = 0; i < cantidadReclamos; ++i) {
         if (vectorReclamos[i].getUsuarioId() == idUsuario) {
+            int posUsuario = archivoU.BuscarUsuario(vectorReclamos[i].getResponsableDeAtencion());
+            Usuario responsable = archivoU.LeerUsuario(posUsuario);
+
+            int pos = archivoFechas.BuscarFecha(vectorReclamos[i].getUsuarioId());
+            Fecha fechaReclamo = archivoFechas.LeerFecha(pos);
             std::cout << "Reclamo #" << (i + 1) << ":\n";
             std::cout << "ID de Reclamo: " << vectorReclamos[i].getReclamoId() << "\n";
             std::cout << "ID de Suministro: " << vectorReclamos[i].getSuministroId() << "\n";
             std::cout << "Descripcion: " << vectorReclamos[i].getDescripcion() << "\n";
-            std::cout << "Fecha de Reclamo: " << vectorReclamos[i].getFechaReclamo() << "\n";
+            std::cout << "Fecha de Reclamo: " << fechaReclamo.toString() << "\n";
             std::cout << "Estado: " << vectorReclamos[i].getEstado() << "\n";
             std::cout << "Tipo de Reclamo: " << vectorReclamos[i].getTipoDeReclamo() << "\n";
-            std::cout << "Responsable de Atencion: " << vectorReclamos[i].getResponsableDeAtencion() << "\n";
+            std::cout << "Responsable de Atencion: " << responsable.getNombre() << " " << responsable.getApellido() << "\n";
             std::cout << "Respuesta: " << vectorReclamos[i].getRespuesta() << "\n";
             std::cout << "Prioridad: " << vectorReclamos[i].getPrioridad() << "\n";
             std::cout << "-----------------------------\n";
@@ -124,7 +131,6 @@ void mostrarReclamosCliente(int idUsuario) {
 
     delete[] vectorReclamos;
 }
-
 
 void mostrarFechas(Fecha *vectorFechas, int cantidadFechas) {
     for (int i = 0; i < cantidadFechas; i++) {
@@ -256,13 +262,13 @@ void seleccionarTipoMedidor(char* tipoMedidor) {
 
 float determinarConsumoPorMes(char* tipoSuministro) {
     if (strcmp(tipoSuministro, "Comercial") == 0) {
-        return 500.0f; // Consumo medio-bajo
+        return 200.0f; // Consumo medio-bajo
     } else if (strcmp(tipoSuministro, "Industrial") == 0) {
-        return 2000.0f; // Mayor consumo
+        return 400.0f; // Mayor consumo
     } else if (strcmp(tipoSuministro, "Agricola") == 0) {
-        return 1000.0f; // Consumo medio-alto
+        return 300.0f; // Consumo medio-alto
     } else if (strcmp(tipoSuministro, "Residencial") == 0) {
-        return 300.0f; // Menor consumo
+        return 100.0f; // Menor consumo
     } else {
         return 0.0f;
     }
@@ -515,6 +521,7 @@ int leerEntero() {
     }
     return numero;
 }
+
 Usuario nuevoAdmin(){
     ArchivoFecha archivoFecha("fechas.dat");
     ArchivoAcumuladorId archivo("acumulador.dat");
@@ -603,6 +610,7 @@ Usuario nuevoAdmin(){
 
     return nuevoUsuario;
 }
+
 Usuario registrarse() {
     ArchivoFecha archivoFecha("fechas.dat");
     ArchivoAcumuladorId archivo("acumulador.dat");
@@ -749,7 +757,6 @@ PedidoSuministro cargarPedidoSuministro(int idUsuario) {
     return pedido;
 }
 
-
 void seleccionarTipoReclamo(char* tipoReclamo) {
     int opcion;
     bool opcionValida = false;
@@ -804,7 +811,6 @@ void seleccionarTipoReclamo(char* tipoReclamo) {
         }
     }
 }
-
 
 void seleccionarNivelPrioridad(char* nivelPrioridad) {
     int opcion;
@@ -919,7 +925,6 @@ Reclamo cargarReclamo(Usuario &usu) {
 
 }
 
-
 Suministro buscarSuministroPorId(int id,Usuario &usu) {
     ArchivoSuministro archivoS("suministros.dat");
 
@@ -1000,7 +1005,6 @@ std::cout << "Ingrese el ID del Pedido que desea Atender: \n";
  return pedido;
 
 }
-
 
 void creacionSuministro(PedidoSuministro pedido) {
     system("cls");
@@ -1215,7 +1219,6 @@ void EstadisticaReclamos(){
     }
 }
 
-
 void EstadisticaSuministros(){
     ArchivoSuministro archivoS("suministros.dat");
     ArchivoUsuario archivoU("usuarios.dat");
@@ -1390,9 +1393,48 @@ void EstadisticaPedidos(){
     }
 }
 
+int calcularMesesTranscurridos( Fecha &fechaAlta,  Fecha &fechaActual) {
+    int aniosDiferencia = fechaActual.getAnio() - fechaAlta.getAnio();
+    int mesesDiferencia = fechaActual.getMes() - fechaAlta.getMes();
 
+    return (aniosDiferencia * 12) + mesesDiferencia;
+}
 
+float calcularDeuda(Suministro &suministro) {
+    ArchivoFecha archivoF("fechas.dat");
+    ArchivoSuministro archivoS("suministros.dat");
 
+    int posSuministro = archivoS.BuscarSuministro(suministro.getSuministroId());
+    if (posSuministro == -1) {  // Verifica que el suministro exista
+        std::cerr << "Error: Suministro no encontrado." << std::endl;
+        return -1;
+    }
+
+    int posFecha = archivoF.BuscarFecha(suministro.getFechaAlta());
+    if (posFecha == -1) {  // Verifica que la fecha de alta exista
+        std::cerr << "Error: Fecha de alta no encontrada." << std::endl;
+        return -1;
+    }
+
+    Fecha fechaAlta = archivoF.LeerFecha(posFecha);
+    Fecha fechaActual;
+    fechaActual.FechaActual();
+
+    int cantidadMesesAPagar = calcularMesesTranscurridos(fechaAlta, fechaActual);
+    float montoDeuda = cantidadMesesAPagar * (suministro.getConsumoPorMes() * suministro.getPrecioKwh());
+
+    if (montoDeuda > 0) {
+        suministro.setMontoDeuda(montoDeuda);
+        suministro.setDeuda(true);
+        archivoS.EditarSuministro(suministro, posSuministro);
+    } else {
+        suministro.setMontoDeuda(0);
+        suministro.setDeuda(false);
+        archivoS.EditarSuministro(suministro, posSuministro);  // Actualizar registro sin deuda
+    }
+
+    return montoDeuda;
+}
 
 void menuSecundario(Usuario usu) {
     int idUsuario = usu.getId();
@@ -1561,7 +1603,6 @@ Usuario busquedaUsuarioPorEmail( char *email) {
     return Usuario(); // Retorna un objeto Usuario por defecto
 }
 
-
 Usuario login() {
     char email[50];
     char contrasenaIngresada[50];
@@ -1599,7 +1640,6 @@ Usuario login() {
         return Usuario(); // Retorna un objeto Usuario por defecto
     }
 }
-
 
 void menuPrincipal(){
     bool logueado = false;
@@ -1654,4 +1694,23 @@ void menuPrincipal(){
                 std::cout << "Opcion invalida. Por favor, intente nuevamente.\n";
         }
     }
+}
+
+
+void controlDeudaSuministros(){
+ArchivoSuministro archivo("suministros.dat");
+    ArchivoFecha archivoF("fechas.dat");
+    int cantSums = archivo.CantidadSuministros();
+    Suministro *vectorSuministros;
+    vectorSuministros = new Suministro[cantSums];
+    archivo.LeerSuministros(cantSums,vectorSuministros);
+    for(int i=0; i<cantSums;i++){
+        if(vectorSuministros[i].isActivo()){
+
+         calcularDeuda(vectorSuministros[i]);
+
+        }
+    }
+        delete []vectorSuministros;
+
 }

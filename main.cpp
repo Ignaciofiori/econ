@@ -1,23 +1,30 @@
 #include <iostream>
 #include "Funciones.h"
-using namespace std ;
+#include <iomanip>
+
+using namespace std;
 
 int main() {
 
 
-menuPrincipal();
 
-/*ArchivoReclamo archivo("reclamos.dat");  // Archivo donde se almacenan los reclamos
-int cantidad = archivo.CantidadReclamos();  // Obtiene la cantidad de reclamos
 
-Reclamo *vectorReclamos;  // Puntero para almacenar los reclamos
 
-vectorReclamos = new Reclamo[cantidad];  // Reserva memoria para los reclamos
 
-archivo.LeerReclamos(cantidad, vectorReclamos);  // Lee los reclamos desde el archivo
+        controlDeudaSuministros();
 
-mostrarReclamos(vectorReclamos, cantidad);  // Muestra los reclamos
-*/
 
+     ArchivoSuministro archivo("suministros.dat");
+    ArchivoFecha archivoF("fechas.dat");
+    int cantSums = archivo.CantidadSuministros();
+    Suministro *vectorSuministros;
+    vectorSuministros = new Suministro[cantSums];
+    archivo.LeerSuministros(cantSums,vectorSuministros);
+    mostrarSuministros(vectorSuministros,cantSums);
+
+
+    delete []vectorSuministros;
     return 0;
 }
+
+

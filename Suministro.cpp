@@ -1,6 +1,7 @@
 #include <cstring>
 #include "Suministros.h"
-
+#include "ArchivoFecha.h"
+#include "Fecha.h"
 Suministro::Suministro() {
     _suministroId = 0;
     _usuarioId = 0;
@@ -160,4 +161,32 @@ void Suministro::setReclamo(bool reclamo) {
 
 void Suministro::setMontoDeuda(float montoDeuda) {
     _montoDeuda = montoDeuda;
+}
+void Suministro::mostrarSuministro() {
+    ArchivoFecha archivo("fechas.dat");
+
+    // Leer la fecha de alta y fecha de baja usando los IDs de fecha almacenados
+    int posFechaAlta = archivo.BuscarFecha(getFechaAlta());
+    Fecha fechaAlta = archivo.LeerFecha(posFechaAlta);
+
+    int posFechaBaja = archivo.BuscarFecha(getFechaBaja());
+    Fecha fechaBaja = archivo.LeerFecha(posFechaBaja);
+
+    std::cout << "===== INFORMACION DEL SUMINISTRO =====\n";
+    std::cout << "ID de Suministro: " << getSuministroId() << std::endl;
+    std::cout << "ID de Usuario: " << getUsuarioId() << std::endl;
+    std::cout << "Tipo de Suministro: " << getTipoSuministro() << std::endl;
+    std::cout << "Activo: " << (isActivo() ? "Si" : "No") << std::endl;
+    std::cout << "Direccion: " << getDireccion() << std::endl;
+    std::cout << "Codigo Postal: " << getCodigoPostal() << std::endl;
+    std::cout << "Fecha de Alta: " << fechaAlta.toString() << std::endl;
+    std::cout << "Fecha de Baja: " << fechaBaja.toString() << std::endl;
+    std::cout << "Contacto: " << getContacto() << std::endl;
+    std::cout << "Medidor: " << getMedidor() << std::endl;
+    std::cout << "Consumo por Mes: " << getConsumoPorMes() << " kWh" << std::endl;
+    std::cout << "Precio por kWh: $" << getPrecioKwh() << std::endl;
+    std::cout << "Deuda: " << (hasDeuda() ? "Si" : "No") << std::endl;
+    std::cout << "Reclamo: " << (hasReclamo() ? "Si" : "No") << std::endl;
+    std::cout << "Monto de Deuda: $" << getMontoDeuda() << std::endl;
+    std::cout << "======================================\n";
 }
