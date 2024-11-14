@@ -23,9 +23,10 @@
 	"ArchivoFecha.h"
 	<string>
 
-1731515924 source:c:\users\nacho\desktop\work\econ\main.cpp
+1731605188 source:c:\users\nacho\desktop\work\econ\main.cpp
 	<iostream>
 	"Funciones.h"
+	<iomanip>
 
 1729969477 source:c:\users\nacho\desktop\work\econ\archivousuario.cpp
 	"ArchivoUsuario.h"
@@ -35,7 +36,7 @@
 	<string>
 	"Usuario.h"
 
-1731529785 source:c:\users\nacho\desktop\work\econ\funciones.cpp
+1731610035 source:c:\users\nacho\desktop\work\econ\funciones.cpp
 	<iostream>
 	"Funciones.h"
 	<cstdlib>
@@ -44,7 +45,7 @@
 	<iostream>
 	"ArchivoFecha.h"
 
-1731528232 c:\users\nacho\desktop\work\econ\funciones.h
+1731609481 c:\users\nacho\desktop\work\econ\funciones.h
 	"ArchivoUsuario.h"
 	"ArchivoSuministro.h"
 	"ArchivoFecha.h"
@@ -53,11 +54,13 @@
 	"ArchivoPedido.h"
 	"ArchivoRespuestas.h"
 
-1731088933 source:c:\users\nacho\desktop\work\econ\suministro.cpp
+1731593693 source:c:\users\nacho\desktop\work\econ\suministro.cpp
 	<cstring>
 	"Suministros.h"
+	"ArchivoFecha.h"
+	"Fecha.h"
 
-1731088800 c:\users\nacho\desktop\work\econ\suministros.h
+1731593693 c:\users\nacho\desktop\work\econ\suministros.h
 
 1729981033 source:c:\users\nacho\desktop\work\econ\archivosuministro.cpp
 	"ArchivoSuministro.h"
@@ -105,11 +108,13 @@
 	"Fecha.h"
 	<string>
 
-1731080261 source:c:\users\nacho\desktop\work\econ\reclamos.cpp
+1731600958 source:c:\users\nacho\desktop\work\econ\reclamos.cpp
 	<cstring>
 	"Reclamos.h"
+	"ArchivoFecha.h"
+	"ArchivoUsuario.h"
 
-1731080126 c:\users\nacho\desktop\work\econ\reclamos.h
+1731595913 c:\users\nacho\desktop\work\econ\reclamos.h
 
 1730759915 source:c:\users\nacho\desktop\work\econ\archivoreclamo.cpp
 	"ArchivoReclamo.h"

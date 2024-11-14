@@ -1,6 +1,7 @@
 #include <cstring>
 #include "Reclamos.h"
-
+#include "ArchivoFecha.h"
+#include "ArchivoUsuario.h"
 Reclamo::Reclamo() {
     _reclamoId = 0;
     _usuarioId = 0;
@@ -122,4 +123,26 @@ void Reclamo::setActivo(bool activo){
     _activo = activo;
 }
 
+void Reclamo::mostrarReclamo() {
+    ArchivoFecha archivoF("fechas.dat");
+    ArchivoUsuario archivoU("usuarios.dat");
+    int posU = archivoU.BuscarUsuario(getResponsableDeAtencion());
+    Usuario usu = archivoU.LeerUsuario(posU);
+    int pos = archivoF.BuscarFecha(getFechaReclamo());
+    Fecha fecha = archivoF.LeerFecha(pos);
+
+    std::cout << "===== INFORMACION DEL RECLAMO =====\n";
+    std::cout << "ID Reclamo: " << getReclamoId() << std::endl;
+    std::cout << "ID Usuario: " << getUsuarioId() << std::endl;
+    std::cout << "ID Suministro: " << getSuministroId() << std::endl;
+    std::cout << "Descripcion: " << getDescripcion() << std::endl;
+    std::cout << "Fecha de Reclamo: " << fecha.toString() << std::endl;
+    std::cout << "Estado: " << getEstado() << std::endl;
+    std::cout << "Tipo de Reclamo: " << getTipoDeReclamo() << std::endl;
+    std::cout << "Responsable de Atencion: " << usu.getNombre() <<" " <<usu.getApellido() << std::endl;
+    std::cout << "Respuesta: " << getRespuesta() << std::endl;
+    std::cout << "Prioridad: " << getPrioridad() << std::endl;
+    std::cout << "Activo: " << (isActivo() ? "Si" : "No") << std::endl;
+    std::cout << "===================================\n";
+}
 

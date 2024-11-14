@@ -5,25 +5,25 @@
 using namespace std;
 
 int main() {
+/*ArchivoSuministro sumis("suministros.dat");
+ArchivoFecha fechas("fechas.dat");
+
+int posSu = sumis.BuscarSuministro(8);
+Suministro sum = sumis.LeerSuministro(posSu);
 
 
+Fecha fecha(90,14,9,2024);
 
+fechas.GuardarFecha(fecha);
 
+sum.setFechaAlta(fecha.getId());
 
+sumis.EditarSuministro(sum,posSu);
 
-        controlDeudaSuministros();
+*/
+    controlDeudaSuministros();
+    menuPrincipal();
 
-
-     ArchivoSuministro archivo("suministros.dat");
-    ArchivoFecha archivoF("fechas.dat");
-    int cantSums = archivo.CantidadSuministros();
-    Suministro *vectorSuministros;
-    vectorSuministros = new Suministro[cantSums];
-    archivo.LeerSuministros(cantSums,vectorSuministros);
-    mostrarSuministros(vectorSuministros,cantSums);
-
-
-    delete []vectorSuministros;
     return 0;
 }
 

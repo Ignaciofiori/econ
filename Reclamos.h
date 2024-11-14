@@ -46,4 +46,5 @@ public:
     void setPrioridad(const char* prioridad);
     void setActivo(bool activo);
 
+    void mostrarReclamo();
 };

@@ -858,6 +858,7 @@ void seleccionarNivelPrioridad(char* nivelPrioridad) {
 
 // Función para cargar un nuevo Reclamo
 Reclamo cargarReclamo(Usuario &usu) {
+    ArchivoSuministro archivoSumi("suministros.dat");
     ArchivoAcumuladorId archivoAcum("acumulador.dat");
     ArchivoFecha archivoFecha("fechas.dat");
     ArchivoReclamo archivoReclamo("reclamos.dat");
@@ -877,6 +878,8 @@ Reclamo cargarReclamo(Usuario &usu) {
 
     Suministro suministroAGenerarReclamo = buscarSuministroPorId(suministroId,usu);
     if(suministroAGenerarReclamo.getSuministroId()!= 0){
+      int posSuministro = archivoSumi.BuscarSuministro(suministroId);
+
     system("cls");
              //tipo de reclamo
     seleccionarTipoReclamo(tipoDeReclamo);
@@ -906,6 +909,8 @@ Reclamo cargarReclamo(Usuario &usu) {
     Reclamo nuevoReclamo(reclamoId, usu.getId(), suministroId, descripcion, fechaDeReclamo.getId(), estado, tipoDeReclamo, responsableDeAtencion, respuesta, prioridad);
 
     if(nuevoReclamo.getReclamoId()!=0){
+        suministroAGenerarReclamo.setReclamo(true);
+        archivoSumi.EditarSuministro(suministroAGenerarReclamo,posSuministro);
 
         archivoFecha.GuardarFecha(fechaDeReclamo);
         archivoReclamo.GuardarReclamo(nuevoReclamo);
@@ -1006,6 +1011,74 @@ std::cout << "Ingrese el ID del Pedido que desea Atender: \n";
 
 }
 
+Reclamo buscarReclamoPorId(int id) {
+    ArchivoReclamo archivoR("reclamos.dat");
+
+    int cant = archivoR.CantidadReclamos();
+    Reclamo* vectorReclamos = new Reclamo[cant];
+
+    archivoR.LeerReclamos(cant, vectorReclamos);
+
+    for (int i = 0; i < cant; ++i) {
+        if ((vectorReclamos[i].getReclamoId() == id)&&(vectorReclamos[i].isActivo())) {
+            Reclamo reclamoEncontrado = vectorReclamos[i];
+            delete[] vectorReclamos;
+            return reclamoEncontrado;
+        }
+    }
+
+    delete[] vectorReclamos;
+    return Reclamo();
+}
+
+
+Reclamo buscarReclamoPorId(int id,bool realizado) {
+    ArchivoReclamo archivoR("reclamos.dat");
+    char pendiente[50] = "pendiente";
+    char realizad[50] = "realizado";
+    char estado[50];
+    if(realizado){
+        strcpy(estado,realizad);
+
+    }else{
+    strcpy(estado,pendiente);
+    }
+
+    int cant = archivoR.CantidadReclamos();
+    Reclamo* vectorReclamos = new Reclamo[cant];
+
+    archivoR.LeerReclamos(cant, vectorReclamos);
+
+    for (int i = 0; i < cant; ++i) {
+        if ((vectorReclamos[i].getReclamoId() == id)&&(vectorReclamos[i].isActivo())&&(!(strcmp(estado,vectorReclamos[i].getEstado())))) {
+            Reclamo reclamoEncontrado = vectorReclamos[i];
+            delete[] vectorReclamos;
+            return reclamoEncontrado;
+        }
+    }
+
+    delete[] vectorReclamos;
+    return Reclamo();
+}
+
+Reclamo seleccionarReclamo(){
+    int idReclamo = 0;
+    Reclamo reclamo;
+    std::cout << "Ingrese el ID del Reclamo que desea Atender: \n";
+    idReclamo = leerEntero();
+    reclamo = buscarReclamoPorId(idReclamo);
+    return reclamo;
+}
+
+Reclamo seleccionarReclamo(bool realizado){
+    int idReclamo = 0;
+    Reclamo reclamo;
+    std::cout << "Ingrese el ID del Reclamo que desea Atender: \n";
+    idReclamo = leerEntero();
+    reclamo = buscarReclamoPorId(idReclamo,realizado);
+    return reclamo;
+}
+
 void creacionSuministro(PedidoSuministro pedido) {
     system("cls");
     ArchivoUsuario archivoU("usuarios.dat");
@@ -1020,7 +1093,7 @@ void creacionSuministro(PedidoSuministro pedido) {
 
     int acepted;
     bool opcionValida = false;
-     ArchivoAcumuladorId archivoId("acumulador.dat");
+    ArchivoAcumuladorId archivoId("acumulador.dat");
     AcumuladorId acum = archivoId.LeerAcumuladorId(0);
     int idRespuesta = acum.getIdRespuestas();
 
@@ -1403,18 +1476,9 @@ int calcularMesesTranscurridos( Fecha &fechaAlta,  Fecha &fechaActual) {
 float calcularDeuda(Suministro &suministro) {
     ArchivoFecha archivoF("fechas.dat");
     ArchivoSuministro archivoS("suministros.dat");
+    int posFecha = archivoF.BuscarFecha(suministro.getFechaAlta());
 
     int posSuministro = archivoS.BuscarSuministro(suministro.getSuministroId());
-    if (posSuministro == -1) {  // Verifica que el suministro exista
-        std::cerr << "Error: Suministro no encontrado." << std::endl;
-        return -1;
-    }
-
-    int posFecha = archivoF.BuscarFecha(suministro.getFechaAlta());
-    if (posFecha == -1) {  // Verifica que la fecha de alta exista
-        std::cerr << "Error: Fecha de alta no encontrada." << std::endl;
-        return -1;
-    }
 
     Fecha fechaAlta = archivoF.LeerFecha(posFecha);
     Fecha fechaActual;
@@ -1435,147 +1499,6 @@ float calcularDeuda(Suministro &suministro) {
 
     return montoDeuda;
 }
-
-void menuSecundario(Usuario usu) {
-    int idUsuario = usu.getId();
-    int opcion = -1;
-    PedidoSuministro pedido;
-    int cantidadPedidos;
-    //MENU USUARIOS ADMIN
-    if(usu.isAdmin()){
-               while (opcion != 0) {
-        std::cout << "\n===== MENU Admin =====\n";
-        std::cout << "1. Ver Perfil\n";
-        std::cout << "2. Ver Pedidos de Suministros\n";
-        std::cout << "3. Estadisticas \n";
-        std::cout << "5. Crear Usuario Admin \n";
-        std::cout << "0. Cerrar Sesion (Desloguearse)\n";
-
-        std::cout << "===========================\n";
-        std::cout << "Seleccione una opcion: ";
-
-        std::cin >> opcion;
-        system("cls"); // Limpiar pantalla después de cada selección
-
-        switch (opcion) {
-            case 1:
-                std::cout << "Perfil de "<<usu.getNombre() <<":\n";
-                usu.mostrarUsuario(); // Método para mostrar el perfil del usuario
-                break;
-            case 2:
-                std::cout << "Pedidos de Suministros Solicitados:\n";
-                cantidadPedidos = listaPedidos();
-
-                if(cantidadPedidos!=0){
-                pedido = seleccionarPedido();
-
-                if(pedido.getPedidoId() == 0){
-                system("cls");
-                std::cout << "No se encontro un Pedido con el Id Ingresado. \n";
-
-
-
-                }else{
-
-                    creacionSuministro(pedido);
-                     break;
-                }
-                }
-
-                break;
-            case 3:
-                std::cout << "Menu de Estadisticas :\n";
-                EstadisticaReclamos();
-                EstadisticaSuministros();
-                EstadisticaPedidos();
-                 break;
-            case 5:{
-                std::cout << "Agregar Usuario ADMIN :\n";
-                Usuario adminNuevo = nuevoAdmin();
-                if(adminNuevo.getId() != 0){
-                //guardo Usuario
-                    ArchivoUsuario archivo("usuarios.dat");
-                    archivo.GuardarUsuario(adminNuevo);
-                }
-                break;
-                }
-            case 0:
-                std::cout << "Sesion Cerrada Exitosamente...\n";
-                break;
-
-            default:
-                std::cout << "Opcion invalida. Por favor, intente nuevamente.\n";
-                break;
-        }}
-    }else{
-    //MENU USUARIOS CLIENTES
-    ArchivoPedido archivoP("pedidos.dat");
-    PedidoSuministro pedido;
-    Reclamo reclamo;
-    bool cargado;
-       while (opcion != 0) {
-        std::cout << "\n===== MENU Cliente =====\n";
-        std::cout << "1. Ver Perfil\n";
-        std::cout << "2. Pedir Suministro\n";
-        std::cout << "3. Ver Suministros Asociados\n";
-        std::cout << "4. Ver Respuestas a tu pedidos\n";
-        std::cout << "5. Generar Reclamo\n";
-        std::cout << "6. Ver Reclamos\n";
-        std::cout << "0. Cerrar Sesion (Desloguearse)\n";
-        std::cout << "===========================\n";
-        std::cout << "Seleccione una opcion: ";
-
-        std::cin >> opcion;
-        system("cls"); // Limpiar pantalla después de cada selección
-
-       switch (opcion) {
-    case 1:
-        std::cout << "Perfil de " << usu.getNombre() << ":\n";
-        usu.mostrarUsuario(); // Método para mostrar el perfil del usuario
-        break;
-
-    case 2:
-        pedido = cargarPedidoSuministro(idUsuario);
-        cargado = archivoP.GuardarPedido(pedido);
-        if (!cargado) {
-            std::cout << "Error al Crear el Pedido de Suministro.";
-        }
-        break;
-
-    case 3:
-       mostrarSuministrosAsociados(usu);
-
-        break;
-
-    case 4:
-        // Código para ver respuestas a los pedidos
-        mostrarRespuestas(usu);
-        break;
-    case 5:
-    reclamo = cargarReclamo(usu);
-    if(reclamo.getReclamoId()!=0){
-        system("cls");
-       std::cout << "Tu reclamo fue realizado exitosamente. Se estara revisando y un administrador te respondera lo antes posible.\n";
-    }else{
-    std::cout << "Hubo un error al cargar tu reclamo, intentalo nuevamente. \n";
-    }
-        break;
-    case 6:
-        std::cout << "Reclamos de " << usu.getNombre() << "\n"<< std::endl;
-        mostrarReclamosCliente(usu.getId());
-        break;
-    case 0:
-        std::cout << "Sesion Cerrada Exitosamente...\n";
-        break;
-
-    default:
-        std::cout << "Opcion invalida. Por favor, intente nuevamente.\n";
-        break;
-}
-
-    }
-        }
-        }
 
 Usuario busquedaUsuarioPorEmail( char *email) {
     ArchivoUsuario archivo("usuarios.dat");
@@ -1696,14 +1619,14 @@ void menuPrincipal(){
     }
 }
 
-
 void controlDeudaSuministros(){
-ArchivoSuministro archivo("suministros.dat");
+    ArchivoSuministro archivo("suministros.dat");
     ArchivoFecha archivoF("fechas.dat");
     int cantSums = archivo.CantidadSuministros();
     Suministro *vectorSuministros;
     vectorSuministros = new Suministro[cantSums];
     archivo.LeerSuministros(cantSums,vectorSuministros);
+
     for(int i=0; i<cantSums;i++){
         if(vectorSuministros[i].isActivo()){
 
@@ -1714,3 +1637,446 @@ ArchivoSuministro archivo("suministros.dat");
         delete []vectorSuministros;
 
 }
+
+void accionesReclamos(Reclamo &reclamo) {
+
+    ArchivoUsuario archivoU("usuarios.dat");
+    int pos = archivoU.BuscarUsuario(reclamo.getUsuarioId());
+    Usuario usu = archivoU.LeerUsuario(pos);
+
+    system("cls");
+    int opcion = -1;  // Inicializamos la opción con un valor que no sea válido
+
+    while (opcion != 0) {
+
+        // Mostrar menú de opciones
+        std::cout << "===== MENU DE ACCIONES PARA RECLAMO =====\n";
+        std::cout << "1. Ver detalles del reclamo\n";
+        std::cout << "2. Cambiar estado del reclamo\n";
+        std::cout << "3. Eliminar reclamo\n";
+        std::cout << "0. Salir\n";
+        std::cout << "Seleccione una opción: ";
+
+        std::cin >> opcion;
+
+        // Limpiar el buffer de entrada en caso de que se ingrese un dato incorrecto
+        if (std::cin.fail()) {
+            std::cin.clear();  // Limpiar el estado de error
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');  // Ignorar la entrada restante
+            std::cout << "Opción inválida. Intente nuevamente.\n";
+            continue;  // Continuar con la siguiente iteración del bucle
+        }
+
+        switch (opcion) {
+            case 1:
+                // Ver detalles del reclamo
+                system("cls");
+
+                usu.mostrarUsuario();
+                reclamo.mostrarReclamo();
+                break;
+
+            case 2:
+                system("cls");
+                // Cambiar estado del reclamo
+                std::cout << "Cambiar estado del reclamo\n";
+                // Lógica para cambiar el estado del reclamo
+                break;
+
+            case 3:
+                system("cls");
+                // Eliminar reclamo
+                std::cout << "Eliminar reclamo\n";
+                // Lógica para eliminar el reclamo
+                break;
+
+            case 0:
+                system("cls");
+                std::cout << "Saliendo...\n";
+                break;
+
+            default:
+                std::cout << "Opción inválida. Intente nuevamente.\n";
+        }
+    }
+}
+
+void menuReclamos(){
+    ArchivoReclamo archivo("reclamos.dat");
+    int cantidad = archivo.CantidadReclamos();
+    Reclamo *vectorReclamos;
+    vectorReclamos = new Reclamo[cantidad];
+    archivo.LeerReclamos(cantidad, vectorReclamos);
+
+    int opc = -1;
+    bool salida = false;
+     Reclamo reclamo;
+     int cantidadReclamos;
+    while (opc!= 0){
+        std::cout << "\t====== MENU Reclamos ======\n";
+        std::cout <<"\t1. Listar Reclamos PENDIENTES\n";
+        std::cout <<"\t2. Listar Reclamos REALIZADOS\n";
+        std::cout <<"\t3. Listar todos los Reclamos\n";
+        std::cout <<"\t0. Regresar\n";
+        std::cout << "\t===========================\n";
+        std::cout << "Digite una opcion : ";
+
+        opc = leerEntero();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Limpiar el buffer
+
+        switch (opc){
+        case 1 :
+            system ("cls");
+            std::cout << "\nListando Reclamos PENDIENTES:\n";
+            listarReclamosEstado(false);
+                cantidadReclamos = listarReclamosEstado(false);
+                if(cantidadReclamos == 0){
+                    return;
+                }
+             if(reclamo.getReclamoId() == 0){
+                system ("cls");
+                std::cout << "No se encontro ningun reclamo con el id ingresado. \n";
+             }else{
+                    accionesReclamos(reclamo);
+             }
+
+            break;
+        case 2 :
+            system ("cls");
+            std::cout << "\nListando Reclamos REALIZADOS:\n";
+             cantidadReclamos = listarReclamosEstado(true);
+                if(cantidadReclamos == 0){
+                    return;
+                }
+                reclamo = seleccionarReclamo(true);
+             if(reclamo.getReclamoId() == 0){
+                system ("cls");
+                std::cout << "No se encontro ningun reclamo con el id ingresado. \n";
+                break;
+             }else{
+
+                    accionesReclamos(reclamo);
+             }
+
+
+            break;
+        case 3 :
+            system ("cls");
+            std::cout << "\nListando TODOS los Reclamos:\n";
+            mostrarReclamos(vectorReclamos, cantidad);
+            reclamo = seleccionarReclamo();
+             if(reclamo.getReclamoId() == 0){
+                system ("cls");
+                std::cout << "No se encontro ningun reclamo con el id ingresado. \n";
+                break;
+             }else{
+                    accionesReclamos(reclamo);
+             }
+
+
+            break;
+        case 0 :
+            system ("cls");
+            std::cout << "\nSaliendo del menu de Reclamos...\n";
+            salida = true;
+            break;
+        default :
+
+            std::cout <<"\nOpcion Invalida, Digite nuevamente\n";
+            break;
+        }
+    }
+
+    delete[] vectorReclamos;
+}
+
+int listarReclamosEstado(bool estado) {
+    system("cls");
+    ArchivoReclamo archivoR("reclamos.dat");
+    char pendiente[50] = "pendiente";
+    char realizado[50] = "realizado";
+
+    int cantidadReclamos = archivoR.CantidadReclamos();
+    Reclamo* vectorReclamos = new Reclamo[cantidadReclamos];
+    archivoR.LeerReclamos(cantidadReclamos, vectorReclamos);
+
+    int auxR = 0;
+    int auxP = 0;
+
+    // Contador de reclamos realizados y pendientes
+    for (int i = 0; i < cantidadReclamos; ++i) {
+        if (vectorReclamos[i].isActivo()) {
+            if (!strcmp(vectorReclamos[i].getEstado(), realizado)) {
+                auxR++; // Contar como "realizado"
+            } else if (!strcmp(vectorReclamos[i].getEstado(), pendiente)) {
+                auxP++; // Contar como "pendiente"
+            }
+        }
+    }
+
+    // Mostrar los reclamos según el estado
+    if (estado) { // Mostrar "realizados"
+        if (auxR == 0) {
+            std::cout << "No hay reclamos REALIZADOS \n";
+            return 0;
+        } else {
+            for (int i = 0; i < cantidadReclamos; i++) {
+                if (!strcmp(vectorReclamos[i].getEstado(), realizado) && vectorReclamos[i].isActivo()) {
+                    vectorReclamos[i].mostrarReclamo();
+                }
+            }
+            delete[] vectorReclamos;
+            return auxR;
+        }
+    } else { // Mostrar "pendientes"
+        if (auxP == 0) {
+            std::cout << "No hay reclamos PENDIENTES \n";
+            return 0;
+        } else {
+            for (int i = 0; i < cantidadReclamos; i++) {
+                if (!strcmp(vectorReclamos[i].getEstado(), pendiente) && vectorReclamos[i].isActivo()) {
+                    vectorReclamos[i].mostrarReclamo();
+                }
+            }
+            delete[] vectorReclamos;
+            return auxP;
+        }
+    }
+
+
+
+}
+
+void mostrarSuministrosDeuda(Usuario &usu){
+    ArchivoSuministro archivoSuministro("suministros.dat");
+    ArchivoFecha archivoFecha("fechas.dat");
+
+    int cantidad = archivoSuministro.CantidadSuministros();
+    Suministro *vectorSuministros;
+
+    vectorSuministros = new Suministro[cantidad];
+
+    archivoSuministro.LeerSuministros(cantidad, vectorSuministros);
+
+
+   for (int i = 0; i < cantidad; ++i) {
+    if (vectorSuministros[i].getUsuarioId() == usu.getId() && vectorSuministros[i].isActivo() && vectorSuministros[i].hasDeuda()) {
+        int posAlta = archivoFecha.BuscarFecha(vectorSuministros[i].getFechaAlta());
+        int posBaja = archivoFecha.BuscarFecha(vectorSuministros[i].getFechaBaja());
+        Fecha fechaAlta = archivoFecha.LeerFecha(posAlta);
+        Fecha fechaBaja = archivoFecha.LeerFecha(posBaja);
+
+        // Filtra por ID de usuario y estado activo
+        std::cout << "ID de Suministro: " << vectorSuministros[i].getSuministroId() << "\n";
+        std::cout << "Tipo de Suministro: " << vectorSuministros[i].getTipoSuministro() << "\n";
+        std::cout << "Activo: " << (vectorSuministros[i].isActivo() ? "Si" : "No") << "\n";
+        std::cout << "Direccion: " << vectorSuministros[i].getDireccion() << "\n";
+        std::cout << "Codigo Postal: " << vectorSuministros[i].getCodigoPostal() << "\n";
+        std::cout << "Fecha Alta: " << fechaAlta.toString() << "\n"; // O ajusta si tienes una clase Fecha
+        std::cout << "Fecha Baja: " << (vectorSuministros[i].getFechaBaja() == 0 ? "Sigue Activo." : fechaBaja.toString()) << "\n"; // O ajusta si tienes una clase Fecha
+        std::cout << "Contacto: " << vectorSuministros[i].getContacto() << "\n";
+        std::cout << "Medidor: " << vectorSuministros[i].getMedidor() << "\n";
+        std::cout << "Consumo por Mes: " << vectorSuministros[i].getConsumoPorMes() << " kWh\n";
+        std::cout << "Precio por kWh: $" << vectorSuministros[i].getPrecioKwh() << "\n";
+        std::cout << "Deuda: " << (vectorSuministros[i].hasDeuda() ? "Si" : "No") << "\n";
+        std::cout << "Reclamo: " << (vectorSuministros[i].hasReclamo() ? "Si" : "No") << "\n";
+        std::cout << "Monto de Deuda: $" << vectorSuministros[i].getMontoDeuda() << "\n";
+        std::cout << "-----------------------------\n";
+}
+   }
+}
+
+
+Suministro buscarSuministroPorIdDeuda(int sumId,Usuario &usu) {
+    ArchivoSuministro archivoS("suministros.dat");
+
+    int cant = archivoS.CantidadSuministros();
+    Suministro* vectorSuministros = new Suministro[cant];
+
+    archivoS.LeerSuministros(cant, vectorSuministros);
+
+    for (int i = 0; i < cant; ++i) {
+        if (vectorSuministros[i].getSuministroId() == sumId &&
+            vectorSuministros[i].getUsuarioId() == usu.getId() &&
+            vectorSuministros[i].hasDeuda() &&
+            vectorSuministros[i].isActivo()) {
+            Suministro suministroEncontrado = vectorSuministros[i];
+            delete[] vectorSuministros;
+            return suministroEncontrado;
+        }
+    }
+
+    delete[] vectorSuministros;
+    return Suministro();
+}
+
+Suministro seleccionarSuministroDeuda(Usuario &usu){
+
+    int idSum = 0;
+    Suministro suministro;
+    std::cout << "Ingrese el ID del Suministro que desea Abonar: \n";
+    idSum = leerEntero();
+    suministro = buscarSuministroPorIdDeuda(idSum,usu);
+    return suministro;
+}
+
+void menuSecundario(Usuario usu) {
+    int idUsuario = usu.getId();
+    int opcion = -1;
+    PedidoSuministro pedido;
+    Suministro sumAPagar;
+    int cantidadPedidos;
+    //MENU USUARIOS ADMIN
+    if(usu.isAdmin()){
+               while (opcion != 0) {
+        std::cout << "\n===== MENU Admin =====\n";
+        std::cout << "1. Ver Perfil\n";
+        std::cout << "2. Ver Pedidos de Suministros\n";
+        std::cout << "3. Estadisticas \n";
+        std::cout << "4. Ver Reclamos \n";
+        std::cout << "5. Crear Usuario Admin \n";
+        std::cout << "0. Cerrar Sesion (Desloguearse)\n";
+
+        std::cout << "===========================\n";
+        std::cout << "Seleccione una opcion: ";
+
+        std::cin >> opcion;
+        system("cls"); // Limpiar pantalla después de cada selección
+
+        switch (opcion) {
+            case 1:
+                std::cout << "Perfil de "<<usu.getNombre() <<":\n";
+                usu.mostrarUsuario(); // Método para mostrar el perfil del usuario
+                break;
+            case 2:
+                std::cout << "Pedidos de Suministros Solicitados:\n";
+                cantidadPedidos = listaPedidos();
+
+                if(cantidadPedidos!=0){
+                pedido = seleccionarPedido();
+
+                if(pedido.getPedidoId() == 0){
+                system("cls");
+                std::cout << "No se encontro un Pedido con el Id Ingresado. \n";
+
+                }else{
+
+                    creacionSuministro(pedido);
+                     break;
+                }
+                }
+
+                break;
+            case 3:
+                std::cout << "Menu de Estadisticas :\n";
+                EstadisticaReclamos();
+                EstadisticaSuministros();
+                EstadisticaPedidos();
+                 break;
+            case 4:
+                 system ("cls");
+                menuReclamos();
+                break;
+            case 5:{
+                std::cout << "Agregar Usuario ADMIN :\n";
+                Usuario adminNuevo = nuevoAdmin();
+                if(adminNuevo.getId() != 0){
+                //guardo Usuario
+                    ArchivoUsuario archivo("usuarios.dat");
+                    archivo.GuardarUsuario(adminNuevo);
+                }
+                break;
+                }
+            case 0:
+                std::cout << "Sesion Cerrada Exitosamente...\n";
+                break;
+
+            default:
+                std::cout << "Opcion invalida. Por favor, intente nuevamente.\n";
+                break;
+        }}
+    }else{
+    //MENU USUARIOS CLIENTES
+    ArchivoPedido archivoP("pedidos.dat");
+    PedidoSuministro pedido;
+    Reclamo reclamo;
+    bool cargado;
+       while (opcion != 0) {
+        std::cout << "\n===== MENU Cliente =====\n";
+        std::cout << "1. Ver Perfil\n";
+        std::cout << "2. Pedir Suministro\n";
+        std::cout << "3. Ver Suministros Asociados\n";
+        std::cout << "4. Ver Respuestas a tu pedidos\n";
+        std::cout << "5. Generar Reclamo\n";
+        std::cout << "6. Ver Reclamos\n";
+        std::cout << "7. Pagar Suministros\n";
+        std::cout << "0. Cerrar Sesion (Desloguearse)\n";
+        std::cout << "===========================\n";
+        std::cout << "Seleccione una opcion: ";
+
+        std::cin >> opcion;
+        system("cls"); // Limpiar pantalla después de cada selección
+
+       switch (opcion) {
+    case 1:
+        std::cout << "Perfil de " << usu.getNombre() << ":\n";
+        usu.mostrarUsuario(); // Método para mostrar el perfil del usuario
+        break;
+
+    case 2:
+        pedido = cargarPedidoSuministro(idUsuario);
+        cargado = archivoP.GuardarPedido(pedido);
+        if (!cargado) {
+            std::cout << "Error al Crear el Pedido de Suministro.";
+        }
+        break;
+
+    case 3:
+       mostrarSuministrosAsociados(usu);
+
+        break;
+
+    case 4:
+        // Código para ver respuestas a los pedidos
+        mostrarRespuestas(usu);
+        break;
+    case 5:
+    reclamo = cargarReclamo(usu);
+    if(reclamo.getReclamoId()!=0){
+        system("cls");
+       std::cout << "Tu reclamo fue realizado exitosamente. Se estara revisando y un administrador te respondera lo antes posible.\n";
+    }else{
+    std::cout << "Hubo un error al cargar tu reclamo, intentalo nuevamente. \n";
+    }
+        break;
+    case 6:
+        std::cout << "Reclamos de " << usu.getNombre() << "\n"<< std::endl;
+        mostrarReclamosCliente(usu.getId());
+        break;
+    case 0:
+        std::cout << "Sesion Cerrada Exitosamente...\n";
+        break;
+    case 7:
+        std::cout << "Suministros Asociados Faltantes de Pago: \n";
+        mostrarSuministrosDeuda(usu);
+        sumAPagar = seleccionarSuministroDeuda(usu);
+        if(sumAPagar.getSuministroId()==0){
+            system("cls");
+            std::cout << "No se encontro un Suministro Asociado con Deuda con el Id ingresado.\n";
+            break;
+        }
+
+        std::cout << "Usted debe "<<sumAPagar.getMontoDeuda() << "$. \n";
+
+
+            break;
+    default:
+        std::cout << "Opcion invalida. Por favor, intente nuevamente.\n";
+        break;
+}
+
+    }
+        }
+        }
+
+
