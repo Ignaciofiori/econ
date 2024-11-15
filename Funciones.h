@@ -50,3 +50,7 @@ Reclamo buscarReclamoPorId(int id,bool realizado);
 void mostrarSuministrosDeuda(Usuario &usu);
 Suministro seleccionarSuministroDeuda(Usuario &usu);
 Suministro buscarSuministroPorIdDeuda(int idSum,Usuario &usu);
+void EstadisticaReclamos();
+void MenuEstadisticas();
+void EstadisticaSuministros();
+void EstadisticaPedidos();
