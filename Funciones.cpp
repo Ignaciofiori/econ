@@ -1627,25 +1627,74 @@ void mostrarSuministrosDeuda(Usuario &usu){
    }
 }
 
+void usuariosConDeudas(ArchivoSuministro &archivoSumi, ArchivoUsuario &archivoUsu){
+    int cantSuministros = archivoSumi.CantidadSuministros();
+    Suministro* vecSumi = new Suministro[cantSuministros];
+    archivoSumi.LeerSuministros(cantSuministros, vecSumi);
+
+    /// LO DEMAS DE CODIGO LO ESTOY HACIENDO
+
+}
 
 
-void MenuEstadisticas(){
-    int opcion;
-    std::cout << "\n===== MENU ESTADISTICAS =====\n";
-    std::cout << "1. Estadisticas de Reclamos\n";
-    std::cout << "2. Estadisticas de Suministros\n";
-    std::cout << "3. Estadisticas de Pedidos\n";
+void menuSecEstadisticas(){
+    ArchivoSuministro archivoSumi("suministros.dat");
+    ArchivoUsuario archivoUsu("usuarios.dat");
 
-    std::cout << "0. Volver al menu anterior\n";
-    std::cout << "===========================\n";
-    std::cout << "Seleccione una opcion: ";
-
-    std::cin >> opcion;
-    system("cls"); // Limpiar pantalla después de cada selección
-
-     switch (opcion) {
+    int opc = -1;
+    bool flag = false;
 
 
+    while (opc!= 0){
+        std::cout << "\t======== MENU Sec. Estadisticas ========\n";
+        std::cout <<"\t1. Consultar Usuarios con Deudas\n";
+        std::cout <<"\t2. Consultar Mayor Consumista Mensual\n";
+
+        std::cout <<"\t0. Regresar\n";
+        std::cout << "\t========================================\n";
+        std::cout << "Digite una opcion : ";
+
+        opc = leerEntero();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Limpiar el buffer
+
+        switch (opc){
+        case 1 :
+            system ("cls");
+            usuariosConDeudas(archivoSumi,archivoUsu);
+            break;
+        case 2 :
+            system("cls");
+
+            system("pause");
+            break;
+
+        case 0 :
+            system ("cls");
+            std::cout << "\nSaliendo del Menu Secuendario de Estadisticas ...\n";
+            break;
+        default :
+
+            std::cout <<"\nOpcion Invalida, Digite nuevamente\n";
+            break;
+        }
+    }
+}
+void MenuEstadisticas() {
+    int opc = -1;
+    while (opc != 0) {
+        std::cout << "\n===== MENU ESTADISTICAS =====\n";
+        std::cout << "1. Estadisticas de Reclamos\n";
+        std::cout << "2. Estadisticas de Suministros\n";
+        std::cout << "3. Estadisticas de Pedidos\n";
+        std::cout << "4. Otras Opciones\n";
+        std::cout << "0. Volver al menu anterior\n";
+        std::cout << "===========================\n";
+        std::cout << "Seleccione una opcion: ";
+
+        opc = leerEntero();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Limpiar el buffer
+        system("cls"); // Limpiar pantalla después de cada selección
+        switch (opc) {
             case 1:
                 EstadisticaReclamos();
                 break;
@@ -1654,15 +1703,130 @@ void MenuEstadisticas(){
                 break;
             case 3:
                 EstadisticaPedidos();
-                 break;
-
+                break;
+            case 4:
+                menuSecEstadisticas();
+                break;
             case 0:
                 std::cout << "Volviendo al menu anterior\n";
                 break;
-
             default:
                 std::cout << "Opcion invalida. Por favor, intente nuevamente.\n";
                 break;
+        }
+    }
+}
+
+void listarUsuariosconReclamos(ArchivoReclamo& archivoR, ArchivoUsuario& archivoU){
+    int cantidadReclamos = archivoR.CantidadReclamos();
+    int totalUsuarios = archivoU.CantidadUsuarios();
+    int i = 0, j = 0;
+
+    // ------- LEO LOS RECLAMOS ---------------
+    // ------- LEO LOS RECLAMOS ---------------
+    Reclamo* vectReclamos = new Reclamo[cantidadReclamos];
+    archivoR.LeerReclamos(cantidadReclamos, vectReclamos);
+
+    // ---------------- CHECK DE QUE NO HAY NINGUN RECLAMO ----------------
+    // ---------------- CHECK DE QUE NO HAY NINGUN RECLAMO ----------------
+    if (cantidadReclamos == 0) {
+        std::cout << "No hay reclamos para contar." << std::endl;
+        delete[] vectReclamos;
+        return;
+    }
+
+
+
+
+    if (totalUsuarios == 0 ){
+        std::cout << "No gay usuarios registrados."<<std::endl;
+        return;
+    }
+
+    Usuario* vecUsuarios = new Usuario[totalUsuarios];
+    archivoU.LeerUsuarios(totalUsuarios, vecUsuarios);
+
+    int* usuarios = new int[totalUsuarios];
+    int* conteoR = new int[totalUsuarios] {};
+    int usuarioId = 0,cantU = 0;
+    bool encontrado = false;
+
+    for (i = 0; i < cantidadReclamos; i++){
+        usuarioId = vectReclamos[i].getUsuarioId();
+        encontrado = false;
+        //----------- VERIFICO SI EL USUARIO YA ESTA EN LA LISTA ----------
+        //-----------       Y SI NO EXITE LO AÑADO               ----------
+        for (j = 0; j < totalUsuarios; j++){
+            if (usuarios[j]== usuarioId){
+                conteoR[j]++;
+                encontrado = true;
+                break;
+            }
+        }
+
+        if (!encontrado){
+            usuarios[cantU] = usuarioId;
+            conteoR[cantU] = 1;
+            cantU++;
+        }
+    }
+
+    ///----------- REVISAR MANERA PARA ORDENAR LOS USUARIOS POR CANTIDAD DE RECLAMOS ----------
+    ///----------- REVISAR MANERA PARA ORDENAR LOS USUARIOS POR CANTIDAD DE RECLAMOS ----------
+    ///----------- REVISAR MANERA PARA ORDENAR LOS USUARIOS POR CANTIDAD DE RECLAMOS ----------
+
+    for(i = 0; i < cantU - 1; i++) {
+        for (int j = 0; j < cantU - i - 1; j++) {
+            if (conteoR[j] > conteoR[j + 1]) {
+                // Intercambiar conteo de reclamos
+                int aux = conteoR[j];
+                conteoR[j] = conteoR[j + 1];
+                conteoR[j + 1] = aux;
+
+                // Intercambiar IDs de usuario
+                aux = usuarios[j];
+                usuarios[j] = usuarios[j + 1];
+                usuarios[j + 1] = aux;
+            }
+        }
+    }
+
+
+    for(i = 0;i < cantU;i++){
+        for(j = 0; j < totalUsuarios; j++){
+          if(vecUsuarios[j].getId() == usuarios[i]){
+            std::cout <<"Usuario : "<<vecUsuarios[j].getNombre()<<" "<<vecUsuarios[j].getApellido()<<"\n Cantidad de Reclamos : "<<conteoR[i]<<std::endl;
+            break;
+          }
+        }
+    }
+
+    delete[] vectReclamos;
+    delete[] vecUsuarios;
+    delete[] usuarios;
+    delete[] conteoR;
+
+}
+
+void mesDeudas(bool flag,ArchivoReclamo& archivoR, ArchivoUsuario& archivoU){
+    int cantReclamos = archivoR.CantidadReclamos();
+    Reclamo* vectReclamos = new Reclamo[cantReclamos];
+    int i = 0;
+
+    for(i = 0; i < cantReclamos; i++){
+        vectReclamos[i] = archivoR.LeerReclamo(i);
+    }
+
+
+    if(flag){
+        /// CODIGO PARA MES QUE HUBO MAS RECLAMOS
+        ///     FALTA CORRECION FECHA
+        for(i = 0; i < cantReclamos; i++){
+            vectReclamos[i].getFechaReclamo();
+        }
+    }else{
+        /// CODIGO PARA MES QUE HUBO MENOS RECLAMOS
+        ///     FALTA CORRECION FECHA
 
     }
 }
@@ -1671,15 +1835,64 @@ void EstadisticaReclamos() {
     ArchivoReclamo archivoR("reclamos.dat");
     ArchivoUsuario archivoU("usuarios.dat");
 
-    int cantidadReclamos = archivoR.CantidadReclamos();
-    if (cantidadReclamos == 0) {
-        std::cout << "No hay reclamos para contar." << std::endl;
-        return;
+    int opc = -1;
+    bool flag = false;
+
+
+    while (opc!= 0){
+        std::cout << "\t====== MENU Estadisticas Reclamos ======\n";
+        std::cout <<"\t1. Listar Usuarios con Reclamos\n";
+        std::cout <<"\t2. Visualizar Mes con mas Reclamos\n";
+        std::cout <<"\t3. Visualizar Mes con menos Reclamos\n";
+        std::cout <<"\t0. Regresar\n";
+        std::cout << "\t========================================\n";
+        std::cout << "Digite una opcion : ";
+
+        opc = leerEntero();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Limpiar el buffer
+
+        switch (opc){
+        case 1 :
+            system ("cls");
+            listarUsuariosconReclamos(archivoR,archivoU);
+            system("pause");
+            break;
+        case 2 :
+            system("cls");
+            flag = true;            //------------- Bandera TRUE = Mes con MAS reclamos
+            mesDeudas(flag,archivoR,archivoU);
+            system("pause");
+            break;
+        case 3 :
+            system ("cls");
+            flag = false;           //------------- Bandera FALSE = Mes con MENOS reclamos
+            mesDeudas(flag,archivoR,archivoU);
+            system("pause");
+            break;
+        case 0 :
+            system ("cls");
+            std::cout << "\nSaliendo del menu de Estadisticas Reclamos...\n";
+            break;
+        default :
+
+            std::cout <<"\nOpcion Invalida, Digite nuevamente\n";
+            break;
+        }
     }
 
-    Reclamo* vectorReclamos = new Reclamo[cantidadReclamos];
-    archivoR.LeerReclamos(cantidadReclamos, vectorReclamos);
 
+
+
+
+
+
+
+
+    ///---------------- CODIGO ANTERIOR A REVISION FINAL -----------------------
+    ///---------------- CODIGO ANTERIOR A REVISION FINAL -----------------------
+    ///---------------- CODIGO ANTERIOR A REVISION FINAL -----------------------
+    ///---------------- CODIGO ANTERIOR A REVISION FINAL -----------------------
+    /*
     int* usuarios = new int[cantidadReclamos];
     int* conteoReclamos = new int[cantidadReclamos]{0};
     int cantidadUsuarios = 0;
@@ -1711,8 +1924,13 @@ void EstadisticaReclamos() {
         delete[] conteoReclamos;
         return;
     }
+    */
 
-    // Encontrar el usuario con más reclamos
+
+    /*
+    //----------------------------- ENCONTRAR USUARIO CON MAS RECLAMOS -----------------------------
+    //----------------------------- ENCONTRAR USUARIO CON MAS RECLAMOS -----------------------------
+    //----------------------------- ENCONTRAR USUARIO CON MAS RECLAMOS -----------------------------
     int maxReclamos = 0;
     int usuarioConMasReclamosId = -1;
 
@@ -1722,6 +1940,7 @@ void EstadisticaReclamos() {
             usuarioConMasReclamosId = usuarios[i];
         }
     }
+
 
     // Leer todos los usuarios
     int cantidadUsuariosTotales = archivoU.CantidadUsuarios();
@@ -1766,7 +1985,9 @@ void EstadisticaReclamos() {
             delete[] vectorUsuarios;
             delete[] usuarios;
             delete[] conteoReclamos;
+    */
 }
+
 
 void EstadisticaSuministros() {
     ArchivoSuministro archivoS("suministros.dat");

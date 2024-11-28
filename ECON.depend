@@ -528,3 +528,136 @@
 	<cstring>
 	"RespuestaPedido.h"
 
+1731583583 source:c:\users\facu\documents\github\econ\acumuladorid.cpp
+	"AcumuladorId.h"
+
+1731583583 c:\users\facu\documents\github\econ\acumuladorid.h
+
+1731583583 source:c:\users\facu\documents\github\econ\archivoacumulador.cpp
+	"ArchivoAcumulador.h"
+	"AcumuladorId.h"
+
+1731583583 c:\users\facu\documents\github\econ\archivoacumulador.h
+	<string>
+	"AcumuladorId.h"
+
+1731583583 source:c:\users\facu\documents\github\econ\archivofecha.cpp
+	"ArchivoFecha.h"
+	<cstring>
+
+1731583583 c:\users\facu\documents\github\econ\archivofecha.h
+	"Fecha.h"
+	<string>
+
+1731583583 c:\users\facu\documents\github\econ\fecha.h
+	<iostream>
+	"ArchivoAcumulador.h"
+	"AcumuladorId.h"
+	<cstring>
+	<ctime>
+
+1731583583 source:c:\users\facu\documents\github\econ\archivopedido.cpp
+	"ArchivoPedido.h"
+	<cstring>
+
+1731583583 c:\users\facu\documents\github\econ\archivopedido.h
+	"PedidoSuministro.h"
+	<string>
+
+1731583583 c:\users\facu\documents\github\econ\pedidosuministro.h
+	<cstring>
+
+1731583583 source:c:\users\facu\documents\github\econ\archivoreclamo.cpp
+	"ArchivoReclamo.h"
+	<cstring>
+
+1731583583 c:\users\facu\documents\github\econ\archivoreclamo.h
+	"Reclamos.h"
+	<string>
+
+1731611956 c:\users\facu\documents\github\econ\reclamos.h
+
+1731583583 source:c:\users\facu\documents\github\econ\archivorespuestas.cpp
+	"ArchivoRespuestas.h"
+	<cstring>
+
+1731583583 c:\users\facu\documents\github\econ\archivorespuestas.h
+	<string>
+	"RespuestaPedido.h"
+
+1731583583 c:\users\facu\documents\github\econ\respuestapedido.h
+
+1731583583 source:c:\users\facu\documents\github\econ\archivosuministro.cpp
+	"ArchivoSuministro.h"
+	<cstring>
+
+1731583583 c:\users\facu\documents\github\econ\archivosuministro.h
+	<string>
+	"Suministros.h"
+
+1731609447 c:\users\facu\documents\github\econ\suministros.h
+
+1731583583 source:c:\users\facu\documents\github\econ\archivousuario.cpp
+	"ArchivoUsuario.h"
+	<cstring>
+
+1731583583 c:\users\facu\documents\github\econ\archivousuario.h
+	<string>
+	"Usuario.h"
+
+1731583583 c:\users\facu\documents\github\econ\usuario.h
+	"Fecha.h"
+	"ArchivoFecha.h"
+	<string>
+
+1731583583 source:c:\users\facu\documents\github\econ\fecha.cpp
+	"Fecha.h"
+
+1732588616 source:c:\users\facu\documents\github\econ\funciones.cpp
+	<iostream>
+	"Funciones.h"
+	<cstdlib>
+	<limits>
+	<string>
+	<iostream>
+	"ArchivoFecha.h"
+
+1731692230 c:\users\facu\documents\github\econ\funciones.h
+	"ArchivoUsuario.h"
+	"ArchivoSuministro.h"
+	"ArchivoFecha.h"
+	"ArchivoAcumulador.h"
+	"ArchivoReclamo.h"
+	"ArchivoPedido.h"
+	"ArchivoRespuestas.h"
+
+1731953195 source:c:\users\facu\documents\github\econ\main.cpp
+	<iostream>
+	"Funciones.h"
+
+1731583583 source:c:\users\facu\documents\github\econ\pedidosuministro.cpp
+	"PedidoSuministro.h"
+	"ArchivoFecha.h"
+	<cstring>
+
+1731611956 source:c:\users\facu\documents\github\econ\reclamos.cpp
+	<cstring>
+	"Reclamos.h"
+	"ArchivoFecha.h"
+	"ArchivoUsuario.h"
+
+1731583583 source:c:\users\facu\documents\github\econ\respuestapedido.cpp
+	<cstring>
+	"RespuestaPedido.h"
+
+1731609447 source:c:\users\facu\documents\github\econ\suministro.cpp
+	<cstring>
+	"Suministros.h"
+	"ArchivoFecha.h"
+	"Fecha.h"
+
+1731583583 source:c:\users\facu\documents\github\econ\usuario.cpp
+	"Usuario.h"
+	<cstring>
+	<iostream>
+
