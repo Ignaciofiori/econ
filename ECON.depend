@@ -1,16 +1,15 @@
 # depslib dependency file v1.0
-1731590874 source:c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\main.cpp
+1733166590 source:c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\main.cpp
 	<iostream>
 	"Funciones.h"
 
-1731274804 source:c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\usuario.cpp
+1733161412 source:c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\usuario.cpp
 	"Usuario.h"
 	<cstring>
 	<iostream>
 
-1731274804 c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\usuario.h
+1733161363 c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\usuario.h
 	"Fecha.h"
-	"ArchivoFecha.h"
 	<string>
 
 1730235997 source:c:\users\nacho\desktop\work\econ\usuario.cpp
@@ -139,10 +138,10 @@
 	"PedidoSuministro.h"
 	<string>
 
-1731543186 source:c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\acumuladorid.cpp
+1733166511 source:c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\acumuladorid.cpp
 	"AcumuladorId.h"
 
-1731543186 c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\acumuladorid.h
+1733166463 c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\acumuladorid.h
 
 1731274804 source:c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\archivoacumulador.cpp
 	"ArchivoAcumulador.h"
@@ -175,7 +174,8 @@
 	"PedidoSuministro.h"
 	<string>
 
-1731543186 c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\pedidosuministro.h
+1733161832 c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\pedidosuministro.h
+	"Fecha.h"
 	<cstring>
 
 1731274804 source:c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\archivoreclamo.cpp
@@ -186,7 +186,9 @@
 	"Reclamos.h"
 	<string>
 
-1731274804 c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\reclamos.h
+1733162204 c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\reclamos.h
+	"Fecha.h"
+	"ArchivoUsuario.h"
 
 1731274804 source:c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\archivosuministro.cpp
 	"ArchivoSuministro.h"
@@ -196,7 +198,8 @@
 	<string>
 	"Suministros.h"
 
-1731590171 c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\suministros.h
+1733161463 c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\suministros.h
+	"Fecha.h"
 
 1731274804 source:c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\archivousuario.cpp
 	"ArchivoUsuario.h"
@@ -209,37 +212,37 @@
 1731274804 source:c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\fecha.cpp
 	"Fecha.h"
 
-1731593116 source:c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\funciones.cpp
+1733166617 source:c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\funciones.cpp
 	<iostream>
 	"Funciones.h"
 	<cstdlib>
 	<limits>
+	<iomanip>
 	<string>
 	<iostream>
-	"ArchivoFecha.h"
 
-1731593116 c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\funciones.h
+1733166526 c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\funciones.h
+	"funcionesMostrar.h"
 	"ArchivoUsuario.h"
 	"ArchivoSuministro.h"
-	"ArchivoFecha.h"
 	"ArchivoAcumulador.h"
 	"ArchivoReclamo.h"
 	"ArchivoPedido.h"
 	"ArchivoRespuestas.h"
 
-1731543186 source:c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\pedidosuministro.cpp
+1733162033 source:c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\pedidosuministro.cpp
 	"PedidoSuministro.h"
-	"ArchivoFecha.h"
+	<iostream>
 	<cstring>
 
-1731274804 source:c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\reclamos.cpp
+1733162322 source:c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\reclamos.cpp
 	<cstring>
+	<iostream>
 	"Reclamos.h"
 
-1731590561 source:c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\suministro.cpp
+1733161509 source:c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\suministro.cpp
 	<cstring>
 	"Suministros.h"
-	"ArchivoFecha.h"
 	"Fecha.h"
 
 1731432786 source:c:\users\nacho\desktop\work\econ\respuestapedido.cpp
@@ -522,11 +525,13 @@
 	<string>
 	"RespuestaPedido.h"
 
-1731543186 c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\respuestapedido.h
+1733164115 c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\respuestapedido.h
+	"Fecha.h"
 
-1731543186 source:c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\respuestapedido.cpp
+1733164151 source:c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\respuestapedido.cpp
 	<cstring>
 	"RespuestaPedido.h"
+	"Fecha.h"
 
 1731583583 source:c:\users\facu\documents\github\econ\acumuladorid.cpp
 	"AcumuladorId.h"
@@ -794,4 +799,22 @@
 	<string>
 	<iostream>
 	"ArchivoFecha.h"
+
+1733159530 c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\funcionesmostrar.h
+	"RespuestaPedido.h"
+	"Usuario.h"
+	"Suministros.h"
+	"Reclamos.h"
+	"AcumuladorId.h"
+	"PedidoSuministro.h"
+	"ArchivoUsuario.h"
+	"ArchivoSuministro.h"
+	"ArchivoAcumulador.h"
+	"ArchivoReclamo.h"
+	"ArchivoPedido.h"
+	"ArchivoRespuestas.h"
+
+1733164141 source:c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\funcionesmostrar.cpp
+	<iostream>
+	"funcionesMostrar.h"
 

@@ -1,4 +1,5 @@
 #pragma once
+#include "Fecha.h"
 
 class Suministro {
 private:
@@ -8,8 +9,8 @@ private:
     bool _activo;
     char _direccion[50];
     int _codigoPostal;
-    int _fechaAlta; // Cambiado a int para almacenar el ID de la clase Fecha
-    int _fechaBaja; // Cambiado a int para almacenar el ID de la clase Fecha
+    Fecha _fechaAlta; // Cambiado a objeto Fecha
+    Fecha _fechaBaja; // Cambiado a objeto Fecha
     char _contacto[50];
     char _medidor[50];
     float _consumoPorMes;
@@ -21,22 +22,22 @@ private:
 public:
     Suministro();
 
-    Suministro(int suministroId, int usuarioId, const char* tipoSuministro, const char* direccion,
-               int codigoPostal, int fechaAlta, int fechaBaja, const char* contacto,
-               const char* medidor, float consumoPorMes, float precioKwh, bool deuda, bool reclamo,
+    Suministro(int suministroId, int usuarioId, char* tipoSuministro, char* direccion,
+               int codigoPostal, Fecha fechaAlta, Fecha fechaBaja, char* contacto,
+               char* medidor, float consumoPorMes, float precioKwh, bool deuda, bool reclamo,
                float montoDeuda);
 
     // Getters
     int getSuministroId();
     int getUsuarioId();
-    const char* getTipoSuministro();
+    char* getTipoSuministro();
     bool isActivo();
-    const char* getDireccion();
+    char* getDireccion();
     int getCodigoPostal();
-    int getFechaAlta(); // Cambiado a int para representar el ID de la clase Fecha
-    int getFechaBaja(); // Cambiado a int para representar el ID de la clase Fecha
-    const char* getContacto();
-    const char* getMedidor();
+    Fecha getFechaAlta(); // Cambiado a retornar Fecha
+    Fecha getFechaBaja(); // Cambiado a retornar Fecha
+    char* getContacto();
+    char* getMedidor();
     float getConsumoPorMes();
     float getPrecioKwh();
     bool hasDeuda();
@@ -46,14 +47,14 @@ public:
     // Setters
     void setSuministroId(int id);
     void setUsuarioId(int id);
-    void setTipoSuministro(const char* tipo);
+    void setTipoSuministro(char* tipo);
     void setActivo(bool estado);
-    void setDireccion(const char* dir);
+    void setDireccion(char* dir);
     void setCodigoPostal(int cp);
-    void setFechaAlta(int fechaId); // Cambiado a int para representar el ID de la clase Fecha
-    void setFechaBaja(int fechaId); // Cambiado a int para representar el ID de la clase Fecha
-    void setContacto(const char* cont);
-    void setMedidor(const char* med);
+    void setFechaAlta(Fecha fecha); // Cambiado a recibir Fecha
+    void setFechaBaja(Fecha fecha); // Cambiado a recibir Fecha
+    void setContacto(char* cont);
+    void setMedidor(char* med);
     void setConsumoPorMes(float consumo);
     void setPrecioKwh(float precio);
     void setDeuda(bool tieneDeuda);

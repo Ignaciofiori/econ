@@ -4,7 +4,7 @@ AcumuladorId::AcumuladorId(){
 _idSuministro = 0; // Acumulador para el ID de suministros
 _idUsuarios = 0;   // Acumulador para el ID de usuarios
 _idReclamos = 0;   // Acumulador para el ID de reclamos
-_idFechas = 0; // Acumulador para el ID de suministros
+_idFacturas = 0; // Acumulador para el ID de suministros
 _idRespuestas = 0;
 
 }
@@ -22,8 +22,8 @@ int AcumuladorId::getIdReclamos()  {
     return _idReclamos;
 }
 
-int AcumuladorId::getIdFechas()  {
-    return _idFechas;
+int AcumuladorId::getIdFacturas()  {
+    return _idFacturas;
 }
 
 int AcumuladorId::getIdRespuestas(){
@@ -41,8 +41,8 @@ void AcumuladorId::setIdUsuarios(int id) {
 void AcumuladorId::setIdReclamos(int id) {
     _idReclamos = id;
 }
-void AcumuladorId::setIdFechas(int id) {
-    _idFechas = id;
+void AcumuladorId::setIdFacturas(int id) {
+    _idFacturas= id;
 }
 void AcumuladorId::setIdRespuestas(int id){
     _idRespuestas = id;

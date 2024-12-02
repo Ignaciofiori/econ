@@ -1,5 +1,5 @@
 #include "PedidoSuministro.h"
-#include "ArchivoFecha.h"
+#include <iostream>
 #include <cstring>
 
 // Constructor por defecto
@@ -7,7 +7,7 @@ PedidoSuministro::PedidoSuministro() {
     _pedidoId = 0;
     _usuarioId = 0;
     _codigoPostal = 0;
-    _fechaPedido = 0;
+    _fechaPedido = Fecha(); // Inicialización con un objeto Fecha por defecto
     strcpy(_contacto, "");  // Inicialización como cadena vacía
     strcpy(_tipoSuministro, "");
     strcpy(_direccion, "");
@@ -17,13 +17,14 @@ PedidoSuministro::PedidoSuministro() {
 }
 
 // Constructor con parámetros
-PedidoSuministro::PedidoSuministro(int pedidoId, int usuarioId,  char* tipoSuministro,  char* direccion,
-                                   int codigoPostal, int fechaPedido,  char* contacto,  char* medidor,  char* comentarios) {
+PedidoSuministro::PedidoSuministro(int pedidoId, int usuarioId, char* tipoSuministro, char* direccion,
+                                   int codigoPostal, Fecha fechaPedido, char* contacto,
+                                   char* medidor, char* comentarios) {
     _pedidoId = pedidoId;
     _usuarioId = usuarioId;
     _codigoPostal = codigoPostal;
-    _fechaPedido = fechaPedido;
-    strcpy(_contacto, contacto);  // Guardar como cadena
+    _fechaPedido = fechaPedido; // Asignación del objeto Fecha
+    strcpy(_contacto, contacto);
     strcpy(_tipoSuministro, tipoSuministro);
     strcpy(_direccion, direccion);
     strcpy(_medidor, medidor);
@@ -40,11 +41,11 @@ int PedidoSuministro::getUsuarioId() {
     return _usuarioId;
 }
 
- char* PedidoSuministro::getTipoSuministro() {
+char* PedidoSuministro::getTipoSuministro() {
     return _tipoSuministro;
 }
 
- char* PedidoSuministro::getDireccion() {
+char* PedidoSuministro::getDireccion() {
     return _direccion;
 }
 
@@ -52,23 +53,23 @@ int PedidoSuministro::getCodigoPostal() {
     return _codigoPostal;
 }
 
-int PedidoSuministro::getFechaPedido() {
+Fecha PedidoSuministro::getFechaPedido() {
     return _fechaPedido;
 }
 
- char* PedidoSuministro::getContacto() {  // Cambiado para devolver un const char*
+char* PedidoSuministro::getContacto() {
     return _contacto;
 }
 
- char* PedidoSuministro::getMedidor() {
+char* PedidoSuministro::getMedidor() {
     return _medidor;
 }
 
- char* PedidoSuministro::getComentarios() {
+char* PedidoSuministro::getComentarios() {
     return _comentarios;
 }
 
-bool PedidoSuministro::isActivo(){
+bool PedidoSuministro::isActivo() {
     return _activo;
 }
 
@@ -81,11 +82,11 @@ void PedidoSuministro::setUsuarioId(int usuarioId) {
     _usuarioId = usuarioId;
 }
 
-void PedidoSuministro::setTipoSuministro( char* tipoSuministro) {
+void PedidoSuministro::setTipoSuministro(char* tipoSuministro) {
     strcpy(_tipoSuministro, tipoSuministro);
 }
 
-void PedidoSuministro::setDireccion( char* direccion) {
+void PedidoSuministro::setDireccion(char* direccion) {
     strcpy(_direccion, direccion);
 }
 
@@ -93,38 +94,35 @@ void PedidoSuministro::setCodigoPostal(int codigoPostal) {
     _codigoPostal = codigoPostal;
 }
 
-void PedidoSuministro::setFechaPedido(int fechaPedido) {
-    _fechaPedido = fechaPedido;
+void PedidoSuministro::setFechaPedido(Fecha fechaPedido) {
+    _fechaPedido = fechaPedido; // Asignación del objeto Fecha
 }
 
-void PedidoSuministro::setContacto( char* contacto) {  // Cambiado a const char*
+void PedidoSuministro::setContacto(char* contacto) {
     strcpy(_contacto, contacto);
 }
 
-void PedidoSuministro::setMedidor( char* medidor) {
+void PedidoSuministro::setMedidor(char* medidor) {
     strcpy(_medidor, medidor);
 }
 
-void PedidoSuministro::setComentarios( char* comentarios) {
+void PedidoSuministro::setComentarios(char* comentarios) {
     strcpy(_comentarios, comentarios);
 }
 
-void PedidoSuministro::setActivo(bool activo){
+void PedidoSuministro::setActivo(bool activo) {
     _activo = activo;
 }
 
+// Mostrar información del pedido
 void PedidoSuministro::mostrarPedido() {
-    ArchivoFecha archivo("fechas.dat");
-    int pos = archivo.BuscarFecha(getFechaPedido());
-    Fecha fecha = archivo.LeerFecha(pos);
-
     std::cout << "===== INFORMACION DEL PEDIDO DE SUMINISTRO =====\n";
     std::cout << "ID del Pedido: " << getPedidoId() << std::endl;
     std::cout << "ID del Usuario: " << getUsuarioId() << std::endl;
     std::cout << "Tipo de Suministro: " << getTipoSuministro() << std::endl;
     std::cout << "Direccion: " << getDireccion() << std::endl;
     std::cout << "Codigo Postal: " << getCodigoPostal() << std::endl;
-    std::cout << "Fecha del Pedido: " << fecha.toString() << std::endl;
+    std::cout << "Fecha del Pedido: " << getFechaPedido().toString() << std::endl; // Uso del método toString de Fecha
     std::cout << "Contacto: " << getContacto() << std::endl;
     std::cout << "Medidor: " << getMedidor() << std::endl;
     std::cout << "Comentarios: " << getComentarios() << std::endl;

@@ -1,4 +1,5 @@
 #pragma once
+#include "Fecha.h"
 #include <cstring>
 
 class PedidoSuministro {
@@ -8,17 +9,18 @@ private:
     char _tipoSuministro[50];
     char _direccion[50];
     int _codigoPostal;
-    int _fechaPedido;
-    char _contacto[50]; // Cambiado de int a char[]
+    Fecha _fechaPedido; // Cambiado para ser un objeto Fecha
+    char _contacto[50];
     char _medidor[50];
     char _comentarios[100];
     bool _activo;
 
 public:
-
+    // Constructores
     PedidoSuministro();
-    PedidoSuministro(int pedidoId, int usuarioId,  char* tipoSuministro,  char* direccion, int codigoPostal,
-                     int fechaPedido,  char* contacto,  char* medidor,  char* comentarios); // Actualizado
+    PedidoSuministro(int pedidoId, int usuarioId, char* tipoSuministro, char* direccion,
+                     int codigoPostal, Fecha fechaPedido, char* contacto,
+                     char* medidor, char* comentarios);
 
     // Getters
     int getPedidoId();
@@ -26,8 +28,8 @@ public:
     char* getTipoSuministro();
     char* getDireccion();
     int getCodigoPostal();
-    int getFechaPedido();
-    char* getContacto(); // Actualizado
+    Fecha getFechaPedido(); // Devuelve el objeto Fecha
+    char* getContacto();
     char* getMedidor();
     char* getComentarios();
     bool isActivo();
@@ -35,14 +37,15 @@ public:
     // Setters
     void setPedidoId(int pedidoId);
     void setUsuarioId(int usuarioId);
-    void setTipoSuministro( char* tipoSuministro);
-    void setDireccion( char* direccion);
+    void setTipoSuministro(char* tipoSuministro);
+    void setDireccion(char* direccion);
     void setCodigoPostal(int codigoPostal);
-    void setFechaPedido(int fechaPedido);
-    void setContacto( char* contacto); // Actualizado
-    void setMedidor( char* medidor);
-    void setComentarios( char* comentarios);
+    void setFechaPedido(Fecha fechaPedido); // Usa un objeto Fecha
+    void setContacto(char* contacto);
+    void setMedidor(char* medidor);
+    void setComentarios(char* comentarios);
     void setActivo(bool activo);
 
+    // Método para mostrar la información del pedido
     void mostrarPedido();
 };

@@ -1,6 +1,7 @@
 #pragma once
+#include "Fecha.h"
 
-class RespuestaPedido{
+class RespuestaPedido {
 
 private:
     int _respuestaId;
@@ -9,28 +10,28 @@ private:
     bool _aceptado;
     bool _activo;
     char _comentarios[150];
-    int _fechaDeRespuesta;
+    Fecha _fechaDeRespuesta;  // Cambié el tipo de fechaDeRespuesta a un objeto Fecha
 
 public:
     RespuestaPedido();
     RespuestaPedido(int respuestaId, int usuarioId, int pedidoId, bool aceptado,
-            int fechaDeRespuesta, const char* comentarios);
+             Fecha& fechaDeRespuesta,  char* comentarios);  // Cambié el tipo de fecha
 
 // Getters
     int getRespuestaId();
     int getUsuarioId();
     int getPedidoId();
     bool getAceptado();
-    int getFechaDeRespuesta();
-    const char* getComentarios();
+    Fecha getFechaDeRespuesta();  // Cambié el tipo de retorno a Fecha
+    char* getComentarios();
     bool isActivo();
 
-    // Setters
+// Setters
     void setRespuestaId(int id);
     void setUsuarioId(int id);
     void setPedidoId(int id);
     void setAceptado(bool aceptado);
-    void setFechaDeRespuesta(int fecha);
-    void setComentarios(const char* comentarios);
+    void setFechaDeRespuesta( Fecha& fecha);  // Cambié el tipo del parámetro a Fecha
+    void setComentarios( char* comentarios);
     void setActivo(bool activo);
 };

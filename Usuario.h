@@ -1,49 +1,49 @@
 #pragma once
 #include "Fecha.h"
-#include "ArchivoFecha.h"
 #include <string>
 
 class Usuario {
 private:
-   int _id ;
-   char _nombre[50];
-   char _apellido[50];
-   int  _dni;
-   char _email[50];
-   char _contrasena[50];
-   char _contacto[50];
-   int _fechaNacimiento;
-   bool _admin;
-   bool _activo;
+    int _id;
+    char _nombre[50];
+    char _apellido[50];
+    int _dni;
+    char _email[50];
+    char _contrasena[50];
+    char _contacto[50];
+    Fecha _fechaNacimiento; // Cambiado a tipo Fecha
+    bool _admin;
+    bool _activo;
 
 public:
     Usuario();
-    Usuario(int id,   const char* nombre, const char* apellido,int dni ,const char* email,
-             const char* contrasena,   const char* contacto, int fechaNacimiento, bool admin);
-   // Getters
-    int getId() ;
-    const char* getNombre() ;
-    const char* getApellido() ;
+    Usuario(int id, char* nombre, char* apellido, int dni, char* email,
+            char* contrasena, char* contacto, Fecha fechaNacimiento, bool admin);
+
+    // Getters
+    int getId();
+    char* getNombre();
+    char* getApellido();
     int getDni();
-    const char* getEmail() ;
-    const char* getContrasena() ;
-    const char* getContacto() ;
-    int getFechaNacimiento() ;
+    char* getEmail();
+    char* getContrasena();
+    char* getContacto();
+    Fecha getFechaNacimiento(); // Cambiado para devolver un objeto Fecha
     bool isAdmin();
     bool isActivo();
 
-   // Setters
-   void setId(int id);
-   void setNombre(  const char* nombre);
-   void setApellido(  const char* apellido);
-   void setDni(int dni);
-   void setEmail(  const char* email);
-   void setContrasena(  const char* contrasena);
-   void setContacto(  const char* contacto);
-   void setFechaNacimiento(int fechaNacimiento);
-   void setAdmin(bool admin);
-   void setActivo(bool activo);
+    // Setters
+    void setId(int id);
+    void setNombre(char* nombre);
+    void setApellido(char* apellido);
+    void setDni(int dni);
+    void setEmail(char* email);
+    void setContrasena(char* contrasena);
+    void setContacto(char* contacto);
+    void setFechaNacimiento(Fecha fechaNacimiento); // Cambiado para aceptar un objeto Fecha
+    void setAdmin(bool admin);
+    void setActivo(bool activo);
 
-   void mostrarUsuario();
-   void cargarUsuario();
+    void mostrarUsuario();
+    void cargarUsuario();
 };

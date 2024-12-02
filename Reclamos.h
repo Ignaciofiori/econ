@@ -1,4 +1,6 @@
 #pragma once
+#include "Fecha.h"
+#include "ArchivoUsuario.h"
 
 class Reclamo {
 
@@ -7,7 +9,7 @@ private:
     int _usuarioId;
     int _suministroId;
     char _descripcion[150];
-    int _fechaReclamo;
+    Fecha _fechaReclamo; // Cambiado a objeto Fecha
     char _estado[50];
     char _tipoDeReclamo[50];
     int _responsableDeAtencion;
@@ -17,33 +19,34 @@ private:
 
 public:
     Reclamo();
-    Reclamo(int reclamoId,int usuarioId,int suministroId, const char* descripcion,
-            int fechaDeReclamo, const char* estado, const char* tipoDeReclamo,int responsableDeAtencion,
-            const char* respuesta, const char* prioridad);
+    Reclamo(int reclamoId, int usuarioId, int suministroId, char* descripcion,
+            Fecha fechaDeReclamo, char* estado, char* tipoDeReclamo, int responsableDeAtencion,
+            char* respuesta, char* prioridad);
 
-// Getters
-    int getReclamoId() ;
-    int getUsuarioId() ;
-    int getSuministroId() ;
-    const char* getDescripcion() ;
-    int getFechaReclamo() ;
-    const char* getEstado() ;
-    const char* getTipoDeReclamo() ;
-    int getResponsableDeAtencion() ;
-    const char* getRespuesta() ;
-    const char* getPrioridad() ;
+    // Getters
+    int getReclamoId();
+    int getUsuarioId();
+    int getSuministroId();
+    char* getDescripcion();
+    Fecha getFechaReclamo(); // Ahora devuelve un objeto Fecha
+    char* getEstado();
+    char* getTipoDeReclamo();
+    int getResponsableDeAtencion();
+    char* getRespuesta();
+    char* getPrioridad();
     bool isActivo();
+
     // Setters
     void setReclamoId(int id);
     void setUsuarioId(int id);
     void setSuministroId(int id);
-    void setDescripcion(const char* descripcion);
-    void setFechaReclamo(int fecha);
-    void setEstado(const char* estado);
-    void setTipoDeReclamo(const char* tipo);
+    void setDescripcion(char* descripcion);
+    void setFechaReclamo(Fecha fecha); // Ahora recibe un objeto Fecha
+    void setEstado(char* estado);
+    void setTipoDeReclamo(char* tipo);
     void setResponsableDeAtencion(int responsable);
-    void setRespuesta(const char* respuesta);
-    void setPrioridad(const char* prioridad);
+    void setRespuesta(char* respuesta);
+    void setPrioridad(char* prioridad);
     void setActivo(bool activo);
 
     void mostrarReclamo();

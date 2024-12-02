@@ -1,21 +1,14 @@
 #pragma once
+#include "funcionesMostrar.h"
 #include "ArchivoUsuario.h"
 #include "ArchivoSuministro.h"
-#include "ArchivoFecha.h"
 #include "ArchivoAcumulador.h"
 #include "ArchivoReclamo.h"
 #include "ArchivoPedido.h"
 #include "ArchivoRespuestas.h"
 
 int contarPedidosActivos(PedidoSuministro* pedidos, int cantidad);
-void mostrarSuministros(Suministro *vectorSuministro, int cantidad);
-void mostrarPedidos(PedidoSuministro *vectorPedidos, int cantidad);
 int listaPedidos();
-void mostrarRespuestasPedido(RespuestaPedido* respuestas, int cantidad);
-void mostrarUsuarios(Usuario* vectorUsuarios, int cantidadUsuarios);
-void mostrarUsuarios(Suministro* vectorSuministros, int cantidadSuministros);
-void mostrarFechas(Fecha *vectorFechas, int cantidadFechas) ;
-void mostrarReclamos(Reclamo* reclamos, int cantidad);
 void bannerBienvenida();
 void menuPrincipal();
 Usuario registrarse();
@@ -37,10 +30,9 @@ Reclamo cargarReclamo(Usuario &usu);
 void seleccionarTipoReclamo(char* tipoReclamo);
 void seleccionarNivelPrioridad(char* nivelPrioridad);
 Suministro buscarSuministroPorId(int id,Usuario &usu);
-int calcularMesesTranscurridos( Fecha &fechaAlta,  Fecha &fechaActual);
+int calcularMesesTranscurridos( Fecha fechaAlta,  Fecha fechaActual);
 float calcularDeuda(Suministro &suministro);
 void controlDeudaSuministros();
-void mostrarReclamos(Reclamo& reclamo);
 int listarReclamosEstado(bool estado);
 Reclamo seleccionarReclamo();
 Reclamo buscarReclamoPorId(int id);
@@ -50,6 +42,10 @@ Reclamo buscarReclamoPorId(int id,bool realizado);
 void mostrarSuministrosDeuda(Usuario &usu);
 Suministro seleccionarSuministroDeuda(Usuario &usu);
 Suministro buscarSuministroPorIdDeuda(int idSum,Usuario &usu);
+
+
+
+//estadisticas
 void EstadisticaReclamos();
 void MenuEstadisticas();
 void EstadisticaSuministros();

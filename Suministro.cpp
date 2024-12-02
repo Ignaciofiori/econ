@@ -1,7 +1,7 @@
 #include <cstring>
 #include "Suministros.h"
-#include "ArchivoFecha.h"
 #include "Fecha.h"
+
 Suministro::Suministro() {
     _suministroId = 0;
     _usuarioId = 0;
@@ -9,8 +9,8 @@ Suministro::Suministro() {
     _activo = false;
     strcpy(_direccion, "");
     _codigoPostal = 0;
-    _fechaAlta = 0;  // Cambiado de const char* a int
-    _fechaBaja = 0;  // Cambiado de const char* a int
+    _fechaAlta = Fecha();  // Inicializar con un objeto Fecha vacío
+    _fechaBaja = Fecha();  // Inicializar con un objeto Fecha vacío
     strcpy(_contacto, "");
     strcpy(_medidor, "");
     _consumoPorMes = 0.0f;
@@ -20,9 +20,9 @@ Suministro::Suministro() {
     _montoDeuda = 0.0f;
 }
 
-Suministro::Suministro(int suministroId, int usuarioId, const char* tipoSuministro, const char* direccion,
-                       int codigoPostal, int fechaAltaId, int fechaBajaId, const char* contacto,
-                       const char* medidor, float consumoPorMes, float precioKwh, bool deuda, bool reclamo,
+Suministro::Suministro(int suministroId, int usuarioId, char* tipoSuministro, char* direccion,
+                       int codigoPostal, Fecha fechaAlta, Fecha fechaBaja, char* contacto,
+                       char* medidor, float consumoPorMes, float precioKwh, bool deuda, bool reclamo,
                        float montoDeuda) {
     _suministroId = suministroId;
     _usuarioId = usuarioId;
@@ -30,8 +30,8 @@ Suministro::Suministro(int suministroId, int usuarioId, const char* tipoSuminist
     _activo = true;
     strcpy(_direccion, direccion);
     _codigoPostal = codigoPostal;
-    _fechaAlta = fechaAltaId;  // Cambiado de const char* a int
-    _fechaBaja = fechaBajaId;  // Cambiado de const char* a int
+    _fechaAlta = fechaAlta;  // Asignar el objeto Fecha
+    _fechaBaja = fechaBaja;  // Asignar el objeto Fecha
     strcpy(_contacto, contacto);
     strcpy(_medidor, medidor);
     _consumoPorMes = consumoPorMes;
@@ -50,7 +50,7 @@ int Suministro::getUsuarioId() {
     return _usuarioId;
 }
 
-const char* Suministro::getTipoSuministro() {
+char* Suministro::getTipoSuministro() {
     return _tipoSuministro;
 }
 
@@ -58,7 +58,7 @@ bool Suministro::isActivo() {
     return _activo;
 }
 
-const char* Suministro::getDireccion() {
+char* Suministro::getDireccion() {
     return _direccion;
 }
 
@@ -66,19 +66,19 @@ int Suministro::getCodigoPostal() {
     return _codigoPostal;
 }
 
-int Suministro::getFechaAlta() {  // Cambiado de const char* a int
+Fecha Suministro::getFechaAlta() {  // Cambiado a devolver un objeto Fecha
     return _fechaAlta;
 }
 
-int Suministro::getFechaBaja() {  // Cambiado de const char* a int
+Fecha Suministro::getFechaBaja() {  // Cambiado a devolver un objeto Fecha
     return _fechaBaja;
 }
 
-const char* Suministro::getContacto() {
+char* Suministro::getContacto() {
     return _contacto;
 }
 
-const char* Suministro::getMedidor() {
+char* Suministro::getMedidor() {
     return _medidor;
 }
 
@@ -111,7 +111,7 @@ void Suministro::setUsuarioId(int usuarioId) {
     _usuarioId = usuarioId;
 }
 
-void Suministro::setTipoSuministro(const char* tipoSuministro) {
+void Suministro::setTipoSuministro(char* tipoSuministro) {
     strcpy(_tipoSuministro, tipoSuministro);
 }
 
@@ -119,7 +119,7 @@ void Suministro::setActivo(bool activo) {
     _activo = activo;
 }
 
-void Suministro::setDireccion(const char* direccion) {
+void Suministro::setDireccion(char* direccion) {
     strcpy(_direccion, direccion);
 }
 
@@ -127,19 +127,19 @@ void Suministro::setCodigoPostal(int codigoPostal) {
     _codigoPostal = codigoPostal;
 }
 
-void Suministro::setFechaAlta(int fechaAltaId) {  // Cambiado de const char* a int
-    _fechaAlta = fechaAltaId;
+void Suministro::setFechaAlta(Fecha fechaAlta) {  // Cambiado para aceptar un objeto Fecha
+    _fechaAlta = fechaAlta;
 }
 
-void Suministro::setFechaBaja(int fechaBajaId) {  // Cambiado de const char* a int
-    _fechaBaja = fechaBajaId;
+void Suministro::setFechaBaja(Fecha fechaBaja) {  // Cambiado para aceptar un objeto Fecha
+    _fechaBaja = fechaBaja;
 }
 
-void Suministro::setContacto(const char* contacto) {
+void Suministro::setContacto(char* contacto) {
     strcpy(_contacto, contacto);
 }
 
-void Suministro::setMedidor(const char* medidor) {
+void Suministro::setMedidor(char* medidor) {
     strcpy(_medidor, medidor);
 }
 
@@ -162,16 +162,8 @@ void Suministro::setReclamo(bool reclamo) {
 void Suministro::setMontoDeuda(float montoDeuda) {
     _montoDeuda = montoDeuda;
 }
+
 void Suministro::mostrarSuministro() {
-    ArchivoFecha archivo("fechas.dat");
-
-    // Leer la fecha de alta y fecha de baja usando los IDs de fecha almacenados
-    int posFechaAlta = archivo.BuscarFecha(getFechaAlta());
-    Fecha fechaAlta = archivo.LeerFecha(posFechaAlta);
-
-    int posFechaBaja = archivo.BuscarFecha(getFechaBaja());
-    Fecha fechaBaja = archivo.LeerFecha(posFechaBaja);
-
     std::cout << "===== INFORMACION DEL SUMINISTRO =====\n";
     std::cout << "ID de Suministro: " << getSuministroId() << std::endl;
     std::cout << "ID de Usuario: " << getUsuarioId() << std::endl;
@@ -179,8 +171,8 @@ void Suministro::mostrarSuministro() {
     std::cout << "Activo: " << (isActivo() ? "Si" : "No") << std::endl;
     std::cout << "Direccion: " << getDireccion() << std::endl;
     std::cout << "Codigo Postal: " << getCodigoPostal() << std::endl;
-    std::cout << "Fecha de Alta: " << fechaAlta.toString() << std::endl;
-    std::cout << "Fecha de Baja: " << fechaBaja.toString() << std::endl;
+    std::cout << "Fecha de Alta: " << getFechaAlta().toString() << std::endl;  // Usar método toString de Fecha
+    std::cout << "Fecha de Baja: " << (getFechaBaja().getId()!=0 ? getFechaBaja().toString() : "Sigue Activo") << std::endl;  // Usar método toString de Fecha
     std::cout << "Contacto: " << getContacto() << std::endl;
     std::cout << "Medidor: " << getMedidor() << std::endl;
     std::cout << "Consumo por Mes: " << getConsumoPorMes() << " kWh" << std::endl;
