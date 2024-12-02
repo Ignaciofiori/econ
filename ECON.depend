@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1733166590 source:c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\main.cpp
+1733166963 source:c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\main.cpp
 	<iostream>
 	"Funciones.h"
 
@@ -212,7 +212,7 @@
 1731274804 source:c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\fecha.cpp
 	"Fecha.h"
 
-1733166617 source:c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\funciones.cpp
+1733169721 source:c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\funciones.cpp
 	<iostream>
 	"Funciones.h"
 	<cstdlib>
@@ -221,7 +221,7 @@
 	<string>
 	<iostream>
 
-1733166526 c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\funciones.h
+1733169721 c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\funciones.h
 	"funcionesMostrar.h"
 	"ArchivoUsuario.h"
 	"ArchivoSuministro.h"
@@ -814,7 +814,15 @@
 	"ArchivoPedido.h"
 	"ArchivoRespuestas.h"
 
-1733164141 source:c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\funcionesmostrar.cpp
+1733169721 source:c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\funcionesmostrar.cpp
 	<iostream>
 	"funcionesMostrar.h"
+
+1733174671 source:c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\factura.cpp
+	"Factura.h"
+	<iostream>
+	<cstring>
+
+1733174592 c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\factura.h
+	"Fecha.h"
 
