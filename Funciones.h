@@ -39,7 +39,7 @@ Reclamo buscarReclamoPorId(int id);
 void accionesReclamos(Reclamo &reclamo);
 Reclamo seleccionarReclamo(bool realizado);
 Reclamo buscarReclamoPorId(int id,bool realizado);
-void mostrarSuministrosDeuda(Usuario &usu);
+int mostrarSuministrosDeuda(Usuario &usu);
 Suministro seleccionarSuministroDeuda(Usuario &usu);
 Suministro buscarSuministroPorIdDeuda(int idSum,Usuario &usu);
 

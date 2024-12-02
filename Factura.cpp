@@ -88,7 +88,7 @@ void Factura::mostrarFactura() {
     std::cout << "ID de la Factura: " << getIdFactura() << std::endl;
     std::cout << "ID del Usuario: " << getIdUsuario() << std::endl;
     std::cout << "ID de Suministro: " << getIdSuministro() << std::endl;
-    std::cout << "Periodo Correspondiente: " << getPeriodo().toString() << std::endl;
+    std::cout << "Periodo Correspondiente: " << getPeriodo()    .toString() << std::endl;
     std::cout << "Fecha de la Factura: " << getFecha().toString() << std::endl; // Uso del método toString de Fecha
     std::cout << "Metodo de Pago: " << getMetodoPago() << std::endl;
     std::cout << "Se Pago Totalidad de Deuda : " << (getPagoCompleto()?"Si":"No") << std::endl;

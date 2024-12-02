@@ -212,7 +212,7 @@
 1731274804 source:c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\fecha.cpp
 	"Fecha.h"
 
-1733178581 source:c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\funciones.cpp
+1733183214 source:c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\funciones.cpp
 	<iostream>
 	"Funciones.h"
 	<cstdlib>
@@ -221,7 +221,7 @@
 	<string>
 	<iostream>
 
-1733169721 c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\funciones.h
+1733183198 c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\funciones.h
 	"funcionesMostrar.h"
 	"ArchivoUsuario.h"
 	"ArchivoSuministro.h"
@@ -818,7 +818,7 @@
 	<iostream>
 	"funcionesMostrar.h"
 
-1733174671 source:c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\factura.cpp
+1733181750 source:c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\factura.cpp
 	"Factura.h"
 	<iostream>
 	<cstring>

@@ -222,33 +222,48 @@ void mostrarSuministrosAsociados(Usuario &usu) {
 
     archivoSuministro.LeerSuministros(cantidad, vectorSuministros);
 
-    std::cout << "Suministros asociados al usuario " << usu.getNombre() << ":\n";
-
-   for (int i = 0; i < cantidad; ++i) {
-    if (vectorSuministros[i].getUsuarioId() == usu.getId() && vectorSuministros[i].isActivo()) {
-
-        Fecha fechaAlta = vectorSuministros[i].getFechaAlta();
-        Fecha fechaBaja = vectorSuministros[i].getFechaBaja();
-        int idFechaBaja = fechaBaja.getId();
-
-
-        // Filtra por ID de usuario y estado activo
-        std::cout << "ID de Suministro: " << vectorSuministros[i].getSuministroId() << "\n";
-        std::cout << "Tipo de Suministro: " << vectorSuministros[i].getTipoSuministro() << "\n";
-        std::cout << "Activo: " << (vectorSuministros[i].isActivo() ? "Si" : "No") << "\n";
-        std::cout << "Direccion: " << vectorSuministros[i].getDireccion() << "\n";
-        std::cout << "Codigo Postal: " << vectorSuministros[i].getCodigoPostal() << "\n";
-        std::cout << "Fecha Alta: " << fechaAlta.toString() << "\n"; // O ajusta si tienes una clase Fecha
-        std::cout << "Fecha Baja: " <<(idFechaBaja == 0 ? "Sigue Activo." : fechaBaja.toString()) << std::endl;// O ajusta si tienes una clase Fecha
-        std::cout << "Contacto: " << vectorSuministros[i].getContacto() << "\n";
-        std::cout << "Medidor: " << vectorSuministros[i].getMedidor() << "\n";
-        std::cout << "Consumo por Mes: " << vectorSuministros[i].getConsumoPorMes() << " kWh\n";
-        std::cout << "Precio por kWh: $" << vectorSuministros[i].getPrecioKwh() << "\n";
-        std::cout << "Deuda: " << (vectorSuministros[i].hasDeuda() ? "Si" : "No") << "\n";
-        std::cout << "Reclamo: " << (vectorSuministros[i].hasReclamo() ? "Si" : "No") << "\n";
-        std::cout << "Monto de Deuda: $" << vectorSuministros[i].getMontoDeuda() << "\n";
-        std::cout << "-----------------------------\n";
+    //contamos para ver si hay
+    int contador = 0;
+    for (int x = 0; x < cantidad; ++x) {
+    if (vectorSuministros[x].getUsuarioId() == usu.getId() && vectorSuministros[x].isActivo()){
+        contador++;
     }
+    }
+
+    if(contador == 0){
+        std::cout << "No se Encontraron Suministros asociados al usuario :( \n";
+
+    }else{
+
+
+            std::cout << "Suministros asociados al usuario " << usu.getNombre() << ":\n";
+
+           for (int i = 0; i < cantidad; ++i) {
+            if (vectorSuministros[i].getUsuarioId() == usu.getId() && vectorSuministros[i].isActivo()) {
+
+                Fecha fechaAlta = vectorSuministros[i].getFechaAlta();
+                Fecha fechaBaja = vectorSuministros[i].getFechaBaja();
+                int idFechaBaja = fechaBaja.getId();
+
+
+                // Filtra por ID de usuario y estado activo
+                std::cout << "ID de Suministro: " << vectorSuministros[i].getSuministroId() << "\n";
+                std::cout << "Tipo de Suministro: " << vectorSuministros[i].getTipoSuministro() << "\n";
+                std::cout << "Activo: " << (vectorSuministros[i].isActivo() ? "Si" : "No") << "\n";
+                std::cout << "Direccion: " << vectorSuministros[i].getDireccion() << "\n";
+                std::cout << "Codigo Postal: " << vectorSuministros[i].getCodigoPostal() << "\n";
+                std::cout << "Fecha Alta: " << fechaAlta.toString() << "\n"; // O ajusta si tienes una clase Fecha
+                std::cout << "Fecha Baja: " <<(idFechaBaja == 0 ? "Sigue Activo." : fechaBaja.toString()) << std::endl;// O ajusta si tienes una clase Fecha
+                std::cout << "Contacto: " << vectorSuministros[i].getContacto() << "\n";
+                std::cout << "Medidor: " << vectorSuministros[i].getMedidor() << "\n";
+                std::cout << "Consumo por Mes: " << vectorSuministros[i].getConsumoPorMes() << " kWh\n";
+                std::cout << "Precio por kWh: $" << vectorSuministros[i].getPrecioKwh() << "\n";
+                std::cout << "Deuda: " << (vectorSuministros[i].hasDeuda() ? "Si" : "No") << "\n";
+                std::cout << "Reclamo: " << (vectorSuministros[i].hasReclamo() ? "Si" : "No") << "\n";
+                std::cout << "Monto de Deuda: $" << vectorSuministros[i].getMontoDeuda() << "\n";
+                std::cout << "-----------------------------\n";
+            }
+        }
 }
 
 
@@ -273,6 +288,18 @@ void mostrarRespuestas(Usuario &usu) {
 
     vectorPedidos = new PedidoSuministro[cantidadPedidos];
     archivoPedido.LeerPedidos(cantidadPedidos, vectorPedidos);
+
+
+       int contador = 0;
+    for (int x = 0; x < cantidadRespuestas; ++x) {
+    if (vectorRespuestas[x].getUsuarioId() == usu.getId() && vectorRespuestas[x].isActivo()){
+        contador++;
+    }
+    }
+
+    if(contador == 0){
+         std::cout << " No se encontraron Respuestas asociadas al usuario :( \n";
+    }else{
 
     std::cout << "Respuestas asociadas al usuario " << usu.getNombre() << " " << usu.getApellido() <<":\n";
 
@@ -310,6 +337,7 @@ void mostrarRespuestas(Usuario &usu) {
             std::cout << "-----------------------------\n";
         }
     }
+  }
 
 
     delete[] vectorRespuestas;
@@ -1377,9 +1405,10 @@ int listarReclamosEstado(bool estado) {
 
 }
 
-void mostrarSuministrosDeuda(Usuario &usu){
+int mostrarSuministrosDeuda(Usuario &usu){
     ArchivoSuministro archivoSuministro("suministros.dat");
 
+    int contador = 0;
     int cantidad = archivoSuministro.CantidadSuministros();
     Suministro *vectorSuministros;
 
@@ -1387,7 +1416,12 @@ void mostrarSuministrosDeuda(Usuario &usu){
 
     archivoSuministro.LeerSuministros(cantidad, vectorSuministros);
 
+    for (int x = 0; x < cantidad; ++x) {
+    if (vectorSuministros[x].getUsuarioId() == usu.getId() && vectorSuministros[x].isActivo() && vectorSuministros[x].hasDeuda()) {
+        contador++;
+    }}
 
+    if(contador !=0 ){
    for (int i = 0; i < cantidad; ++i) {
     if (vectorSuministros[i].getUsuarioId() == usu.getId() && vectorSuministros[i].isActivo() && vectorSuministros[i].hasDeuda()) {
 
@@ -1410,7 +1444,8 @@ void mostrarSuministrosDeuda(Usuario &usu){
 }
    }
 }
-
+    return contador;
+}
 void usuariosConDeudas(ArchivoSuministro &archivoSumi, ArchivoUsuario &archivoUsu){
     int cantSuministros = archivoSumi.CantidadSuministros();
     Suministro* vecSumi = new Suministro[cantSuministros];
@@ -3110,7 +3145,7 @@ void menuSecundario(Usuario usu) {
                 std::cout << "Pedidos de Suministros Solicitados:\n";
                 cantidadPedidos = listaPedidos();
 
-                if(cantidadPedidos!=0){
+                if(cantidadPedidos !=0){
                 pedido = seleccionarPedido();
 
                 if(pedido.getPedidoId() == 0){
@@ -3165,6 +3200,7 @@ void menuSecundario(Usuario usu) {
     ArchivoSuministro archivoS("suministros.dat");
     PedidoSuministro pedido;
     Reclamo reclamo;
+    int contador = 0;
     int pago;
     int nuevoMontoDeuda;
     int posSum;
@@ -3226,7 +3262,11 @@ void menuSecundario(Usuario usu) {
         break;
     case 7:
         std::cout << "Suministros Asociados Faltantes de Pago: \n";
-        mostrarSuministrosDeuda(usu);
+        contador = mostrarSuministrosDeuda(usu);
+        if(contador == 0){
+            std::cout << "No Tienes Suministros Asociados Faltantes de Pago: \n";
+            break;
+        }
         sumAPagar = seleccionarSuministroDeuda(usu);
 
         if(sumAPagar.getSuministroId()==0){
