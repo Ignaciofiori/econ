@@ -1772,7 +1772,6 @@ void EstadisticaReclamos() {
     */
 }
 
-
 void EstadisticaSuministros() {
     ArchivoSuministro archivoS("suministros.dat");
     ArchivoUsuario archivoU("usuarios.dat");
@@ -1977,7 +1976,6 @@ void EstadisticaPedidos() {
     delete[] usuarios;
     delete[] conteoPedidos;
 }
-
 
 void MenuEstadisticas1(){
     int opcion;

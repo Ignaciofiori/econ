@@ -1,4 +1,4 @@
-#include "ArchivoFactura.h"
+#include "ArchivoFacturas.h"
 #include <cstring>
 
 ArchivoFactura::ArchivoFactura(std::string nombreArchivo) {
