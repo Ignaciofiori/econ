@@ -36,8 +36,6 @@
 		<Unit filename="AcumuladorId.h" />
 		<Unit filename="ArchivoAcumulador.cpp" />
 		<Unit filename="ArchivoAcumulador.h" />
-		<Unit filename="ArchivoFecha.cpp" />
-		<Unit filename="ArchivoFecha.h" />
 		<Unit filename="ArchivoPedido.cpp" />
 		<Unit filename="ArchivoPedido.h" />
 		<Unit filename="ArchivoReclamo.cpp" />
@@ -48,6 +46,8 @@
 		<Unit filename="ArchivoSuministro.h" />
 		<Unit filename="ArchivoUsuario.cpp" />
 		<Unit filename="ArchivoUsuario.h" />
+		<Unit filename="Factura.cpp" />
+		<Unit filename="Factura.h" />
 		<Unit filename="Fecha.cpp" />
 		<Unit filename="Fecha.h" />
 		<Unit filename="Funciones.cpp" />
@@ -62,6 +62,8 @@
 		<Unit filename="Suministros.h" />
 		<Unit filename="Usuario.cpp" />
 		<Unit filename="Usuario.h" />
+		<Unit filename="funcionesMostrar.cpp" />
+		<Unit filename="funcionesMostrar.h" />
 		<Unit filename="main.cpp" />
 		<Extensions />
 	</Project>
