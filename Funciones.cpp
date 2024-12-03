@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Funciones.h"
+#include "FuncionesPagos.h"
 #include <cstdlib>
 #include <limits> // Para std::numeric_limits
 #include <iomanip> // Para std::setw
@@ -15,8 +16,6 @@ int contarPedidosActivos(PedidoSuministro* pedidos, int cantidad) {
     }
     return contador;
 }
-
-
 
 void seleccionarTipoSuministro(char* tipoSuministro) {
     int opcion;
@@ -260,6 +259,9 @@ int mostrarSuministrosAsociados(Usuario &usu) {
                 std::cout << "-----------------------------\n";
             }
         }
+}else{
+                std::cout << "No se encontraron Suministros asociados al usuario :( \n";
+
 }
 
 
@@ -1028,35 +1030,6 @@ void creacionSuministro(PedidoSuministro pedido) {
     }
 }
 
-int calcularMesesTranscurridos( Fecha fechaAlta,  Fecha fechaActual) {
-    int aniosDiferencia = fechaActual.getAnio() - fechaAlta.getAnio();
-    int mesesDiferencia = fechaActual.getMes() - fechaAlta.getMes();
-
-    return (aniosDiferencia * 12) + mesesDiferencia;
-}
-
-float calcularDeuda(Suministro &suministro) {
-    ArchivoSuministro archivoS("suministros.dat");
-    int posSuministro = archivoS.BuscarSuministro(suministro.getSuministroId());
-
-    Fecha fechaActual;
-    fechaActual.FechaActual();
-
-    int cantidadMesesAPagar = calcularMesesTranscurridos(suministro.getFechaAlta(), fechaActual);
-    float montoDeuda = cantidadMesesAPagar * (suministro.getConsumoPorMes() * suministro.getPrecioKwh());
-
-    if (montoDeuda > 0) {
-        suministro.setMontoDeuda(montoDeuda);
-        suministro.setDeuda(true);
-        archivoS.EditarSuministro(suministro, posSuministro);
-    } else {
-        suministro.setMontoDeuda(0);
-        suministro.setDeuda(false);
-        archivoS.EditarSuministro(suministro, posSuministro);  // Actualizar registro sin deuda
-    }
-
-    return montoDeuda;
-}
 
 Usuario busquedaUsuarioPorEmail( char *email) {
     ArchivoUsuario archivo("usuarios.dat");
@@ -1176,25 +1149,6 @@ void menuPrincipal(){
         }
     }
 }
-
-void controlDeudaSuministros(){
-    ArchivoSuministro archivo("suministros.dat");
-    int cantSums = archivo.CantidadSuministros();
-    Suministro *vectorSuministros;
-    vectorSuministros = new Suministro[cantSums];
-    archivo.LeerSuministros(cantSums,vectorSuministros);
-
-    for(int i=0; i<cantSums;i++){
-        if(vectorSuministros[i].isActivo()){
-
-         calcularDeuda(vectorSuministros[i]);
-
-        }
-    }
-        delete []vectorSuministros;
-
-}
-
 
 void accionesReclamos(Reclamo &reclamo) {
 
@@ -3215,7 +3169,7 @@ void menuSecundario(Usuario usu) {
         std::cout << "4. Ver Respuestas a tu pedidos\n";
         std::cout << "5. Generar Reclamo\n";
         std::cout << "6. Ver Reclamos\n";
-        std::cout << "7. Pagar Suministros\n";
+        std::cout << "7. Pagar Facturas\n";
         std::cout << "0. Cerrar Sesion (Desloguearse)\n";
         std::cout << "===========================\n";
         std::cout << "Seleccione una opcion: ";
@@ -3264,57 +3218,10 @@ void menuSecundario(Usuario usu) {
         std::cout << "Sesion Cerrada Exitosamente...\n";
         break;
     case 7:
-        std::cout << "Suministros Asociados Faltantes de Pago: \n";
-        contador = mostrarSuministrosDeuda(usu);
-        if(contador == 0){
-            std::cout << "No Tienes Suministros Asociados Faltantes de Pago: \n";
-            break;
-        }
-        sumAPagar = seleccionarSuministroDeuda(usu);
 
-        if(sumAPagar.getSuministroId()==0){
-            system("cls");
-            std::cout << "No se encontro un Suministro Asociado con Deuda con el Id ingresado.\n";
-            break;
-        }
+        mostrarFacturasPorUsuario(usu);
 
-            system("cls");
-        std::cout << "Usted debe de este Suministro: "<<sumAPagar.getMontoDeuda() << "$. \n";
-        std::cout <<"Ingrese Cantidad de $ a Abonar: \n";
-        pago=leerEntero();
-
-            if(pago < 0){
-                    system("cls");
-                 std::cout << "Entrada no valida. No puede ingresar un Numero negativo.\n";
-                 break;
-
-            }else if(pago > sumAPagar.getMontoDeuda()){
-                system("cls");
-                std::cout << "Entrada no valida.Esta ingresando mas dinero del que debe Abonar\n";
-                 break;
-            }
-
-                 nuevoMontoDeuda = sumAPagar.getMontoDeuda() - pago;
-
-                sumAPagar.setMontoDeuda(nuevoMontoDeuda);
-
-                 std::cout <<nuevoMontoDeuda;
-                     system("pause");
-
-                if(nuevoMontoDeuda == 0){
-                    sumAPagar.setDeuda(false);
-                }
-                 posSum = archivoS.BuscarSuministro(sumAPagar.getSuministroId());
-                archivoS.EditarSuministro(sumAPagar,posSum);
-                std::cout << posSum;
-                 system("pause");
-               system("cls");
-               std::cout << "Su Pago fue procesado Correctamente\n";
-                break;
-
-
-
-            break;
+        break;
 
     default:
         std::cout << "Opcion invalida. Por favor, intente nuevamente.\n";

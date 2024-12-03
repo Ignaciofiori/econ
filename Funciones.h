@@ -30,9 +30,7 @@ Reclamo cargarReclamo(Usuario &usu);
 void seleccionarTipoReclamo(char* tipoReclamo);
 void seleccionarNivelPrioridad(char* nivelPrioridad);
 Suministro buscarSuministroPorId(int id,Usuario &usu);
-int calcularMesesTranscurridos( Fecha fechaAlta,  Fecha fechaActual);
-float calcularDeuda(Suministro &suministro);
-void controlDeudaSuministros();
+
 int listarReclamosEstado(bool estado);
 Reclamo seleccionarReclamo();
 Reclamo buscarReclamoPorId(int id);

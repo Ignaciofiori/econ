@@ -1,7 +1,8 @@
 # depslib dependency file v1.0
-1733166963 source:c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\main.cpp
+1733256887 source:c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\main.cpp
 	<iostream>
 	"Funciones.h"
+	"FuncionesPagos.h"
 
 1733161412 source:c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\usuario.cpp
 	"Usuario.h"
@@ -212,16 +213,17 @@
 1731274804 source:c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\fecha.cpp
 	"Fecha.h"
 
-1733183214 source:c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\funciones.cpp
+1733257218 source:c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\funciones.cpp
 	<iostream>
 	"Funciones.h"
+	"FuncionesPagos.h"
 	<cstdlib>
 	<limits>
 	<iomanip>
 	<string>
 	<iostream>
 
-1733184092 c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\funciones.h
+1733243293 c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\funciones.h
 	"funcionesMostrar.h"
 	"ArchivoUsuario.h"
 	"ArchivoSuministro.h"
@@ -814,16 +816,16 @@
 	"ArchivoPedido.h"
 	"ArchivoRespuestas.h"
 
-1733169721 source:c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\funcionesmostrar.cpp
+1733242267 source:c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\funcionesmostrar.cpp
 	<iostream>
 	"funcionesMostrar.h"
 
-1733181750 source:c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\factura.cpp
+1733255290 source:c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\factura.cpp
 	"Factura.h"
 	<iostream>
 	<cstring>
 
-1733179146 c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\factura.h
+1733255134 c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\factura.h
 	"Fecha.h"
 	"Periodo.h"
 
@@ -841,4 +843,21 @@
 1733179470 source:c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\periodo.cpp
 	"Periodo.h"
 	<iostream>
+
+1733257209 c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\funcionespagos.h
+	"Fecha.h"
+	"Suministros.h"
+	"Periodo.h"
+	"ArchivoFacturas.h"
+	"Factura.h"
+	"Usuario.h"
+
+1733257208 source:c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\funcionespagos.cpp
+	"FuncionesPagos.h"
+	"Funciones.h"
+	"ArchivoFacturas.h"
+	"Factura.h"
+	"Periodo.h"
+	"ArchivoAcumulador.h"
+	"AcumuladorId.h"
 
