@@ -212,7 +212,7 @@ void cargarFecha(Fecha &fecha) {
 
 }
 
-void mostrarSuministrosAsociados(Usuario &usu) {
+int mostrarSuministrosAsociados(Usuario &usu) {
     // Cargar los suministros desde el archivo
     ArchivoSuministro archivoSuministro("suministros.dat");
     int cantidad = archivoSuministro.CantidadSuministros();
@@ -230,11 +230,7 @@ void mostrarSuministrosAsociados(Usuario &usu) {
     }
     }
 
-    if(contador == 0){
-        std::cout << "No se Encontraron Suministros asociados al usuario :( \n";
-
-    }else{
-
+    if(contador != 0){
 
             std::cout << "Suministros asociados al usuario " << usu.getNombre() << ":\n";
 
@@ -269,6 +265,7 @@ void mostrarSuministrosAsociados(Usuario &usu) {
 
     // Liberar la memoria dinámica
     delete[] vectorSuministros;
+    return contador;
 }
 
 void mostrarRespuestas(Usuario &usu) {
@@ -703,11 +700,16 @@ Reclamo cargarReclamo(Usuario &usu) {
 
     AcumuladorId acum = archivoAcum.LeerAcumuladorId(0);
     int reclamoId = acum.getIdReclamos();
-
+    int contador = 0;
     int suministroId, responsableDeAtencion;
     char descripcion[150], estado[50], tipoDeReclamo[50], respuesta[50], prioridad[50];
 
-    mostrarSuministrosAsociados(usu);
+    contador = mostrarSuministrosAsociados(usu);
+
+    if(contador == 0){
+        std::cout << "No tienes Ningun Suministro Asociado sobre el cual Puedas generar un Reclamo. \n";
+        return Reclamo();
+    }else{
 
         std::cout << "Ingrese el ID del Suministro del cual desea Generar un Reclamo: \n";
         suministroId = leerEntero();
@@ -761,7 +763,7 @@ Reclamo cargarReclamo(Usuario &usu) {
         system("cls");
         std::cout << "No tienes ningun Suministro asociado con el id ingresado." << std::endl;
         return Reclamo();
-
+    }
 }
 
 Suministro buscarSuministroPorId(int id,Usuario &usu) {
@@ -3245,6 +3247,7 @@ void menuSecundario(Usuario usu) {
         mostrarRespuestas(usu);
         break;
     case 5:
+
     reclamo = cargarReclamo(usu);
     if(reclamo.getReclamoId()!=0){
         system("cls");

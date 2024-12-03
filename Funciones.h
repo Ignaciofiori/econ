@@ -24,7 +24,7 @@ void creacionSuministro(PedidoSuministro pedido);
 PedidoSuministro buscarPedidoPorId(int id);
 float determinarConsumoPorMes( char* tipoSuministro);
 float determinarPrecioKwh( char* tipoMedidor);
-void mostrarSuministrosAsociados(Usuario &usu);
+int mostrarSuministrosAsociados(Usuario &usu);
 void  mostrarRespuestas(Usuario &usu);
 Reclamo cargarReclamo(Usuario &usu);
 void seleccionarTipoReclamo(char* tipoReclamo);
