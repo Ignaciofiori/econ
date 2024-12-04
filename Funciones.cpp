@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Funciones.h"
 #include "FuncionesPagos.h"
+#include "FuncionesPrecios.h"
 #include <cstdlib>
 #include <limits> // Para std::numeric_limits
 #include <iomanip> // Para std::setw
@@ -135,25 +136,6 @@ float determinarConsumoPorMes(char* tipoSuministro) {
     }
 }
 
-float determinarPrecioKwh(char* tipoMedidor) {
-    if (strcmp(tipoMedidor, "Medidor Electromecanico") == 0) {
-        return 100.0f;
-    } else if (strcmp(tipoMedidor, "Medidor Digital") == 0) {
-        return 150.0f;
-    } else if (strcmp(tipoMedidor, "Medidor Inteligente") == 0) {
-        return 300.0f;
-    } else if (strcmp(tipoMedidor, "Medidor Bidireccional") == 0) {
-        return 350.0f;
-    } else if (strcmp(tipoMedidor, "Medidor Trifasico") == 0) {
-        return 370.0f;
-    } else if (strcmp(tipoMedidor, "Medidor Monofasico") == 0) {
-        return 280.0f;
-    } else if (strcmp(tipoMedidor, "Medidor de Prepago") == 0) {
-        return 180.0f;
-    } else {
-        return 0.0f; // Por si ocurre un error
-    }
-}
 
 void cargarFecha(Fecha &fecha) {
     int dia, mes, anio;
@@ -3084,6 +3066,8 @@ void menuSecundario(Usuario usu) {
         std::cout << "5. Crear Usuario Admin \n";
         std::cout << "6. Ver Cantidad Totales \n";
         std::cout << "7. Estadisticas (alternativa) \n";
+        std::cout << "8. Actualizar Precios Medidores \n";
+        std::cout << "9. Realizar Control de Precios y Deudas \n";
         std::cout << "0. Cerrar Sesion (Desloguearse)\n";
 
         std::cout << "===========================\n";
@@ -3142,6 +3126,14 @@ void menuSecundario(Usuario usu) {
                 std::cout << "Menu de Estadisticas 2(alternativa) :\n";
                 MenuEstadisticas1();
                  break;
+            case 8:
+                actualizarPrecios();
+                break;
+            case 9:
+                controlarPrecios();
+                controlDeudaSuministros();
+                 std::cout << "Control Realizado  Exitosamente...\n";
+                break;
             case 0:
                 std::cout << "Sesion Cerrada Exitosamente...\n";
                 break;

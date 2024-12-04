@@ -7,7 +7,6 @@
 #include "Usuario.h"
 
 int calcularMesesTranscurridos( Fecha fechaAlta,  Fecha fechaActual);
-float calcularDeuda(Suministro &suministro);
 void controlDeudaSuministros();
 void sumarMeses(Periodo& periodo, int cantMeses);
 bool sonPeriodosIguales( Periodo periodo1,  Periodo periodo2);

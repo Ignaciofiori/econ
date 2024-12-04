@@ -13,19 +13,20 @@
 	"Fecha.h"
 	<string>
 
-1730235997 source:c:\users\nacho\desktop\work\econ\usuario.cpp
+1733324484 source:c:\users\nacho\desktop\work\econ\usuario.cpp
 	"Usuario.h"
 	<cstring>
 	<iostream>
 
-1730235997 c:\users\nacho\desktop\work\econ\usuario.h
+1733324484 c:\users\nacho\desktop\work\econ\usuario.h
 	"Fecha.h"
-	"ArchivoFecha.h"
 	<string>
 
-1731618110 source:c:\users\nacho\desktop\work\econ\main.cpp
+1733336112 source:c:\users\nacho\desktop\work\econ\main.cpp
 	<iostream>
 	"Funciones.h"
+	"FuncionesPagos.h"
+	"FuncionesPrecios.h"
 
 1729969477 source:c:\users\nacho\desktop\work\econ\archivousuario.cpp
 	"ArchivoUsuario.h"
@@ -35,31 +36,33 @@
 	<string>
 	"Usuario.h"
 
-1731622837 source:c:\users\nacho\desktop\work\econ\funciones.cpp
+1733334525 source:c:\users\nacho\desktop\work\econ\funciones.cpp
 	<iostream>
 	"Funciones.h"
+	"FuncionesPagos.h"
+	"FuncionesPrecios.h"
 	<cstdlib>
 	<limits>
+	<iomanip>
 	<string>
 	<iostream>
-	"ArchivoFecha.h"
 
-1731622307 c:\users\nacho\desktop\work\econ\funciones.h
+1733324484 c:\users\nacho\desktop\work\econ\funciones.h
+	"funcionesMostrar.h"
 	"ArchivoUsuario.h"
 	"ArchivoSuministro.h"
-	"ArchivoFecha.h"
 	"ArchivoAcumulador.h"
 	"ArchivoReclamo.h"
 	"ArchivoPedido.h"
 	"ArchivoRespuestas.h"
 
-1731593693 source:c:\users\nacho\desktop\work\econ\suministro.cpp
+1733324484 source:c:\users\nacho\desktop\work\econ\suministro.cpp
 	<cstring>
 	"Suministros.h"
-	"ArchivoFecha.h"
 	"Fecha.h"
 
-1731593693 c:\users\nacho\desktop\work\econ\suministros.h
+1733324484 c:\users\nacho\desktop\work\econ\suministros.h
+	"Fecha.h"
 
 1729981033 source:c:\users\nacho\desktop\work\econ\archivosuministro.cpp
 	"ArchivoSuministro.h"
@@ -79,10 +82,10 @@
 	<cstring>
 	<ctime>
 
-1731431434 source:c:\users\nacho\desktop\work\econ\acumuladorid.cpp
+1733324484 source:c:\users\nacho\desktop\work\econ\acumuladorid.cpp
 	"AcumuladorId.h"
 
-1731431422 c:\users\nacho\desktop\work\econ\acumuladorid.h
+1733324484 c:\users\nacho\desktop\work\econ\acumuladorid.h
 
 1730152849 source:c:\users\nacho\desktop\work\econ\archivoacumuladorid.cpp
 	"ArchivoAcumuladorId.h"
@@ -107,13 +110,14 @@
 	"Fecha.h"
 	<string>
 
-1731600958 source:c:\users\nacho\desktop\work\econ\reclamos.cpp
+1733324484 source:c:\users\nacho\desktop\work\econ\reclamos.cpp
 	<cstring>
+	<iostream>
 	"Reclamos.h"
-	"ArchivoFecha.h"
-	"ArchivoUsuario.h"
 
-1731595913 c:\users\nacho\desktop\work\econ\reclamos.h
+1733324484 c:\users\nacho\desktop\work\econ\reclamos.h
+	"Fecha.h"
+	"ArchivoUsuario.h"
 
 1730759915 source:c:\users\nacho\desktop\work\econ\archivoreclamo.cpp
 	"ArchivoReclamo.h"
@@ -123,12 +127,13 @@
 	"Reclamos.h"
 	<string>
 
-1731422728 source:c:\users\nacho\desktop\work\econ\pedidosuministro.cpp
+1733324484 source:c:\users\nacho\desktop\work\econ\pedidosuministro.cpp
 	"PedidoSuministro.h"
-	"ArchivoFecha.h"
+	<iostream>
 	<cstring>
 
-1731432786 c:\users\nacho\desktop\work\econ\pedidosuministro.h
+1733324484 c:\users\nacho\desktop\work\econ\pedidosuministro.h
+	"Fecha.h"
 	<cstring>
 
 1730764840 source:c:\users\nacho\desktop\work\econ\archivopedido.cpp
@@ -247,11 +252,13 @@
 	"Suministros.h"
 	"Fecha.h"
 
-1731432786 source:c:\users\nacho\desktop\work\econ\respuestapedido.cpp
+1733324484 source:c:\users\nacho\desktop\work\econ\respuestapedido.cpp
 	<cstring>
 	"RespuestaPedido.h"
+	"Fecha.h"
 
-1731432786 c:\users\nacho\desktop\work\econ\respuestapedido.h
+1733324484 c:\users\nacho\desktop\work\econ\respuestapedido.h
+	"Fecha.h"
 
 1731442212 source:c:\users\nacho\desktop\work\econ\archivorespuestas.cpp
 	"ArchivoRespuestas.h"
@@ -860,4 +867,87 @@
 	"Periodo.h"
 	"ArchivoAcumulador.h"
 	"AcumuladorId.h"
+
+1733324484 source:c:\users\nacho\desktop\work\econ\archivofactura.cpp
+	"ArchivoFacturas.h"
+	<cstring>
+
+1733324484 c:\users\nacho\desktop\work\econ\archivofacturas.h
+	"Factura.h"
+	<string>
+
+1733324484 c:\users\nacho\desktop\work\econ\factura.h
+	"Fecha.h"
+	"Periodo.h"
+
+1733324484 c:\users\nacho\desktop\work\econ\periodo.h
+	<string>
+
+1733324484 source:c:\users\nacho\desktop\work\econ\factura.cpp
+	"Factura.h"
+	<iostream>
+	<cstring>
+
+1733324484 c:\users\nacho\desktop\work\econ\funcionesmostrar.h
+	"RespuestaPedido.h"
+	"Usuario.h"
+	"Suministros.h"
+	"Reclamos.h"
+	"AcumuladorId.h"
+	"PedidoSuministro.h"
+	"ArchivoUsuario.h"
+	"ArchivoSuministro.h"
+	"ArchivoAcumulador.h"
+	"ArchivoReclamo.h"
+	"ArchivoPedido.h"
+	"ArchivoRespuestas.h"
+
+1733326647 c:\users\nacho\desktop\work\econ\funcionespagos.h
+	"Fecha.h"
+	"Suministros.h"
+	"Periodo.h"
+	"ArchivoFacturas.h"
+	"Factura.h"
+	"Usuario.h"
+
+1733324484 source:c:\users\nacho\desktop\work\econ\funcionesmostrar.cpp
+	<iostream>
+	"funcionesMostrar.h"
+
+1733324484 source:c:\users\nacho\desktop\work\econ\periodo.cpp
+	"Periodo.h"
+	<iostream>
+
+1733335988 source:c:\users\nacho\desktop\work\econ\funcionespagos.cpp
+	"FuncionesPagos.h"
+	"Funciones.h"
+	"ArchivoFacturas.h"
+	"Factura.h"
+	"Periodo.h"
+	"ArchivoAcumulador.h"
+	"AcumuladorId.h"
+
+1733331900 source:c:\users\nacho\desktop\work\econ\funcionesprecio.cpp
+	"FuncionesPrecios.h"
+	"Funciones.h"
+
+1733330382 c:\users\nacho\desktop\work\econ\funcionesprecios.h
+	"Funciones.h"
+	"FuncionesPagos.h"
+	"PreciosMedidores.h"
+	"ArchivoPreciosMedidores.h"
+
+1733327550 c:\users\nacho\desktop\work\econ\preciosmedidores.h
+	<iostream>
+
+1733331775 source:c:\users\nacho\desktop\work\econ\preciosmedidores.cpp
+	"PreciosMedidores.h"
+
+1733328150 source:c:\users\nacho\desktop\work\econ\archivospreciosmedidores.cpp
+	"ArchivoPreciosMedidores.h"
+	<cstring>
+
+1733328106 c:\users\nacho\desktop\work\econ\archivopreciosmedidores.h
+	<string>
+	"PreciosMedidores.h"
 

@@ -6,42 +6,6 @@
 #include "ArchivoAcumulador.h"
 #include "AcumuladorId.h"
 
-int calcularMesesTranscurridos( Fecha fechaAlta,  Fecha fechaActual) {
-    int aniosDiferencia = fechaActual.getAnio() - fechaAlta.getAnio();
-    int mesesDiferencia = fechaActual.getMes() - fechaAlta.getMes();
-
-    return (aniosDiferencia * 12) + mesesDiferencia;
-}
-
-float calcularDeuda(Suministro &suministro) {
-    //consigo posicion del suministro en el archivo
-    ArchivoSuministro archivoS("suministros.dat");
-    int posSuministro = archivoS.BuscarSuministro(suministro.getSuministroId());
-
-    //seteo fechaActual
-    Fecha fechaActual;
-    fechaActual.FechaActual();
-
-    //
-
-
-
-    int cantidadMesesAPagar = calcularMesesTranscurridos(suministro.getFechaAlta(), fechaActual);
-
-    float montoDeuda = cantidadMesesAPagar * (suministro.getConsumoPorMes() * suministro.getPrecioKwh());
-
-    if (montoDeuda > 0) {
-        suministro.setMontoDeuda(montoDeuda);
-        suministro.setDeuda(true);
-        archivoS.EditarSuministro(suministro, posSuministro);
-    } else {
-        suministro.setMontoDeuda(0);
-        suministro.setDeuda(false);
-        archivoS.EditarSuministro(suministro, posSuministro);  // Actualizar registro sin deuda
-    }
-
-    return montoDeuda;
-}
 
 void generarFacturasPendientes(Suministro& suministro) {
     ArchivoSuministro archivoSuministros("suministros.dat");
@@ -81,24 +45,42 @@ void generarFacturasPendientes(Suministro& suministro) {
         }
 
         if (!existeFactura) {
+        //codigo para calcular precio del mont
+
+        char medidor[50];
+        char tipoSuministro[50];
+        strcpy(tipoSuministro,suministro.getTipoSuministro());
+        strcpy(medidor,suministro.getMedidor());
+
+         float precioKwh = determinarPrecioKwh(medidor);
+         float cantKwh = determinarConsumoPorMes(tipoSuministro);
+
+        float montoFactura = precioKwh * cantKwh;
+
             // Crear la nueva factura
-
-          Factura facturaNueva(acum.getIdFacturas(),suministro.getUsuarioId(),suministro.getSuministroId(),1420,periodoFactura,fechaActual,"",false);
-
+          Factura facturaNueva(acum.getIdFacturas(),suministro.getUsuarioId(),suministro.getSuministroId(),montoFactura,periodoFactura,fechaActual,"Factura Faltante de Pago",false);
+            //Guardamos la Factura
           archivoFacturas.GuardarFactura(facturaNueva);
-
+                //seteamos ids de Factuas
           int nuevoIdFacturas = acum.getIdFacturas()+1;
           acum.setIdFacturas(nuevoIdFacturas);
           archivoId.EditarAcumuladorId(acum,0);
-
+            //Marcamos Suministro con Deuda
           suministro.setDeuda(true);
-          suministro.setMontoDeuda(1420);
+          suministro.setMontoDeuda(montoFactura);
+          //Guardamos el suministro
+          archivoSuministros.EditarSuministro(suministro,posSuministro);
 
         }
 }
 
     delete []vectorFacturas;
 }
+
+
+
+
+
 
 void controlDeudaSuministros(){
 
@@ -117,6 +99,16 @@ void controlDeudaSuministros(){
     }
         delete []vectorSuministros;
 
+}
+
+
+
+
+int calcularMesesTranscurridos( Fecha fechaAlta,  Fecha fechaActual) {
+    int aniosDiferencia = fechaActual.getAnio() - fechaAlta.getAnio();
+    int mesesDiferencia = fechaActual.getMes() - fechaAlta.getMes();
+
+    return (aniosDiferencia * 12) + mesesDiferencia;
 }
 
 bool sonPeriodosIguales( Periodo periodo1,  Periodo periodo2) {
@@ -139,6 +131,16 @@ void sumarMeses(Periodo& periodo, int cantMeses){
     periodo.setMes(nuevoMes);
 
 }
+
+
+
+
+
+
+
+
+
+
 
 void mostrarFacturas(Factura* facturas, int cantidad) {
     for (int i = 0; i < cantidad; ++i) {
