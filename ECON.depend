@@ -22,7 +22,7 @@
 	"Fecha.h"
 	<string>
 
-1733336112 source:c:\users\nacho\desktop\work\econ\main.cpp
+1733339978 source:c:\users\nacho\desktop\work\econ\main.cpp
 	<iostream>
 	"Funciones.h"
 	"FuncionesPagos.h"
@@ -36,7 +36,7 @@
 	<string>
 	"Usuario.h"
 
-1733334525 source:c:\users\nacho\desktop\work\econ\funciones.cpp
+1733346694 source:c:\users\nacho\desktop\work\econ\funciones.cpp
 	<iostream>
 	"Funciones.h"
 	"FuncionesPagos.h"
@@ -902,7 +902,7 @@
 	"ArchivoPedido.h"
 	"ArchivoRespuestas.h"
 
-1733326647 c:\users\nacho\desktop\work\econ\funcionespagos.h
+1733343531 c:\users\nacho\desktop\work\econ\funcionespagos.h
 	"Fecha.h"
 	"Suministros.h"
 	"Periodo.h"
@@ -918,7 +918,7 @@
 	"Periodo.h"
 	<iostream>
 
-1733335988 source:c:\users\nacho\desktop\work\econ\funcionespagos.cpp
+1733346252 source:c:\users\nacho\desktop\work\econ\funcionespagos.cpp
 	"FuncionesPagos.h"
 	"Funciones.h"
 	"ArchivoFacturas.h"

@@ -3153,7 +3153,12 @@ void menuSecundario(Usuario usu) {
     int nuevoMontoDeuda;
     int posSum;
     bool cargado;
+    int opcFacturas = -1;
+    int contadorFacturasPagadas;
+    int contadorFacturasNoPagas;
+    Factura facturaAPagar;
        while (opcion != 0) {
+            opcFacturas = -1;
         std::cout << "\n===== MENU Cliente =====\n";
         std::cout << "1. Ver Perfil\n";
         std::cout << "2. Pedir Suministro\n";
@@ -3161,7 +3166,7 @@ void menuSecundario(Usuario usu) {
         std::cout << "4. Ver Respuestas a tu pedidos\n";
         std::cout << "5. Generar Reclamo\n";
         std::cout << "6. Ver Reclamos\n";
-        std::cout << "7. Pagar Facturas\n";
+        std::cout << "7. Facturas\n";
         std::cout << "0. Cerrar Sesion (Desloguearse)\n";
         std::cout << "===========================\n";
         std::cout << "Seleccione una opcion: ";
@@ -3209,19 +3214,67 @@ void menuSecundario(Usuario usu) {
     case 0:
         std::cout << "Sesion Cerrada Exitosamente...\n";
         break;
-    case 7:
+ case 7:
+    while (opcFacturas!=0) {  // Bucle infinito, se saldrá solo con opcFacturas == 0
+        std::cout << "Menu de Facturas:" << std::endl;
+        std::cout << "-------------------" << std::endl;
+        std::cout << "1- Ver Tus Facturas Pagadas" << std::endl;
+        std::cout << "2- Pagar Facturas" << std::endl;
+        std::cout << "0- Volver al Menu Principal" << std::endl;
+        std::cout << "(Selecciona una Opcion): ";
+        opcFacturas = leerEntero();
+        std::cin.ignore();
 
-        mostrarFacturasPorUsuario(usu);
+        switch (opcFacturas) {
+            case 1:
+                system("cls");
+                contadorFacturasPagadas = mostrarFacturasPagadasPorUsuario(usu);
+                if (contadorFacturasPagadas == 0) {
+                    std::cout << "No Tienes Facturas Pagadas :( " << std::endl;
+                }
+                break;
 
-        break;
+            case 2:
+                system("cls");
+                contadorFacturasNoPagas = mostrarFacturasDeudaUsuario(usu);
+                if (contadorFacturasNoPagas == 0) {
+                    std::cout << "No Tienes Facturas No Pagas :) " << std::endl;
+                    break;  // Sale solo del switch, no del bucle
+                }
+                facturaAPagar = seleccionarFactura(usu);
+
+                if (facturaAPagar.getIdFactura() == 0) {
+                    system("cls");
+                    std::cout << "No Tienes una Factura con ese Id.. " << std::endl;
+                    break;
+                } else {
+                    system("cls");
+                    pagarFactura(facturaAPagar);
+                    break;
+                }
+                break;
+
+            case 0:
+                system("cls");
+                std::cout << "Volviendo al menu..." << std::endl;
+                  // Salir del bucle y del caso 7
+                break;
+
+            default:
+                std::cout << "Opción no valida. Por favor, seleccione 1, 2 o 0." << std::endl;
+                break;
+        }
+    }
+    break;  // Salir de case 7
 
     default:
         std::cout << "Opcion invalida. Por favor, intente nuevamente.\n";
         break;
+       }
 }
 
     }
         }
-        }
+
 
 

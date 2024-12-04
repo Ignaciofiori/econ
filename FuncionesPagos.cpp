@@ -56,7 +56,7 @@ void generarFacturasPendientes(Suministro& suministro) {
          float cantKwh = determinarConsumoPorMes(tipoSuministro);
 
         float montoFactura = precioKwh * cantKwh;
-
+        float anteriorMonto = suministro.getMontoDeuda();
             // Crear la nueva factura
           Factura facturaNueva(acum.getIdFacturas(),suministro.getUsuarioId(),suministro.getSuministroId(),montoFactura,periodoFactura,fechaActual,"Factura Faltante de Pago",false);
             //Guardamos la Factura
@@ -67,7 +67,7 @@ void generarFacturasPendientes(Suministro& suministro) {
           archivoId.EditarAcumuladorId(acum,0);
             //Marcamos Suministro con Deuda
           suministro.setDeuda(true);
-          suministro.setMontoDeuda(montoFactura);
+          suministro.setMontoDeuda(montoFactura+anteriorMonto);
           //Guardamos el suministro
           archivoSuministros.EditarSuministro(suministro,posSuministro);
 
@@ -133,63 +133,155 @@ void sumarMeses(Periodo& periodo, int cantMeses){
 }
 
 
-
-
-
-
-
-
-
-
-
-void mostrarFacturas(Factura* facturas, int cantidad) {
-    for (int i = 0; i < cantidad; ++i) {
-        std::cout << "Factura #" << (i + 1) << ":\n";
-        std::cout << "ID de Factura: " << facturas[i].getIdFactura() << "\n";
-        std::cout << "ID de Usuario: " << facturas[i].getIdUsuario() << "\n";
-        std::cout << "ID de Suministro: " << facturas[i].getIdSuministro() << "\n";
-        std::cout << "Periodo: " << facturas[i].getPeriodo().toString() << "\n"; // Asumo que `Periodo` tiene `toString()`.
-        std::cout << "Fecha de Emisión: " << facturas[i].getFecha().toString() << "\n"; // Asumo que `Fecha` tiene `toString()`.
-        std::cout << "Método de Pago: " << facturas[i].getMetodoPago() << "\n";
-        std::cout << "Pagada: " << (facturas[i].isPagada() ? "Sí" : "No") << "\n";
-        std::cout << "-----------------------------\n";
-    }
-}
-
-void mostrarFacturasPorUsuario(Usuario usuario) {
+int mostrarFacturasPagadasPorUsuario(Usuario usu){
     ArchivoFactura archivoFactura("facturas.dat");
     int cantFacturas = archivoFactura.CantidadFacturas();
     Factura *vectorFacturas = new Factura[cantFacturas];
     archivoFactura.LeerFacturas(cantFacturas,vectorFacturas);
-    int idUsuario = usuario.getId(); // Asumo que el Usuario tiene un método para obtener su ID.
+
     int contador = 0;
-    for(int x= 0; x< cantFacturas;x++){
-        if(vectorFacturas[x].getIdUsuario() == idUsuario && vectorFacturas[x].isPagada() == false ){
+    for(int x =0; x<cantFacturas; x++){
+        if(vectorFacturas[x].getIdUsuario() == usu.getId() && vectorFacturas[x].isPagada()){
             contador++;
         }
-
     }
-    if(contador == 0){
-         std::cout << "No tienes facturas :C #  :\n";
 
-    }else{
-
-    for (int i = 0; i < cantFacturas; ++i) {
-        if (vectorFacturas[i].getIdUsuario() == idUsuario && vectorFacturas[i].isPagada() == false ) { // Filtrar facturas por ID de usuario.
-            std::cout << "Factura #" << (i + 1) << ":\n";
-            std::cout << "ID de Factura: " << vectorFacturas[i].getIdFactura() << "\n";
-            std::cout << "ID de Usuario: " << vectorFacturas[i].getIdUsuario() << "\n";
-            std::cout << "ID de Suministro: " << vectorFacturas[i].getIdSuministro() << "\n";
-            std::cout << "Monto: " << vectorFacturas[i].getMonto() <<"$. \n";
-            std::cout << "Periodo: " << vectorFacturas[i].getPeriodo().toString() << "\n"; // Asumo que `Periodo` tiene `toString`.
-            std::cout << "Fecha de Emision: " << vectorFacturas[i].getFecha().toString() << "\n"; // Asumo que `Fecha` tiene `toString`.
-            std::cout << "Metodo de Pago: " << vectorFacturas[i].getMetodoPago() << "\n";
-            std::cout << "Pagada: " << (vectorFacturas[i].isPagada() ? "Sí" : "No") << "\n";
-            std::cout << "-----------------------------\n";
+       for(int i =0; i<cantFacturas; i++){
+        if(vectorFacturas[i].getIdUsuario() == usu.getId() && vectorFacturas[i].isPagada()){
+            vectorFacturas[i].mostrarFactura();
         }
     }
+
+
+
+delete []vectorFacturas;
+return contador;
+}
+
+int mostrarFacturasDeudaUsuario(Usuario usu) {
+ ArchivoFactura archivoFactura("facturas.dat");
+    int cantFacturas = archivoFactura.CantidadFacturas();
+    Factura *vectorFacturas = new Factura[cantFacturas];
+    archivoFactura.LeerFacturas(cantFacturas,vectorFacturas);
+
+    int contador = 0;
+    for(int x =0; x<cantFacturas; x++){
+        if(vectorFacturas[x].getIdUsuario() == usu.getId() && vectorFacturas[x].isPagada() == false){
+            contador++;
+        }
     }
+
+       for(int i =0; i<cantFacturas; i++){
+        if(vectorFacturas[i].getIdUsuario() == usu.getId() && vectorFacturas[i].isPagada()== false){
+            vectorFacturas[i].mostrarFactura();
+        }
+    }
+
+
+
+delete []vectorFacturas;
+return contador;
+}
+
+Factura seleccionarFactura(Usuario usu){
+    ArchivoFactura archivoFactura("facturas.dat");
+    int cantidadFac = archivoFactura.CantidadFacturas();
+    Factura *vectorFacturas = new Factura[cantidadFac];
+    archivoFactura.LeerFacturas(cantidadFac,vectorFacturas);
+
+    int idFactura = 0;
+    Factura factura;
+    std::cout << "Ingrese el ID de la Factura que desea Pagar: \n";
+    idFactura = leerEntero();
+    std::cin.ignore();
+
+    for(int i = 0; i < cantidadFac ; i++){
+        if(vectorFacturas[i].getIdUsuario()== usu.getId()&& idFactura == vectorFacturas[i].getIdFactura() && vectorFacturas[i].isPagada()== false ){
+
+            factura = vectorFacturas[i];
+        }
+    }
+
+
     delete []vectorFacturas;
+    return factura;
 
 }
 
+void pagarFactura(Factura factura) {
+    ArchivoFactura archivoFacturas("facturas.dat");
+    ArchivoSuministro archivoSuministros("suministros.dat");
+    int posFactura = archivoFacturas.BuscarFactura(factura.getIdFactura());
+    int posSuministro = archivoSuministros.BuscarSuministro(factura.getIdSuministro());
+    Suministro suministroFactura = archivoSuministros.LeerSuministro(posSuministro);
+    float montoDeuda;
+    char metodoPago[50];
+    int opcion;
+
+    // Solicitar el método de pago
+    while (true) {
+        std::cout << "Debes abonar: " << factura.getMonto() << "$." << std::endl;
+        std::cout << "Selecciona un metodo de pago:" << std::endl;
+        std::cout << "1. Tarjeta de credito/debito" << std::endl;
+        std::cout << "2. Transferencia bancaria" << std::endl;
+        std::cout << "3. Paypal" << std::endl;
+        std::cout << "Elige una opcion: ";
+        opcion = leerEntero();
+
+        switch (opcion) {
+            case 1:
+                std::strcpy(metodoPago, "Tarjeta de credito/debito");
+                break;
+            case 2:
+                std::strcpy(metodoPago, "Transferencia bancaria");
+                break;
+            case 3:
+                std::strcpy(metodoPago, "Paypal");
+                break;
+            default:
+                std::cout << "Opcion no valida. Por favor, selecciona una opcion valida." << std::endl;
+                continue; // Repetir el bucle hasta que se seleccione una opción válida
+        }
+        break; // Salir del bucle una vez seleccionado un método de pago válido
+    }
+
+    // Confirmación del pago
+    while (true) {
+        system("cls");
+        std::cout << "Seleccionaste el siguiente metodo de pago --> " << metodoPago << std::endl;
+        std::cout << "Suministro Relacionado a Factura:" << std::endl;
+        std::cout << "---------------------------------" << std::endl;
+        suministroFactura.mostrarSuministro(); // Implementa este método
+        std::cout << "---------------------------------" << std::endl << std::endl;
+        std::cout << "Deseas realizar esta transaccion de pago? (0 - NO, 1 - SI): ";
+        int pagar = leerEntero();
+        std::cin.ignore();
+
+        switch (pagar) {
+            case 0:
+                system("cls");
+                std::cout << "Has seleccionado NO realizar la transaccion." << std::endl;
+                return; // Finalizar la función
+            case 1:
+                system("cls");
+
+                 montoDeuda = suministroFactura.getMontoDeuda();
+                suministroFactura.setMontoDeuda(montoDeuda - factura.getMonto());
+                if(suministroFactura.getMontoDeuda()== 0){
+                    suministroFactura.setDeuda(false);
+                }
+
+                factura.setMetodoPago(metodoPago);
+                factura.setIsPagada(true);
+
+                archivoFacturas.EditarFactura(factura,posFactura);
+                archivoSuministros.EditarSuministro(suministroFactura,posSuministro);
+                system("cls");
+                std::cout << "Factura Pagada Exitosamente :)" << std::endl;
+                return; // Finalizar la función
+            default:
+                std::cout << "Opcion no valida. Por favor, selecciona 0 (NO) o 1 (SI)." << std::endl;
+                system("pause");
+        }
+    }
+}
