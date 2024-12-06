@@ -11,6 +11,7 @@ int contarPedidosActivos(PedidoSuministro* pedidos, int cantidad);
 int listaPedidos();
 void bannerBienvenida();
 void menuPrincipal();
+bool esFechaPasada( Fecha& fecha);
 Usuario registrarse();
 bool confirmarContrasena();
 int leerEntero();

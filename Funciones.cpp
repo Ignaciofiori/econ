@@ -136,8 +136,31 @@ float determinarConsumoPorMes(char* tipoSuministro) {
     }
 }
 
+bool esFechaPasada( Fecha& fecha) {
+    Fecha fechaActual;
+    fechaActual.FechaActual(); // Establece la fecha actual en el objeto
 
-void cargarFecha(Fecha &fecha) {
+    // Comparación de años
+    if (fecha.getAnio() > fechaActual.getAnio()) {
+        return false; // La fecha está en el futuro
+    }
+    if (fecha.getAnio() == fechaActual.getAnio()) {
+        // Comparación de meses
+        if (fecha.getMes() > fechaActual.getMes()) {
+            return false; // La fecha está en el futuro
+        }
+        if (fecha.getMes() == fechaActual.getMes()) {
+            // Comparación de días
+            if (fecha.getDia() > fechaActual.getDia()) {
+                return false; // La fecha está en el futuro
+            }
+        }
+    }
+    return true; // La fecha es válida (ha sucedido o es la actual)
+}
+
+
+void cargarFecha(Fecha& fecha) {
     int dia, mes, anio;
     bool fechaValida = false;
 
@@ -154,7 +177,6 @@ void cargarFecha(Fecha &fecha) {
 
         std::cout << "Ingrese el mes de nacimiento: ";
         std::cin >> mes;
-
         // Verificar si la entrada es válida
         if (std::cin.fail()) {
             std::cin.clear();
@@ -163,11 +185,9 @@ void cargarFecha(Fecha &fecha) {
             continue;
         }
 
-
-        std::cout << "Ingrese el año de nacimiento: ";
+        std::cout << "Ingrese el anio de nacimiento: ";
         std::cin >> anio;
-
-            // Verificar si la entrada es válida
+        // Verificar si la entrada es válida
         if (std::cin.fail()) {
             std::cin.clear();
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -180,19 +200,24 @@ void cargarFecha(Fecha &fecha) {
         // Verifica si la fecha es válida
         if (fechaTemp.getId() == 0) {
             std::cout << "La fecha ingresada es inválida. Por favor, intente nuevamente." << std::endl;
-        } else {
-            fecha.setDia(dia);
-            fecha.setMes(mes);
-            fecha.setAnio(anio);
-            std::cout << "Fecha ingresada correctamente: "
-                      << dia << "/" << mes << "/" << anio << std::endl;
-            fechaValida = true; // La fecha es válida, salimos del bucle
+            continue;
         }
+
+        // Verifica si la fecha ya sucedió
+        if (!esFechaPasada(fechaTemp)) {
+            std::cout << "Vienes del Futuro?, No lo creo... Por favor, ingrese una fecha valida." << std::endl;
+            continue;
+        }
+
+        // Si la fecha es válida y ya sucedió, la asignamos al objeto fecha
+        fecha.setDia(dia);
+        fecha.setMes(mes);
+        fecha.setAnio(anio);
+        std::cout << "Fecha ingresada correctamente: "
+                  << dia << "/" << mes << "/" << anio << std::endl;
+        fechaValida = true; // La fecha es válida, salimos del bucle
     }
-
-
 }
-
 int mostrarSuministrosAsociados(Usuario &usu) {
     // Cargar los suministros desde el archivo
     ArchivoSuministro archivoSuministro("suministros.dat");
