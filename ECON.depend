@@ -36,11 +36,12 @@
 	<string>
 	"Usuario.h"
 
-1733496594 source:c:\users\nacho\desktop\work\econ\funciones.cpp
+1733518974 source:c:\users\nacho\desktop\work\econ\funciones.cpp
 	<iostream>
 	"Funciones.h"
 	"FuncionesPagos.h"
 	"FuncionesPrecios.h"
+	"FuncionesEstadisticas.h"
 	<cstdlib>
 	<limits>
 	<iomanip>
@@ -927,7 +928,7 @@
 	"ArchivoAcumulador.h"
 	"AcumuladorId.h"
 
-1733331900 source:c:\users\nacho\desktop\work\econ\funcionesprecio.cpp
+1733518284 source:c:\users\nacho\desktop\work\econ\funcionesprecio.cpp
 	"FuncionesPrecios.h"
 	"Funciones.h"
 
@@ -940,7 +941,7 @@
 1733327550 c:\users\nacho\desktop\work\econ\preciosmedidores.h
 	<iostream>
 
-1733331775 source:c:\users\nacho\desktop\work\econ\preciosmedidores.cpp
+1733518081 source:c:\users\nacho\desktop\work\econ\preciosmedidores.cpp
 	"PreciosMedidores.h"
 
 1733328150 source:c:\users\nacho\desktop\work\econ\archivospreciosmedidores.cpp
@@ -950,4 +951,11 @@
 1733328106 c:\users\nacho\desktop\work\econ\archivopreciosmedidores.h
 	<string>
 	"PreciosMedidores.h"
+
+1733518974 source:c:\users\nacho\desktop\work\econ\funcionesestadisticas.cpp
+	"FuncionesEstadisticas.h"
+	"Funciones.h"
+	<iostream>
+
+1733518974 c:\users\nacho\desktop\work\econ\funcionesestadisticas.h
 

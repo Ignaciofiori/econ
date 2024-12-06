@@ -73,11 +73,11 @@ void PreciosMedidores::setPrecioPrepago(float precio) {
 void PreciosMedidores::mostrarPrecios() {
     cout << "Precios de los medidores:" <<endl;
     cout << "-------------------------" <<endl;
-    cout << "1-Medidor Electromecanico: " << _precioElectromecanico <<"$" << endl;
-    cout << "2-Medidor Digital: " << _precioDigital  <<"$" << endl;
-    cout << "3-Medidor Inteligente: " << _precioInteligente <<"$"  << endl;
-    cout << "4-Medidor Bidireccional: " << _precioBidireccional <<"$"  << endl;
-    cout << "5-Medidor Trifasico: " << _precioTrifasico <<"$"  << endl;
-    cout << "6-Medidor Monofasico: " << _precioMonofasico  <<"$" << endl;
-    cout << "7-Medidor de Prepago: " << _precioPrepago  <<"$" << endl;
+    cout << "1- Medidor Electromecanico: " << _precioElectromecanico <<"$" << endl;
+    cout << "2- Medidor Digital: " << _precioDigital  <<"$" << endl;
+    cout << "3- Medidor Inteligente: " << _precioInteligente <<"$"  << endl;
+    cout << "4- Medidor Bidireccional: " << _precioBidireccional <<"$"  << endl;
+    cout << "5- Medidor Trifasico: " << _precioTrifasico <<"$"  << endl;
+    cout << "6- Medidor Monofasico: " << _precioMonofasico  <<"$" << endl;
+    cout << "7- Medidor de Prepago: " << _precioPrepago  <<"$" << endl;
 }

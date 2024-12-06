@@ -82,7 +82,8 @@ int opc;
     ArchivoPreciosMed archivoPreciosMed("precios-medidores.dat");
         PreciosMedidores precios = archivoPreciosMed.LeerPreciosMed(0);
         precios.mostrarPrecios();
-cout << "Ingrese el número del medidor que desea actualizar:" << endl;
+cout << "0- Volver al Menu Anterior " << std::endl;
+cout << "Ingrese el numero de medidor que desea actualizar: " ;
 
 opc = leerEntero();
 
@@ -91,50 +92,53 @@ float nuevoPrecio;
 
     switch (opc) {
         case 1:
-            cout << "Ingrese Precio de Medidor Electromecanico." << endl;
+            cout << "Ingrese Precio de Medidor Electromecanico: " ;
                 nuevoPrecio = leerEntero();
                 std::cin.ignore();
                 precios.setPrecioElectromecanico(nuevoPrecio);
 
             break;
         case 2:
-            cout << "Ingrese Precio Medidor Digital." << endl;
+            cout << "Ingrese Precio Medidor Digital: " ;
             nuevoPrecio = leerEntero();
               std::cin.ignore();
                 precios.setPrecioDigital(nuevoPrecio);
             break;
         case 3:
-            cout << "Ingrese Precio Medidor Inteligente." << endl;
+            cout << "Ingrese Precio Medidor Inteligente: " ;
             nuevoPrecio = leerEntero();
               std::cin.ignore();
                 precios.setPrecioInteligente(nuevoPrecio);
             break;
         case 4:
-            cout << "Ingrese Precio Medidor Bidireccional." << endl;
+            cout << "Ingrese Precio Medidor Bidireccional: " ;
             nuevoPrecio = leerEntero();
               std::cin.ignore();
                 precios.setPrecioBidireccional(nuevoPrecio);
             break;
         case 5:
-            cout << "Ingrese Precio Medidor Trifasico." << endl;
+            cout << "Ingrese Precio Medidor Trifasico: " ;
             nuevoPrecio = leerEntero();
               std::cin.ignore();
                 precios.setPrecioTrifasico(nuevoPrecio);
             break;
         case 6:
-            cout << "Ingrese Precio Medidor Monofasico." << endl;
+            cout << "Ingrese Precio Medidor Monofasico: " ;
             nuevoPrecio = leerEntero();
               std::cin.ignore();
                 precios.setPrecioMonofasico(nuevoPrecio);
             break;
         case 7:
-            cout << "Ingrese Precio Medidor de Prepago." << endl;
+            cout << "Ingrese Precio Medidor de Prepago: " ;
            nuevoPrecio = leerEntero();
              std::cin.ignore();
                 precios.setPrecioPrepago(nuevoPrecio);
             break;
+        case 0:
+              cout << "Volviendo al Menu Anterior.." << endl;
+              return ;
         default:
-            cout << "Opcion no valida. Por favor, seleccione un numero entre 1 y 7." << endl;
+            cout << "Opcion no valida. Por favor, Seleccione Nuevamente." << endl;
             break;
     }
     if(archivoPreciosMed.EditarPreciosMed(precios,0)){

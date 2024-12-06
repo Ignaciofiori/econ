@@ -2,6 +2,7 @@
 #include "Funciones.h"
 #include "FuncionesPagos.h"
 #include "FuncionesPrecios.h"
+#include "FuncionesEstadisticas.h"
 #include <cstdlib>
 #include <limits> // Para std::numeric_limits
 #include <iomanip> // Para std::setw
@@ -158,7 +159,6 @@ bool esFechaPasada( Fecha& fecha) {
     }
     return true; // La fecha es válida (ha sucedido o es la actual)
 }
-
 
 void cargarFecha(Fecha& fecha) {
     int dia, mes, anio;
@@ -1418,7 +1418,6 @@ void usuariosConDeudas(ArchivoSuministro &archivoSumi, ArchivoUsuario &archivoUs
 
 }
 
-
 void menuSecEstadisticas(){
     ArchivoSuministro archivoSumi("suministros.dat");
     ArchivoUsuario archivoUsu("usuarios.dat");
@@ -1461,14 +1460,16 @@ void menuSecEstadisticas(){
         }
     }
 }
+
 void MenuEstadisticas() {
     int opc = -1;
     while (opc != 0) {
+            int opc = -1;
         std::cout << "\n===== MENU ESTADISTICAS =====\n";
-        std::cout << "1. Estadisticas de Reclamos\n";
-        std::cout << "2. Estadisticas de Suministros\n";
-        std::cout << "3. Estadisticas de Pedidos\n";
-        std::cout << "4. Otras Opciones\n";
+        std::cout << "1. Estadisticas Usuarios\n";
+        std::cout << "2. Estadisticas Suministros\n";
+        std::cout << "3. Estadisticas Facturas\n";
+        std::cout << "4. Ver Totales\n";
         std::cout << "0. Volver al menu anterior\n";
         std::cout << "===========================\n";
         std::cout << "Seleccione una opcion: ";
@@ -1478,26 +1479,66 @@ void MenuEstadisticas() {
         system("cls"); // Limpiar pantalla después de cada selección
         switch (opc) {
             case 1:
-                EstadisticaReclamos();
+                MenuUsuariosEstadisticas();
                 break;
             case 2:
-                EstadisticaSuministros();
+                MenuSuministrosEstadisticas();
                 break;
             case 3:
-                EstadisticaPedidos();
+                MenuFacturasEstadisticas();
                 break;
             case 4:
-                menuSecEstadisticas();
+                MenuTotalesEstadisticas();
                 break;
             case 0:
-                std::cout << "Volviendo al menu anterior\n";
-                break;
+                std::cout << "Volviendo al Menu Anterior...\n";
+                opc = 0;
+                return;
             default:
                 std::cout << "Opcion invalida. Por favor, intente nuevamente.\n";
                 break;
         }
     }
 }
+
+void MenuEstadisticas1(){
+    int opcion;
+    std::cout << "\n===== MENU ESTADISTICAS =====\n";
+
+    std::cout << "2. Estadisticas de Suministros\n";
+    std::cout << "3. Estadisticas de Pedidos\n";
+
+    std::cout << "0. Volver al menu anterior\n";
+    std::cout << "===========================\n";
+    std::cout << "Seleccione una opcion: ";
+
+    std::cin >> opcion;
+    system("cls"); // Limpiar pantalla después de cada selección
+
+     switch (opcion) {
+
+
+            case 1:
+                EstadisticaReclamos1();
+                break;
+            case 2:
+                EstadisticaSuministros1();
+                break;
+            case 3:
+                EstadisticaPedidos1();
+                 break;
+
+            case 0:
+                std::cout << "Volviendo al Menu Anterior...\n";
+                break;
+
+            default:
+                std::cout << "Opcion invalida. Por favor, intente nuevamente.\n";
+                break;
+
+    }
+}
+
 
 void listarUsuariosconReclamos(ArchivoReclamo& archivoR, ArchivoUsuario& archivoU){
     int cantidadReclamos = archivoR.CantidadReclamos();
@@ -1975,43 +2016,6 @@ void EstadisticaPedidos() {
     delete[] conteoPedidos;
 }
 
-void MenuEstadisticas1(){
-    int opcion;
-    std::cout << "\n===== MENU ESTADISTICAS =====\n";
-    std::cout << "1. Estadisticas de Reclamos\n";
-    std::cout << "2. Estadisticas de Suministros\n";
-    std::cout << "3. Estadisticas de Pedidos\n";
-
-    std::cout << "0. Volver al menu anterior\n";
-    std::cout << "===========================\n";
-    std::cout << "Seleccione una opcion: ";
-
-    std::cin >> opcion;
-    system("cls"); // Limpiar pantalla después de cada selección
-
-     switch (opcion) {
-
-
-            case 1:
-                EstadisticaReclamos1();
-                break;
-            case 2:
-                EstadisticaSuministros1();
-                break;
-            case 3:
-                EstadisticaPedidos1();
-                 break;
-
-            case 0:
-                std::cout << "Volviendo al menu anterior\n";
-                break;
-
-            default:
-                std::cout << "Opcion invalida. Por favor, intente nuevamente.\n";
-                break;
-
-    }
-}
 
 void EstadisticaReclamos1() {
     EstadisticaReclamosGrafico();/*
@@ -3090,11 +3094,9 @@ void menuSecundario(Usuario usu) {
         std::cout << "4. Ver Reclamos \n";
         std::cout << "5. Crear Usuario Admin \n";
         std::cout << "6. Ver Cantidad Totales \n";
-        std::cout << "7. Estadisticas (alternativa) \n";
-        std::cout << "8. Actualizar Precios Medidores \n";
-        std::cout << "9. Realizar Control de Precios y Deudas \n";
+        std::cout << "7. Actualizar Precios Medidores \n";;
+        std::cout << "8. Realizar Control de Precios y Deudas \n";
         std::cout << "0. Cerrar Sesion (Desloguearse)\n";
-
         std::cout << "===========================\n";
         std::cout << "Seleccione una opcion: ";
 
@@ -3148,13 +3150,11 @@ void menuSecundario(Usuario usu) {
                 Totales();
                 break;
             case 7:
-                std::cout << "Menu de Estadisticas 2(alternativa) :\n";
-                MenuEstadisticas1();
-                 break;
-            case 8:
                 actualizarPrecios();
+                system("pause");
+                 system("cls");
                 break;
-            case 9:
+            case 8:
                 controlarPrecios();
                 controlDeudaSuministros();
                  std::cout << "Control Realizado  Exitosamente...\n";
