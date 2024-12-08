@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Funciones.h"
+#include "funcionesMenus.h"
 #include "FuncionesPagos.h"
 #include "FuncionesPrecios.h"
 

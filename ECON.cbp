@@ -76,6 +76,8 @@
 		<Unit filename="Suministros.h" />
 		<Unit filename="Usuario.cpp" />
 		<Unit filename="Usuario.h" />
+		<Unit filename="funcionesMenus.cpp" />
+		<Unit filename="funcionesMenus.h" />
 		<Unit filename="funcionesMostrar.cpp" />
 		<Unit filename="funcionesMostrar.h" />
 		<Unit filename="main.cpp" />

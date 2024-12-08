@@ -22,9 +22,10 @@
 	"Fecha.h"
 	<string>
 
-1733696123 source:c:\users\nacho\desktop\work\econ\main.cpp
+1733699719 source:c:\users\nacho\desktop\work\econ\main.cpp
 	<iostream>
 	"Funciones.h"
+	"funcionesMenus.h"
 	"FuncionesPagos.h"
 	"FuncionesPrecios.h"
 
@@ -36,7 +37,7 @@
 	<string>
 	"Usuario.h"
 
-1733519005 source:c:\users\nacho\desktop\work\econ\funciones.cpp
+1733699080 source:c:\users\nacho\desktop\work\econ\funciones.cpp
 	<iostream>
 	"Funciones.h"
 	"FuncionesPagos.h"
@@ -48,7 +49,7 @@
 	<string>
 	<iostream>
 
-1733496241 c:\users\nacho\desktop\work\econ\funciones.h
+1733699080 c:\users\nacho\desktop\work\econ\funciones.h
 	"funcionesMostrar.h"
 	"ArchivoUsuario.h"
 	"ArchivoSuministro.h"
@@ -676,16 +677,16 @@
 	<cstring>
 	<iostream>
 
-1733100860 source:c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\acumuladorid.cpp
+1733573706 source:c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\acumuladorid.cpp
 	"AcumuladorId.h"
 
-1733100860 c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\acumuladorid.h
+1733573706 c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\acumuladorid.h
 
-1733100860 source:c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\archivoacumulador.cpp
+1733573706 source:c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\archivoacumulador.cpp
 	"ArchivoAcumulador.h"
 	"AcumuladorId.h"
 
-1733100860 c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\archivoacumulador.h
+1733573706 c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\archivoacumulador.h
 	<string>
 	"AcumuladorId.h"
 
@@ -697,118 +698,126 @@
 	"Fecha.h"
 	<string>
 
-1733100860 c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\fecha.h
+1733573706 c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\fecha.h
 	<iostream>
 	"ArchivoAcumulador.h"
 	"AcumuladorId.h"
 	<cstring>
 	<ctime>
 
-1733100860 source:c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\archivopedido.cpp
+1733573706 source:c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\archivopedido.cpp
 	"ArchivoPedido.h"
 	<cstring>
 
-1733100860 c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\archivopedido.h
+1733573706 c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\archivopedido.h
 	"PedidoSuministro.h"
 	<string>
 
-1733100860 c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\pedidosuministro.h
+1733573706 c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\pedidosuministro.h
+	"Fecha.h"
 	<cstring>
 
-1733100860 source:c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\archivoreclamo.cpp
+1733573706 source:c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\archivoreclamo.cpp
 	"ArchivoReclamo.h"
 	<cstring>
 
-1733100860 c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\archivoreclamo.h
+1733573706 c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\archivoreclamo.h
 	"Reclamos.h"
 	<string>
 
-1733100860 c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\reclamos.h
+1733573706 c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\reclamos.h
+	"Fecha.h"
+	"ArchivoUsuario.h"
 
-1733100860 source:c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\archivorespuestas.cpp
+1733573706 source:c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\archivorespuestas.cpp
 	"ArchivoRespuestas.h"
 	<cstring>
 
-1733100860 c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\archivorespuestas.h
+1733573706 c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\archivorespuestas.h
 	<string>
 	"RespuestaPedido.h"
 
-1733100860 c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\respuestapedido.h
+1733573706 c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\respuestapedido.h
+	"Fecha.h"
 
-1733100860 source:c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\archivosuministro.cpp
+1733573706 source:c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\archivosuministro.cpp
 	"ArchivoSuministro.h"
 	<cstring>
 
-1733100860 c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\archivosuministro.h
+1733573706 c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\archivosuministro.h
 	<string>
 	"Suministros.h"
 
-1733100860 c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\suministros.h
+1733573706 c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\suministros.h
+	"Fecha.h"
 
-1733100860 source:c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\archivousuario.cpp
+1733573706 source:c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\archivousuario.cpp
 	"ArchivoUsuario.h"
 	<cstring>
 
-1733100860 c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\archivousuario.h
+1733573706 c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\archivousuario.h
 	<string>
 	"Usuario.h"
 
-1733100860 c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\usuario.h
+1733573706 c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\usuario.h
 	"Fecha.h"
-	"ArchivoFecha.h"
 	<string>
 
-1733100860 source:c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\fecha.cpp
+1733573706 source:c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\fecha.cpp
 	"Fecha.h"
 
-1733100860 source:c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\main.cpp
+1733620710 source:c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\main.cpp
 	<iostream>
 	"Funciones.h"
+	"funcionesMenus.h"
+	"FuncionesPagos.h"
+	"FuncionesPrecios.h"
 
-1733106451 c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\funciones.h
+1733676338 c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\funciones.h
+	"funcionesMostrar.h"
 	"ArchivoUsuario.h"
 	"ArchivoSuministro.h"
-	"ArchivoFecha.h"
 	"ArchivoAcumulador.h"
 	"ArchivoReclamo.h"
 	"ArchivoPedido.h"
 	"ArchivoRespuestas.h"
 
-1733100860 source:c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\pedidosuministro.cpp
+1733573706 source:c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\pedidosuministro.cpp
 	"PedidoSuministro.h"
-	"ArchivoFecha.h"
+	<iostream>
 	<cstring>
 
-1733100860 source:c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\reclamos.cpp
+1733573706 source:c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\reclamos.cpp
 	<cstring>
+	<iostream>
 	"Reclamos.h"
-	"ArchivoFecha.h"
-	"ArchivoUsuario.h"
 
-1733100860 source:c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\respuestapedido.cpp
+1733573706 source:c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\respuestapedido.cpp
 	<cstring>
 	"RespuestaPedido.h"
-
-1733100860 source:c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\suministro.cpp
-	<cstring>
-	"Suministros.h"
-	"ArchivoFecha.h"
 	"Fecha.h"
 
-1733100860 source:c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\usuario.cpp
+1733573706 source:c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\suministro.cpp
+	<cstring>
+	"Suministros.h"
+	"Fecha.h"
+
+1733573706 source:c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\usuario.cpp
 	"Usuario.h"
 	<cstring>
 	<iostream>
 
-1733106581 source:c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\funciones.cpp
+1733682558 source:c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\funciones.cpp
 	<iostream>
 	"Funciones.h"
+	"FuncionesPagos.h"
+	"FuncionesPrecios.h"
+	"FuncionesEstadisticas.h"
 	<cstdlib>
 	<limits>
 	<iomanip>
 	<string>
 	<iostream>
-	"ArchivoFecha.h"
 
 1733159530 c:\users\ignac\onedrive\escritorio\codigosamurai\utn\programacion 2\sistemagestion\econ\funcionesmostrar.h
 	"RespuestaPedido.h"
@@ -952,7 +961,7 @@
 	<string>
 	"PreciosMedidores.h"
 
-1733696123 source:c:\users\nacho\desktop\work\econ\funcionesestadisticas.cpp
+1733699511 source:c:\users\nacho\desktop\work\econ\funcionesestadisticas.cpp
 	"FuncionesEstadisticas.h"
 	"Funciones.h"
 	"ArchivoFacturas.h"
@@ -960,9 +969,152 @@
 	<iostream>
 	<iomanip>
 
-1733688092 c:\users\nacho\desktop\work\econ\funcionesestadisticas.h
+1733699354 c:\users\nacho\desktop\work\econ\funcionesestadisticas.h
 	"Usuario.h"
 	"Factura.h"
 	"ArchivoFacturas.h"
 	"ArchivoUsuario.h"
+
+1733573706 source:c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\archivofactura.cpp
+	"ArchivoFacturas.h"
+	<cstring>
+
+1733573706 c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\archivofacturas.h
+	"Factura.h"
+	<string>
+
+1733573706 c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\factura.h
+	"Fecha.h"
+	"Periodo.h"
+
+1733573706 c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\periodo.h
+	<string>
+
+1733573706 source:c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\archivospreciosmedidores.cpp
+	"ArchivoPreciosMedidores.h"
+	<cstring>
+
+1733573706 c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\archivopreciosmedidores.h
+	<string>
+	"PreciosMedidores.h"
+
+1733573706 c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\preciosmedidores.h
+	<iostream>
+
+1733573706 source:c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\factura.cpp
+	"Factura.h"
+	<iostream>
+	<cstring>
+
+1733573706 c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\funcionesmostrar.h
+	"RespuestaPedido.h"
+	"Usuario.h"
+	"Suministros.h"
+	"Reclamos.h"
+	"AcumuladorId.h"
+	"PedidoSuministro.h"
+	"ArchivoUsuario.h"
+	"ArchivoSuministro.h"
+	"ArchivoAcumulador.h"
+	"ArchivoReclamo.h"
+	"ArchivoPedido.h"
+	"ArchivoRespuestas.h"
+
+1733573706 c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\funcionespagos.h
+	"Fecha.h"
+	"Suministros.h"
+	"Periodo.h"
+	"ArchivoFacturas.h"
+	"Factura.h"
+	"Usuario.h"
+
+1733573706 c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\funcionesprecios.h
+	"Funciones.h"
+	"FuncionesPagos.h"
+	"PreciosMedidores.h"
+	"ArchivoPreciosMedidores.h"
+
+1733577719 c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\funcionesestadisticas.h
+
+1733573706 source:c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\funcionesmostrar.cpp
+	<iostream>
+	"funcionesMostrar.h"
+
+1733573706 source:c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\funcionespagos.cpp
+	"FuncionesPagos.h"
+	"Funciones.h"
+	"ArchivoFacturas.h"
+	"Factura.h"
+	"Periodo.h"
+	"ArchivoAcumulador.h"
+	"AcumuladorId.h"
+
+1733573706 source:c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\funcionesprecio.cpp
+	"FuncionesPrecios.h"
+	"Funciones.h"
+
+1733573706 source:c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\periodo.cpp
+	"Periodo.h"
+	<iostream>
+
+1733573706 source:c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\preciosmedidores.cpp
+	"PreciosMedidores.h"
+
+1733675227 source:c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\funcionesestadisticas.cpp
+	"Funciones.h"
+	<iostream>
+
+1733621250 c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\funcionesmenus.h
+	"RespuestaPedido.h"
+	"Usuario.h"
+	"Suministros.h"
+	"Reclamos.h"
+	"AcumuladorId.h"
+	"PedidoSuministro.h"
+	"ArchivoUsuario.h"
+	"ArchivoSuministro.h"
+	"ArchivoAcumulador.h"
+	"ArchivoReclamo.h"
+	"ArchivoPedido.h"
+	"ArchivoRespuestas.h"
+
+1733682514 source:c:\users\ivan_\onedrive\escritorio\programacion utn\2do cuatrimestre\prog 2\nuevaversion\econ\funcionesmenus.cpp
+	<iostream>
+	"funcionesMenus.h"
+	"Funciones.h"
+	"FuncionesPagos.h"
+	"FuncionesPrecios.h"
+	"FuncionesEstadisticas.h"
+	<cstdlib>
+	<limits>
+	<iomanip>
+	<string>
+	<iostream>
+
+1733699659 source:c:\users\nacho\desktop\work\econ\funcionesmenus.cpp
+	<iostream>
+	"funcionesMenus.h"
+	"Funciones.h"
+	"FuncionesPagos.h"
+	"FuncionesPrecios.h"
+	"FuncionesEstadisticas.h"
+	<cstdlib>
+	<limits>
+	<iomanip>
+	<string>
+	<iostream>
+
+1733699080 c:\users\nacho\desktop\work\econ\funcionesmenus.h
+	"RespuestaPedido.h"
+	"Usuario.h"
+	"Suministros.h"
+	"Reclamos.h"
+	"AcumuladorId.h"
+	"PedidoSuministro.h"
+	"ArchivoUsuario.h"
+	"ArchivoSuministro.h"
+	"ArchivoAcumulador.h"
+	"ArchivoReclamo.h"
+	"ArchivoPedido.h"
+	"ArchivoRespuestas.h"
 
