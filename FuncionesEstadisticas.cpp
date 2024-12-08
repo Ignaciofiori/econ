@@ -1,4 +1,4 @@
-#include "FuncionesEstadisticas.h"
+/*#include "FuncionesEstadisticas.h"
 #include "Funciones.h"
 #include <iostream>
 void MenuUsuariosEstadisticas() {
@@ -218,3 +218,4 @@ void MenuTotalesEstadisticas() {
         }
     }
 }
+*/

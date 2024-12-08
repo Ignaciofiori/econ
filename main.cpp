@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Funciones.h"
+#include "funcionesMenus.h"
 #include "FuncionesPagos.h"
 #include "FuncionesPrecios.h"
 
@@ -7,9 +8,6 @@ using namespace std;
 
 
 int main() {
-
-
-
 
 /*
 Fecha fecha(1,3,10,2024);
@@ -23,8 +21,9 @@ sumi.setFechaAlta(fecha);
 
 archivo.EditarSuministro(sumi,pos);
 */
-    controlarPrecios();
-    controlDeudaSuministros();
+    //MenuEstadisticas();
+    //controlarPrecios();
+    //controlDeudaSuministros();
     menuPrincipal();
 
     return 0;

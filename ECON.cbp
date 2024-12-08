@@ -56,6 +56,8 @@
 		<Unit filename="Fecha.h" />
 		<Unit filename="Funciones.cpp" />
 		<Unit filename="Funciones.h" />
+		<Unit filename="FuncionesEstadisticas.cpp" />
+		<Unit filename="FuncionesEstadisticas.h" />
 		<Unit filename="FuncionesPagos.cpp" />
 		<Unit filename="FuncionesPagos.h" />
 		<Unit filename="FuncionesPrecio.cpp" />
@@ -74,6 +76,8 @@
 		<Unit filename="Suministros.h" />
 		<Unit filename="Usuario.cpp" />
 		<Unit filename="Usuario.h" />
+		<Unit filename="funcionesMenus.cpp" />
+		<Unit filename="funcionesMenus.h" />
 		<Unit filename="funcionesMostrar.cpp" />
 		<Unit filename="funcionesMostrar.h" />
 		<Unit filename="main.cpp" />

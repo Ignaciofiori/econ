@@ -7,56 +7,66 @@
 #include "ArchivoPedido.h"
 #include "ArchivoRespuestas.h"
 
-int contarPedidosActivos(PedidoSuministro* pedidos, int cantidad);
-int listaPedidos();
+//banner
 void bannerBienvenida();
-void menuPrincipal();
-bool esFechaPasada( Fecha& fecha);
+
+//registro y login
+
 Usuario registrarse();
-bool confirmarContrasena();
-int leerEntero();
-void menuSecundario(Usuario usu);
 Usuario login();
-Usuario busquedaUsuarioPorEmail(char *email);
-void cargarFecha(Fecha &fecha );
-PedidoSuministro cargarPedidoSuministro(int idUsuario);
-void seleccionarTipoSuministro(char* tipoSuministro);
-void creacionSuministro(PedidoSuministro pedido);
-PedidoSuministro buscarPedidoPorId(int id);
-float determinarConsumoPorMes( char* tipoSuministro);
-float determinarPrecioKwh( char* tipoMedidor);
-int mostrarSuministrosAsociados(Usuario &usu);
-void  mostrarRespuestas(Usuario &usu);
-Reclamo cargarReclamo(Usuario &usu);
-void seleccionarTipoReclamo(char* tipoReclamo);
-void seleccionarNivelPrioridad(char* nivelPrioridad);
-Suministro buscarSuministroPorId(int id,Usuario &usu);
+Usuario nuevoAdmin();
+
+
+//menues
+
+void menuPrincipal();
+void menuSecundario(Usuario usu);
+
+void MenuEstadisticas();
+void MenuEstadisticas1();
+
+void MenuUsuariosEstadisticas();
+
+
+//chequeador
+bool confirmarContrasena();
+bool esFechaPasada( Fecha& fecha);
+int leerEntero();
+
+//listados
 
 int listarReclamosEstado(bool estado);
-Reclamo seleccionarReclamo();
-Reclamo buscarReclamoPorId(int id);
-void accionesReclamos(Reclamo &reclamo);
-Reclamo seleccionarReclamo(bool realizado);
-Reclamo buscarReclamoPorId(int id,bool realizado);
-int mostrarSuministrosDeuda(Usuario &usu);
-Suministro seleccionarSuministroDeuda(Usuario &usu);
-Suministro buscarSuministroPorIdDeuda(int idSum,Usuario &usu);
+int listaPedidos();
 
+void listadoUsuarios();
+
+void listadoSuministros();
+
+void listadoFacturas();
+
+void listadoPedidos();
+
+void listadoReclamos();
 
 
 //estadisticas
+void EstadisticaUsuarios();
+void EstadisticaDeuda();
+void EstadisticaFacturas();
+
 void EstadisticaReclamos();
-void MenuEstadisticas();
 void EstadisticaSuministros();
 void EstadisticaPedidos();
 void EstadisticaReclamos1();
-void MenuEstadisticas1();
+
 void EstadisticaSuministros1();
 void EstadisticaPedidos1();
 void EstadisticaPedidosGrafico();
 void EstadisticaReclamosGrafico();
 void imprimirGraficoBarras(int maxPedidos, const char* nombreMax, int minPedidos, const char* nombreMin);
 void imprimirGraficoBarras1(int maxSuministros, const char* nombreMax, int minSuministros, const char* nombreMin, bool variosMax, bool variosMin);
+
+//totales
 void Totales();
 int TotalClientes();
 int TotalSuministros();
@@ -66,3 +76,54 @@ float TotalConsumo();
 void TotalSuministrosPorTipo();
 void TotalSuministrosConsumoPorTipo();
 void TotalDeuda();
+
+//contador
+
+int contarPedidosActivos(PedidoSuministro* pedidos, int cantidad);
+
+//cargas
+
+void cargarFecha(Fecha &fecha );
+PedidoSuministro cargarPedidoSuministro(int idUsuario);
+Reclamo cargarReclamo(Usuario &usu);
+
+//creador
+
+void creacionSuministro(PedidoSuministro pedido);
+
+//buscador
+
+Usuario busquedaUsuarioPorEmail(char *email);
+Suministro buscarSuministroPorIdDeuda(int idSum,Usuario &usu);
+Reclamo buscarReclamoPorId(int id);
+PedidoSuministro buscarPedidoPorId(int id);
+Suministro buscarSuministroPorId(int id,Usuario &usu);
+Reclamo buscarReclamoPorId(int id,bool realizado);
+
+
+//determinar
+
+float determinarConsumoPorMes( char* tipoSuministro);
+float determinarPrecioKwh( char* tipoMedidor);
+
+//mostrar
+
+int mostrarSuministrosAsociados(Usuario &usu);
+void mostrarRespuestas(Usuario &usu);
+int mostrarSuministrosDeuda(Usuario &usu);
+
+void usuariosConDeudas(ArchivoSuministro &archivoSumi, ArchivoUsuario &archivoUsu);
+
+//acciones
+void accionesReclamos(Reclamo &reclamo);
+
+//seleccion
+void seleccionarTipoSuministro(char* tipoSuministro);
+void seleccionarTipoReclamo(char* tipoReclamo);
+void seleccionarNivelPrioridad(char* nivelPrioridad);
+Reclamo seleccionarReclamo();
+Reclamo seleccionarReclamo(bool realizado);
+Suministro seleccionarSuministroDeuda(Usuario &usu);
+PedidoSuministro seleccionarPedido();
+
+
