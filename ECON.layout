@@ -2,27 +2,128 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="Debug" />
-	<File name="Fecha.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="PedidoSuministro.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="244" topLine="0" />
+			<Cursor1 position="1509" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="PreciosMedidores.cpp" open="1" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="Funciones.cpp" open="1" top="1" tabpos="1" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="2277" topLine="46" />
-		</Cursor>
-	</File>
-	<File name="Fecha.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="1" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1659" topLine="35" />
+			<Cursor1 position="52872" topLine="70" />
 		</Cursor>
 		<Folding>
-			<Collapse line="45" />
-			<Collapse line="52" />
-			<Collapse line="60" />
-			<Collapse line="68" />
-			<Collapse line="76" />
-			<Collapse line="82" />
+			<Collapse line="11" />
+			<Collapse line="21" />
+			<Collapse line="61" />
+			<Collapse line="125" />
+			<Collapse line="139" />
+			<Collapse line="162" />
+			<Collapse line="220" />
+			<Collapse line="279" />
+			<Collapse line="352" />
+			<Collapse line="374" />
+			<Collapse line="379" />
+			<Collapse line="389" />
+			<Collapse line="472" />
+			<Collapse line="553" />
+			<Collapse line="604" />
+			<Collapse line="659" />
+			<Collapse line="704" />
+			<Collapse line="727" />
+			<Collapse line="758" />
+			<Collapse line="777" />
+			<Collapse line="799" />
+			<Collapse line="825" />
+			<Collapse line="847" />
+			<Collapse line="858" />
+			<Collapse line="878" />
+			<Collapse line="907" />
+			<Collapse line="916" />
+			<Collapse line="925" />
+			<Collapse line="1040" />
+			<Collapse line="1066" />
+			<Collapse line="1104" />
+			<Collapse line="1159" />
+			<Collapse line="1222" />
+			<Collapse line="1313" />
+			<Collapse line="1370" />
+			<Collapse line="1411" />
+			<Collapse line="1420" />
+			<Collapse line="1463" />
+			<Collapse line="1503" />
+			<Collapse line="1542" />
+			<Collapse line="1633" />
+			<Collapse line="1656" />
+			<Collapse line="1813" />
+			<Collapse line="1917" />
+			<Collapse line="2019" />
+			<Collapse line="2183" />
+			<Collapse line="2204" />
+			<Collapse line="2389" />
+			<Collapse line="2550" />
+			<Collapse line="2571" />
+			<Collapse line="2663" />
+			<Collapse line="2829" />
+			<Collapse line="2857" />
+			<Collapse line="2884" />
+			<Collapse line="2897" />
+			<Collapse line="2910" />
+			<Collapse line="2923" />
+			<Collapse line="2947" />
+			<Collapse line="2981" />
+			<Collapse line="3024" />
+			<Collapse line="3047" />
+			<Collapse line="3070" />
+		</Folding>
+	</File>
+	<File name="Usuario.h" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1287" topLine="9" />
+		</Cursor>
+	</File>
+	<File name="Factura.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="975" topLine="4" />
+		</Cursor>
+	</File>
+	<File name="ArchivoReclamo.cpp" open="0" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="27" />
+		</Cursor>
+	</File>
+	<File name="Suministro.cpp" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="495" topLine="3" />
+		</Cursor>
+	</File>
+	<File name="FuncionesEstadisticas.cpp" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="6193" topLine="0" />
+		</Cursor>
+		<Folding>
+			<Collapse line="3" />
+			<Collapse line="58" />
+			<Collapse line="113" />
+			<Collapse line="167" />
+		</Folding>
+	</File>
+	<File name="ArchivoPedido.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="490" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="Periodo.h" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="287" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="Factura.cpp" open="0" top="0" tabpos="13" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2658" topLine="0" />
+		</Cursor>
+		<Folding>
+			<Collapse line="5" />
+			<Collapse line="17" />
 		</Folding>
 	</File>
 	<File name="AcumuladorId.h" open="0" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -30,12 +131,41 @@
 			<Cursor1 position="645" topLine="0" />
 		</Cursor>
 	</File>
+	<File name="ArchivoUsuario.h" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="12" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="Reclamos.h" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="61" topLine="21" />
+		</Cursor>
+	</File>
+	<File name="ArchivoSuministro.cpp" open="0" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="2" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="319" topLine="50" />
+		</Cursor>
+	</File>
+	<File name="RespuestaPedido.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1237" topLine="43" />
+		</Cursor>
+	</File>
 	<File name="ArchivoAcumulador.cpp" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="639" topLine="9" />
 		</Cursor>
 	</File>
-	<File name="FuncionesPagos.cpp" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="1" zoom_2="0">
+	<File name="FuncionesPrecio.cpp" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="4859" topLine="1" />
+		</Cursor>
+		<Folding>
+			<Collapse line="5" />
+			<Collapse line="29" />
+		</Folding>
+	</File>
+	<File name="FuncionesPagos.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="1" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="9614" topLine="35" />
 		</Cursor>
@@ -49,14 +179,19 @@
 			<Collapse line="160" />
 		</Folding>
 	</File>
-	<File name="Reclamos.cpp" open="1" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="Funciones.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="3410" topLine="106" />
+			<Cursor1 position="401" topLine="6" />
 		</Cursor>
 	</File>
-	<File name="main.cpp" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="PreciosMedidores.cpp" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="387" topLine="0" />
+			<Cursor1 position="2823" topLine="56" />
+		</Cursor>
+	</File>
+	<File name="ArchivoAcumulador.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="491" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="funcionesMostrar.h" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -64,39 +199,32 @@
 			<Cursor1 position="353" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="ArchivoReclamo.h" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="Fecha.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="1" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="500" topLine="0" />
+			<Cursor1 position="18" topLine="0" />
 		</Cursor>
-	</File>
-	<File name="Suministro.cpp" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="495" topLine="3" />
-		</Cursor>
-	</File>
-	<File name="ArchivoSuministro.cpp" open="1" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="2" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="319" topLine="55" />
-		</Cursor>
-	</File>
-	<File name="funcionesMostrar.cpp" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="0" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="ArchivoReclamo.cpp" open="0" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="0" topLine="27" />
-		</Cursor>
+		<Folding>
+			<Collapse line="45" />
+			<Collapse line="52" />
+			<Collapse line="60" />
+			<Collapse line="68" />
+			<Collapse line="76" />
+			<Collapse line="82" />
+		</Folding>
 	</File>
 	<File name="Suministros.h" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="507" topLine="15" />
 		</Cursor>
 	</File>
-	<File name="AcumuladorId.cpp" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="ArchivoSuministro.h" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="965" topLine="23" />
+			<Cursor1 position="12" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="Reclamos.cpp" open="0" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3410" topLine="106" />
 		</Cursor>
 	</File>
 	<File name="RespuestaPedido.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -104,24 +232,34 @@
 			<Cursor1 position="692" topLine="5" />
 		</Cursor>
 	</File>
-	<File name="ArchivoPedido.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="Periodo.cpp" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="490" topLine="0" />
+			<Cursor1 position="843" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="FuncionesPagos.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="ArchivoRespuestas.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="561" topLine="0" />
+			<Cursor1 position="157" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="ArchivoUsuario.h" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="Fecha.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="12" topLine="0" />
+			<Cursor1 position="244" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="PedidoSuministro.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="ArchivoUsuario.cpp" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1509" topLine="0" />
+			<Cursor1 position="1265" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="AcumuladorId.cpp" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="965" topLine="23" />
+		</Cursor>
+	</File>
+	<File name="funcionesMostrar.cpp" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="ArchivoFactura.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -134,128 +272,9 @@
 			<Cursor1 position="1018" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="ArchivoSuministro.h" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="FuncionesPagos.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="12" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="ArchivoUsuario.cpp" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1265" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="RespuestaPedido.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1237" topLine="43" />
-		</Cursor>
-	</File>
-	<File name="Factura.cpp" open="1" top="1" tabpos="13" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2658" topLine="61" />
-		</Cursor>
-		<Folding>
-			<Collapse line="5" />
-		</Folding>
-	</File>
-	<File name="FuncionesPrecio.cpp" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1109" topLine="3" />
-		</Cursor>
-		<Folding>
-			<Collapse line="29" />
-		</Folding>
-	</File>
-	<File name="Periodo.cpp" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="843" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="Funciones.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="887" topLine="17" />
-		</Cursor>
-	</File>
-	<File name="Usuario.h" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1287" topLine="9" />
-		</Cursor>
-	</File>
-	<File name="Funciones.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="124643" topLine="289" />
-		</Cursor>
-		<Folding>
-			<Collapse line="10" />
-			<Collapse line="20" />
-			<Collapse line="60" />
-			<Collapse line="124" />
-			<Collapse line="139" />
-			<Collapse line="195" />
-			<Collapse line="254" />
-			<Collapse line="327" />
-			<Collapse line="349" />
-			<Collapse line="354" />
-			<Collapse line="364" />
-			<Collapse line="447" />
-			<Collapse line="528" />
-			<Collapse line="579" />
-			<Collapse line="634" />
-			<Collapse line="679" />
-			<Collapse line="702" />
-			<Collapse line="733" />
-			<Collapse line="752" />
-			<Collapse line="774" />
-			<Collapse line="800" />
-			<Collapse line="822" />
-			<Collapse line="833" />
-			<Collapse line="853" />
-			<Collapse line="882" />
-			<Collapse line="891" />
-			<Collapse line="900" />
-			<Collapse line="1015" />
-			<Collapse line="1041" />
-			<Collapse line="1079" />
-			<Collapse line="1134" />
-			<Collapse line="1197" />
-			<Collapse line="1288" />
-			<Collapse line="1345" />
-			<Collapse line="1386" />
-			<Collapse line="1396" />
-			<Collapse line="1438" />
-			<Collapse line="1476" />
-			<Collapse line="1567" />
-			<Collapse line="1590" />
-			<Collapse line="1747" />
-			<Collapse line="1851" />
-			<Collapse line="1952" />
-			<Collapse line="1990" />
-			<Collapse line="2154" />
-			<Collapse line="2175" />
-			<Collapse line="2360" />
-			<Collapse line="2521" />
-			<Collapse line="2542" />
-			<Collapse line="2634" />
-			<Collapse line="2800" />
-			<Collapse line="2828" />
-			<Collapse line="2855" />
-			<Collapse line="2868" />
-			<Collapse line="2881" />
-			<Collapse line="2894" />
-			<Collapse line="2918" />
-			<Collapse line="2952" />
-			<Collapse line="2995" />
-			<Collapse line="3018" />
-			<Collapse line="3041" />
-		</Folding>
-	</File>
-	<File name="Periodo.h" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="287" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="ArchivoRespuestas.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="157" topLine="0" />
+			<Cursor1 position="561" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="Usuario.cpp" open="0" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -263,24 +282,19 @@
 			<Cursor1 position="3070" topLine="99" />
 		</Cursor>
 	</File>
-	<File name="ArchivoAcumulador.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="491" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="Reclamos.h" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="61" topLine="21" />
-		</Cursor>
-	</File>
-	<File name="Factura.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="975" topLine="4" />
-		</Cursor>
-	</File>
 	<File name="ArchivosPreciosMedidores.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="36" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="main.cpp" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="395" topLine="1" />
+		</Cursor>
+	</File>
+	<File name="ArchivoReclamo.h" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="500" topLine="0" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>

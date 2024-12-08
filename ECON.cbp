@@ -56,6 +56,8 @@
 		<Unit filename="Fecha.h" />
 		<Unit filename="Funciones.cpp" />
 		<Unit filename="Funciones.h" />
+		<Unit filename="FuncionesEstadisticas.cpp" />
+		<Unit filename="FuncionesEstadisticas.h" />
 		<Unit filename="FuncionesPagos.cpp" />
 		<Unit filename="FuncionesPagos.h" />
 		<Unit filename="FuncionesPrecio.cpp" />
