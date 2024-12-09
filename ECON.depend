@@ -37,7 +37,7 @@
 	<string>
 	"Usuario.h"
 
-1733760999 source:c:\users\nacho\desktop\work\econ\funciones.cpp
+1733762930 source:c:\users\nacho\desktop\work\econ\funciones.cpp
 	<iostream>
 	"Funciones.h"
 	"FuncionesPagos.h"
@@ -965,7 +965,7 @@
 	<string>
 	"PreciosMedidores.h"
 
-1733704648 source:c:\users\nacho\desktop\work\econ\funcionesestadisticas.cpp
+1733764746 source:c:\users\nacho\desktop\work\econ\funcionesestadisticas.cpp
 	"FuncionesEstadisticas.h"
 	"Funciones.h"
 	"ArchivoFacturas.h"
@@ -973,7 +973,7 @@
 	<iostream>
 	<iomanip>
 
-1733704648 c:\users\nacho\desktop\work\econ\funcionesestadisticas.h
+1733764763 c:\users\nacho\desktop\work\econ\funcionesestadisticas.h
 	"Usuario.h"
 	"Factura.h"
 	"ArchivoFacturas.h"
@@ -1095,7 +1095,7 @@
 	<string>
 	<iostream>
 
-1733762475 source:c:\users\nacho\desktop\work\econ\funcionesmenus.cpp
+1733765005 source:c:\users\nacho\desktop\work\econ\funcionesmenus.cpp
 	<iostream>
 	"funcionesMenus.h"
 	"Funciones.h"

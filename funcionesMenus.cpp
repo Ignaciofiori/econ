@@ -326,6 +326,7 @@ void menuRegistros(){
     }
 
 }
+
 void menuEstadisticas() {
     Usuario usuariosMasDeudas[5];
     float mayoresDeudas[5];
@@ -336,8 +337,8 @@ void menuEstadisticas() {
         std::cout << "1. Usuarios con Mas Deudas\n";
         std::cout << "2. Recaudacion de Suministros\n";
         std::cout << "3. Rendimientos de Metodos de Pago\n";
-        std::cout << "4. Estadisticas Pedidos\n";
-        std::cout << "5. Estadisticas Reclamos\n";
+        std::cout << "4. Analisis de Motivos de Reclamos\n";
+
 
         std::cout << "0. Volver al menu anterior\n";
         std::cout << "===========================\n";
@@ -373,12 +374,7 @@ void menuEstadisticas() {
 
                 break;
             case 4:
-                EstadisticaPedidos1();
-             //   menuPedidosEstadisticas();
-                break;
-            case 5:
-                EstadisticaReclamos1();
-             //   menuReclamosEstadisticas();
+                analisisReclamosPorTipo();
                 break;
             case 0:
                 std::cout << "Volviendo al Menu Anterior...\n";
@@ -435,6 +431,7 @@ void menuSecEstadisticas(){
         }
     }
 }
+
 void menuReclamos(Usuario &usu){
 
     ArchivoReclamo archivo("reclamos.dat");
@@ -512,6 +509,7 @@ void menuReclamos(Usuario &usu){
     opc = -1;
     bool flag = false;
 }
+
 void menuListado(){
     int opc = -1;
     while (opc != 0) {

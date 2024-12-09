@@ -192,3 +192,58 @@ void recaudacionMetodoPago() {
     delete[] vectorFacturas;
 }
 
+void analisisReclamosPorTipo() {
+    // Variables para los conteos
+    int totalReclamos = 0;
+    int malfuncionamiento = 0, facturacionIncorrecta = 0, demoraInstalacion = 0, interrupcionesFrecuentes = 0, atencionCliente = 0;
+
+    // Leer los reclamos del archivo
+    ArchivoReclamo archivoReclamos("reclamos.dat");
+    int cantReclamos = archivoReclamos.CantidadReclamos();
+
+    Reclamo* vectorReclamos = new Reclamo[cantReclamos];
+    archivoReclamos.LeerReclamos(cantReclamos, vectorReclamos);
+
+    // Contar los tipos de reclamos
+    for (int i = 0; i < cantReclamos; i++) {
+        if (vectorReclamos[i].isActivo()) { // Solo contar reclamos activos
+            totalReclamos++;
+            char tipoReclamo[50];
+            strcpy(tipoReclamo, vectorReclamos[i].getTipoDeReclamo());
+
+            if (strcmp(tipoReclamo, "Reclamo por Malfuncionamiento") == 0) {
+                malfuncionamiento++;
+            } else if (strcmp(tipoReclamo, "Reclamo por Facturacion Incorrecta") == 0) {
+                facturacionIncorrecta++;
+            } else if (strcmp(tipoReclamo, "Reclamo por Demora en la Instalacion") == 0) {
+                demoraInstalacion++;
+            } else if (strcmp(tipoReclamo, "Reclamo por Interrupciones Frecuentes") == 0) {
+                interrupcionesFrecuentes++;
+            } else if (strcmp(tipoReclamo, "Reclamo por Atencion al Cliente") == 0) {
+                atencionCliente++;
+            }
+        }
+    }
+
+    // Calcular porcentajes
+    float porcentajeMalfuncionamiento = (totalReclamos > 0) ? (malfuncionamiento / (float)totalReclamos) * 100 : 0;
+    float porcentajeFacturacion = (totalReclamos > 0) ? (facturacionIncorrecta / (float)totalReclamos) * 100 : 0;
+    float porcentajeDemora = (totalReclamos > 0) ? (demoraInstalacion / (float)totalReclamos) * 100 : 0;
+    float porcentajeInterrupciones = (totalReclamos > 0) ? (interrupcionesFrecuentes / (float)totalReclamos) * 100 : 0;
+    float porcentajeAtencion = (totalReclamos > 0) ? (atencionCliente / (float)totalReclamos) * 100 : 0;
+
+    // Mostrar resultados
+    std::cout << std::fixed << std::setprecision(2);
+    std::cout << "\nAnalisis de Reclamos por Tipo\n";
+    std::cout << "---------------------------------------\n";
+    std::cout << "Total de Reclamos: " << totalReclamos << "\n";
+    std::cout << "---------------------------------------\n";
+    std::cout << "Reclamo por Malfuncionamiento:       " << malfuncionamiento << " (" << porcentajeMalfuncionamiento << "%)\n";
+    std::cout << "Reclamo por Facturacion Incorrecta:  " << facturacionIncorrecta << " (" << porcentajeFacturacion << "%)\n";
+    std::cout << "Reclamo por Demora en la Instalacion:" << demoraInstalacion << " (" << porcentajeDemora << "%)\n";
+    std::cout << "Reclamo por Interrupciones Frecuentes: " << interrupcionesFrecuentes << " (" << porcentajeInterrupciones << "%)\n";
+    std::cout << "Reclamo por Atencion al Cliente:     " << atencionCliente << " (" << porcentajeAtencion << "%)\n";
+    std::cout << "---------------------------------------\n";
+
+    delete[] vectorReclamos; // Liberar memoria
+}
