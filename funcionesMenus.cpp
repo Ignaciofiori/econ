@@ -336,8 +336,9 @@ void menuEstadisticas() {
         std::cout << "\n===== MENU ESTADISTICAS =====\n";
         std::cout << "1. Usuarios con Mas Deudas\n";
         std::cout << "2. Recaudacion de Suministros\n";
-        std::cout << "3. Rendimientos de Metodos de Pago\n";
-        std::cout << "4. Analisis de Motivos de Reclamos\n";
+        std::cout << "3. Consumo de KWHS de Suministros\n";
+        std::cout << "4. Rendimientos de Metodos de Pago\n";
+        std::cout << "5. Analisis de Motivos de Reclamos\n";
 
 
         std::cout << "0. Volver al menu anterior\n";
@@ -367,13 +368,17 @@ void menuEstadisticas() {
                 break;
             case 2:
                 recaudacionSuministros();
+
+             break;
+            case 3:
+                consumoPorTipoSuministro();
               //  menuSuministrosEstadisticas();
                 break;
-            case 3:
+            case 4:
                 recaudacionMetodoPago();
 
                 break;
-            case 4:
+            case 5:
                 analisisReclamosPorTipo();
                 break;
             case 0:
@@ -518,9 +523,8 @@ void menuListado(){
         std::cout << "1. Listado Usuarios\n";
         std::cout << "2. Listado Suministros\n";
         std::cout << "3. Listado Facturas\n";
-        std::cout << "4. Listado Pedidos\n";
-        std::cout << "5. Listado Reclamos\n";
-
+        std::cout << "4. Listado Reclamos\n";
+        std::cout << "5. Busquedas por Id\n";
         std::cout << "0. Volver al menu anterior\n";
         std::cout << "===========================\n";
         std::cout << "Seleccione una opcion: ";
@@ -539,10 +543,10 @@ void menuListado(){
                 listadoFacturas();
                 break;
             case 4:
-                listadoPedidos();
+                listadoReclamos();
                 break;
             case 5:
-                listadoReclamos();
+                menuBusquedaPorId();
                 break;
             case 0:
                 std::cout << "Volviendo al Menu Anterior...\n";
@@ -619,4 +623,164 @@ void menuReclamosEstadisticas(){
 }
 void menuPedidosEstadisticas(){
 
+}
+
+void menuBusquedaPorId() {
+    int opc = -1;
+    while (opc != 0) {
+        std::cout << "\n===== MENU BUSQUEDA POR ID =====\n";
+        std::cout << "1. Buscar Suministro por ID\n";
+        std::cout << "2. Buscar Factura por ID\n";
+        std::cout << "3. Buscar Usuario por ID\n";
+        std::cout << "4. Buscar Reclamo por ID\n";
+        std::cout << "0. Volver al menu anterior\n";
+        std::cout << "===============================\n";
+        std::cout << "Seleccione una opcion: ";
+
+        opc = leerEntero();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Limpiar el buffer
+        system("cls"); // Limpiar pantalla después de cada selección
+        switch (opc) {
+            case 1:
+                buscarSuministroPorId();
+                break;
+            case 2:
+                buscarFacturaPorId();
+                break;
+            case 3:
+                buscarUsuarioPorId();
+                break;
+            case 4:
+                buscarReclamoPorId();
+                break;
+            case 0:
+                std::cout << "Volviendo al Menu Anterior...\n";
+                opc = 0;
+                return;
+            default:
+                std::cout << "Opcion invalida. Por favor, intente nuevamente.\n";
+                break;
+        }
+        system("PAUSE");
+        system("cls");
+    }
+}
+
+
+void buscarSuministroPorId(){
+ArchivoSuministro archivo("suministros.dat");
+Suministro SuministroEncontrado;
+bool encontrado = false;
+int cantSuministros = archivo.CantidadSuministros();
+Suministro *vectorSuministros = new Suministro[cantSuministros];
+archivo.LeerSuministros(cantSuministros,vectorSuministros);
+int idSuministro;
+    std::cout << "Ingrese el ID de Suministro: ";
+   idSuministro = leerEntero();
+   std::cin.ignore();
+
+for(int i = 0; i< cantSuministros; i++){
+    if(vectorSuministros[i].getSuministroId() == idSuministro){
+
+        SuministroEncontrado = vectorSuministros[i];
+        encontrado = true;
+    }
+
+}
+if(encontrado){
+    SuministroEncontrado.mostrarSuministro();
+}else{
+     std::cout << "No se encontro ningun Suministro con el Id Ingresado : " << idSuministro << std::endl;
+}
+
+
+   delete []vectorSuministros;
+
+}
+
+void buscarFacturaPorId() {
+    ArchivoFactura archivo("facturas.dat");
+    Factura facturaEncontrada;
+    bool encontrado = false;
+    int cantFacturas = archivo.CantidadFacturas();
+    Factura *vectorFacturas = new Factura[cantFacturas];
+    archivo.LeerFacturas(cantFacturas, vectorFacturas);
+
+    int idFactura;
+    std::cout << "Ingrese el ID de Factura: ";
+    idFactura = leerEntero();
+    std::cin.ignore();
+
+    for (int i = 0; i < cantFacturas; i++) {
+        if (vectorFacturas[i].getIdFactura() == idFactura) {
+            facturaEncontrada = vectorFacturas[i];
+            encontrado = true;
+        }
+    }
+
+    if (encontrado) {
+        facturaEncontrada.mostrarFactura();
+    } else {
+        std::cout << "No se encontro ninguna Factura con el Id Ingresado: " << idFactura << std::endl;
+    }
+
+    delete[] vectorFacturas;
+}
+
+void buscarUsuarioPorId() {
+    ArchivoUsuario archivo("usuarios.dat");
+    Usuario usuarioEncontrado;
+    bool encontrado = false;
+    int cantUsuarios = archivo.CantidadUsuarios();
+    Usuario *vectorUsuarios = new Usuario[cantUsuarios];
+    archivo.LeerUsuarios(cantUsuarios, vectorUsuarios);
+
+    int idUsuario;
+    std::cout << "Ingrese el ID de Usuario: ";
+    idUsuario = leerEntero();
+    std::cin.ignore();
+
+    for (int i = 0; i < cantUsuarios; i++) {
+        if (vectorUsuarios[i].getId() == idUsuario) {
+            usuarioEncontrado = vectorUsuarios[i];
+            encontrado = true;
+        }
+    }
+
+    if (encontrado) {
+        usuarioEncontrado.mostrarUsuario();
+    } else {
+        std::cout << "No se encontro ningun Usuario con el Id Ingresado: " << idUsuario << std::endl;
+    }
+
+    delete[] vectorUsuarios;
+}
+
+void buscarReclamoPorId() {
+    ArchivoReclamo archivo("reclamos.dat");
+    Reclamo reclamoEncontrado;
+    bool encontrado = false;
+    int cantReclamos = archivo.CantidadReclamos();
+    Reclamo *vectorReclamos = new Reclamo[cantReclamos];
+    archivo.LeerReclamos(cantReclamos, vectorReclamos);
+
+    int idReclamo;
+    std::cout << "Ingrese el ID de Reclamo: ";
+    idReclamo = leerEntero();
+    std::cin.ignore();
+
+    for (int i = 0; i < cantReclamos; i++) {
+        if (vectorReclamos[i].getReclamoId() == idReclamo) {
+            reclamoEncontrado = vectorReclamos[i];
+            encontrado = true;
+        }
+    }
+
+    if (encontrado) {
+        reclamoEncontrado.mostrarReclamo();
+    } else {
+        std::cout << "No se encontro ningun Reclamo con el Id Ingresado: " << idReclamo << std::endl;
+    }
+
+    delete[] vectorReclamos;
 }

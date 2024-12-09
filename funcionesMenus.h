@@ -29,8 +29,12 @@ void menuSuministrosEstadisticas();
 void menuFacturasEstadisticas();
 void menuReclamosEstadisticas();
 void menuPedidosEstadisticas();
+void buscarUsuarioPorId();
 
 void menuTotales();
 void menuListado();
 
-
+void menuBusquedaPorId();
+void buscarSuministroPorId();
+void buscarFacturaPorId();
+void buscarReclamoPorId() ;

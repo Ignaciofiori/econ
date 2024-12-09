@@ -106,7 +106,6 @@ void recaudacionSuministros() {
             int sumId = vectorFacturas[i].getIdSuministro();
             int posSum = archivoSums.BuscarSuministro(sumId);
             Suministro sum = archivoSums.LeerSuministro(posSum);
-
             // Variable para almacenar el tipo de suministro
             char tipoSum[50];
 
@@ -142,6 +141,62 @@ void recaudacionSuministros() {
     std::cout << "Industrial:     $" << recaudacionIndustrial << " (" << porcentajeIndustrial << "%)\n";
     std::cout << "Agricola:       $" << recaudacionAgricola << " (" << porcentajeAgricola << "%)\n";
     std::cout << "Residencial:    $" << recaudacionResidencial << " (" << porcentajeResidencial << "%)\n";
+    std::cout << "---------------------------------------\n";
+
+    delete[] vectorFacturas;
+}
+
+void consumoPorTipoSuministro() {
+    float consumoIndustrial = 0, consumoAgricola = 0, consumoResidencial = 0, consumoComercial = 0, consumoTotal = 0;
+    ArchivoFactura archivoFacturas("facturas.dat");
+    int cantFacturas = archivoFacturas.CantidadFacturas();
+    ArchivoSuministro archivoSums("suministros.dat");
+    int cantidadSums = archivoSums.CantidadSuministros();
+
+    Factura *vectorFacturas = new Factura[cantFacturas];
+    archivoFacturas.LeerFacturas(cantFacturas, vectorFacturas);
+
+    for (int i = 0; i < cantFacturas; i++) {
+        if (vectorFacturas[i].isPagada()) {
+            int sumId = vectorFacturas[i].getIdSuministro();
+            int posSum = archivoSums.BuscarSuministro(sumId);
+            Suministro sum = archivoSums.LeerSuministro(posSum);
+
+            // Variable para almacenar el tipo de suministro
+            char tipoSum[50];
+
+            // Copiar el valor de sum.getTipoSuministro() a tipoSum
+            strcpy(tipoSum, sum.getTipoSuministro());
+
+            // Sumar el consumo por tipo de suministro
+            if (strcmp(tipoSum, "Comercial") == 0) {
+                consumoComercial += sum.getConsumoPorMes();
+            } else if (strcmp(tipoSum, "Industrial") == 0) {
+                consumoIndustrial += sum.getConsumoPorMes();
+            } else if (strcmp(tipoSum, "Agricola") == 0) {
+                consumoAgricola += sum.getConsumoPorMes();
+            } else if (strcmp(tipoSum, "Residencial") == 0) {
+                consumoResidencial += sum.getConsumoPorMes();
+            }
+        }
+    }
+    consumoTotal = consumoResidencial + consumoAgricola + consumoComercial + consumoIndustrial;
+
+    // Calcular porcentajes
+    float porcentajeComercial = (consumoTotal > 0) ? (consumoComercial / consumoTotal) * 100 : 0;
+    float porcentajeIndustrial = (consumoTotal > 0) ? (consumoIndustrial / consumoTotal) * 100 : 0;
+    float porcentajeAgricola = (consumoTotal > 0) ? (consumoAgricola / consumoTotal) * 100 : 0;
+    float porcentajeResidencial = (consumoTotal > 0) ? (consumoResidencial / consumoTotal) * 100 : 0;
+
+    // Mostrar la información de manera organizada
+    std::cout << std::fixed << std::setprecision(2);
+    std::cout << "\nConsumo total de KWHs: " << consumoTotal << " KWH\n";
+    std::cout << "\nConsumo por tipo de suministro:\n";
+    std::cout << "---------------------------------------\n";
+    std::cout << "Comercial:      " << consumoComercial << " KWH (" << porcentajeComercial << "%)\n";
+    std::cout << "Industrial:     " << consumoIndustrial << " KWH (" << porcentajeIndustrial << "%)\n";
+    std::cout << "Agricola:       " << consumoAgricola << " KWH (" << porcentajeAgricola << "%)\n";
+    std::cout << "Residencial:    " << consumoResidencial << " KWH (" << porcentajeResidencial << "%)\n";
     std::cout << "---------------------------------------\n";
 
     delete[] vectorFacturas;
