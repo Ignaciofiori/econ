@@ -18,3 +18,6 @@ void mostrarReclamos(Reclamo* reclamos, int cantidad);
 void mostrarSuministros(Suministro *vectorSuministro, int cantidad);
 void mostrarPedidos(PedidoSuministro *vectorPedidos, int cantidad);
 void mostrarReclamosCliente(int idUsuario);
+int mostrarUsuariosAdmin();
+void seleccionarUsuarioAdmin(Reclamo& reclamo);
+int listarReclamosEstadoDerivados(Usuario usu);

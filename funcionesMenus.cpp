@@ -82,8 +82,8 @@ void menuSecundario(Usuario usu) {
         std::cout << "4. Ver Reclamos \n";
         std::cout << "5. Crear Usuario Admin \n";
         //std::cout << "6. Ver Cantidad Totales \n";
-        std::cout << "7. Actualizar Precios Medidores \n";;
-        std::cout << "8. Realizar Control de Precios y Deudas \n";
+        std::cout << "6. Actualizar Precios Medidores \n";;
+        std::cout << "7. Realizar Control de Precios y Deudas \n";
         std::cout << "0. Cerrar Sesion (Desloguearse)\n";
         std::cout << "===========================\n";
         std::cout << "Seleccione una opcion: ";
@@ -122,7 +122,7 @@ void menuSecundario(Usuario usu) {
                  break;
             case 4:
                  system ("cls");
-                menuReclamos();
+                menuReclamos(usu);
                 break;
             case 5:{
                 std::cout << "Agregar Usuario ADMIN :\n";
@@ -135,15 +135,11 @@ void menuSecundario(Usuario usu) {
                 break;
                 }
             case 6:
-                std::cout << "Totales :\n";
-                Totales();
-                break;
-            case 7:
                 actualizarPrecios();
                 system("pause");
                  system("cls");
                 break;
-            case 8:
+            case 7:
                 controlarPrecios();
                 controlDeudaSuministros();
                  std::cout << "Control Realizado  Exitosamente...\n";
@@ -339,7 +335,7 @@ void menuEstadisticas() {
         std::cout << "\n===== MENU ESTADISTICAS =====\n";
         std::cout << "1. Usuarios con Mas Deudas\n";
         std::cout << "2. Recaudacion de Suministros\n";
-        std::cout << "3. Estadisticas Facturas\n";
+        std::cout << "3. Rendimientos de Metodos de Pago\n";
         std::cout << "4. Estadisticas Pedidos\n";
         std::cout << "5. Estadisticas Reclamos\n";
 
@@ -373,7 +369,7 @@ void menuEstadisticas() {
               //  menuSuministrosEstadisticas();
                 break;
             case 3:
-                EstadisticaFacturas();
+                recaudacionMetodoPago();
 
                 break;
             case 4:
@@ -439,7 +435,7 @@ void menuSecEstadisticas(){
         }
     }
 }
-void menuReclamos(){
+void menuReclamos(Usuario &usu){
 
     ArchivoReclamo archivo("reclamos.dat");
     int cantidad = archivo.CantidadReclamos();
@@ -452,10 +448,10 @@ void menuReclamos(){
      Reclamo reclamo;
      int cantidadReclamos;
     while (opc!= 0){
+            system("cls");
         std::cout << "\t====== MENU Reclamos ======\n";
-        std::cout <<"\t1. Listar Reclamos PENDIENTES\n";
-        std::cout <<"\t2. Listar Reclamos REALIZADOS\n";
-        std::cout <<"\t3. Listar todos los Reclamos\n";
+        std::cout <<"\t1. Reclamos PENDIENTES\n";
+        std::cout <<"\t2. Reclamos REALIZADOS\n";
         std::cout <<"\t0. Regresar\n";
         std::cout << "\t===========================\n";
         std::cout << "Digite una opcion : ";
@@ -467,7 +463,7 @@ void menuReclamos(){
         case 1 :
             system ("cls");
             std::cout << "\nListando Reclamos PENDIENTES:\n";
-            listarReclamosEstado(false);
+                listarReclamosEstado(false);
                 cantidadReclamos = listarReclamosEstado(false);
                 if(cantidadReclamos == 0){
                     return;
@@ -476,8 +472,9 @@ void menuReclamos(){
              if(reclamo.getReclamoId() == 0){
                     system ("cls");
                std::cout << "No se encontro ningun reclamo con el id ingresado. \n";
+               system("pause");
              }else{
-                    accionesReclamos(reclamo);
+                    accionesReclamos(reclamo,usu,usu);
              }
 
             break;
@@ -485,34 +482,13 @@ void menuReclamos(){
 
             std::cout << "\nListando Reclamos REALIZADOS:\n";
              cantidadReclamos = listarReclamosEstado(true);
+                    system("pause");
                 if(cantidadReclamos == 0){
+                        system("cls");
                       "No Hay reclamos en estado Realizado. \n";
+
                     break;
                 }
-                reclamo = seleccionarReclamo(true);
-             if(reclamo.getReclamoId() == 0){
-
-                /*std::cout << "No se encontro ningun reclamo con el id ingresado. \n";*/
-                break;
-             }else{
-
-                    accionesReclamos(reclamo);
-             }
-
-
-            break;
-        case 3 :
-            system ("cls");
-            std::cout << "\nListando TODOS los Reclamos:\n";
-            mostrarReclamos(vectorReclamos, cantidad);
-            reclamo = seleccionarReclamo();
-             if(reclamo.getReclamoId() == 0){
-                system ("cls");
-                std::cout << "No se encontro ningun reclamo con el id ingresado. \n";
-                break;
-             }else{
-                    accionesReclamos(reclamo);
-             }
 
 
             break;

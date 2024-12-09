@@ -17,7 +17,7 @@
 void menuPrincipal();
 void menuSecundario(Usuario usu);
 
-void menuReclamos();
+void menuReclamos(Usuario &usu);
 
 void menuRegistros();
 

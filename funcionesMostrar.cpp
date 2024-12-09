@@ -1,5 +1,7 @@
 #include <iostream>
 #include "funcionesMostrar.h"
+#include "ArchivoUsuario.h"
+#include "Funciones.h"
 
 void mostrarRespuestasPedido(RespuestaPedido* respuestas, int cantidad) {
     for (int i = 0; i < cantidad; ++i) {
@@ -129,3 +131,77 @@ void mostrarReclamosCliente(int idUsuario) {
     delete[] vectorReclamos;
 }
 
+int mostrarUsuariosAdmin(){
+ArchivoUsuario archivo("usuarios.dat");
+int cantUs = archivo.CantidadUsuarios();
+int contador = 0;
+Usuario *vectorUsuarios = new Usuario[cantUs];
+archivo.LeerUsuarios(cantUs,vectorUsuarios);
+
+for(int j = 0; j < cantUs ; j++){
+    if(vectorUsuarios[j].isAdmin()&& vectorUsuarios[j].getId()!= 1 ){
+      contador++;
+
+    }
+
+}
+
+if(contador == 0){
+    std::cout << "No Hay Otros Usuarios Administradores \n";
+    delete [] vectorUsuarios;
+    return contador;
+}else {
+
+for(int i = 0; i < cantUs ; i++){
+    if(vectorUsuarios[i].isAdmin()&& vectorUsuarios[i].getId()!= 1 ){
+       vectorUsuarios[i].mostrarUsuario();
+
+    }
+
+}
+}
+
+delete [] vectorUsuarios;
+return contador;
+}
+
+void seleccionarUsuarioAdmin(Reclamo& reclamo){
+ArchivoReclamo archivo("reclamos.dat");
+int posRec = archivo.BuscarReclamo(reclamo.getReclamoId());
+
+int idUsuarioAdmin;
+Usuario usuAdmin ;
+ArchivoUsuario archivoUsuario("usuarios.dat");
+int cantUs = archivoUsuario.CantidadUsuarios();
+int contador = 0;
+Usuario *vectorUsuarios = new Usuario[cantUs];
+archivoUsuario.LeerUsuarios(cantUs,vectorUsuarios);
+
+ std::cout << "Selecciona Id del Administrador a derivar Reclamo: ";
+ idUsuarioAdmin = leerEntero();
+ std::cin.ignore();
+
+for(int i = 0; i < cantUs ; i++){
+    if( vectorUsuarios[i].isAdmin()&& vectorUsuarios[i].getId() == idUsuarioAdmin ){
+       usuAdmin = vectorUsuarios[i];
+
+    }
+}
+if(usuAdmin.getId() == 0){
+        system("cls");
+     std::cout << "No se encontro un Usuario Administrador con el ID ingresado \n";
+
+}else{
+
+        reclamo.setResponsableDeAtencion(idUsuarioAdmin);
+
+        if(archivo.EditarReclamo(reclamo,posRec)){
+        std::cout << "Reclamo Derivado Exitosamente \n";
+        system("pause");
+
+        }
+
+
+}
+
+}

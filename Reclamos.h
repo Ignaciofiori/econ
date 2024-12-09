@@ -13,7 +13,7 @@ private:
     char _estado[50];
     char _tipoDeReclamo[50];
     int _responsableDeAtencion;
-    char _respuesta[50];
+    char _respuesta[256];
     char _prioridad[50];
     bool _activo;
 

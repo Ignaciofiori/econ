@@ -37,19 +37,20 @@
 	<string>
 	"Usuario.h"
 
-1733699080 source:c:\users\nacho\desktop\work\econ\funciones.cpp
+1733760999 source:c:\users\nacho\desktop\work\econ\funciones.cpp
 	<iostream>
 	"Funciones.h"
 	"FuncionesPagos.h"
 	"FuncionesPrecios.h"
 	"FuncionesEstadisticas.h"
+	"funcionesMostrar.h"
 	<cstdlib>
 	<limits>
 	<iomanip>
 	<string>
 	<iostream>
 
-1733699080 c:\users\nacho\desktop\work\econ\funciones.h
+1733762793 c:\users\nacho\desktop\work\econ\funciones.h
 	"funcionesMostrar.h"
 	"ArchivoUsuario.h"
 	"ArchivoSuministro.h"
@@ -118,7 +119,7 @@
 	<iostream>
 	"Reclamos.h"
 
-1733324484 c:\users\nacho\desktop\work\econ\reclamos.h
+1733753678 c:\users\nacho\desktop\work\econ\reclamos.h
 	"Fecha.h"
 	"ArchivoUsuario.h"
 
@@ -899,7 +900,7 @@
 	<iostream>
 	<cstring>
 
-1733324484 c:\users\nacho\desktop\work\econ\funcionesmostrar.h
+1733762023 c:\users\nacho\desktop\work\econ\funcionesmostrar.h
 	"RespuestaPedido.h"
 	"Usuario.h"
 	"Suministros.h"
@@ -921,9 +922,11 @@
 	"Factura.h"
 	"Usuario.h"
 
-1733324484 source:c:\users\nacho\desktop\work\econ\funcionesmostrar.cpp
+1733762449 source:c:\users\nacho\desktop\work\econ\funcionesmostrar.cpp
 	<iostream>
 	"funcionesMostrar.h"
+	"ArchivoUsuario.h"
+	"Funciones.h"
 
 1733324484 source:c:\users\nacho\desktop\work\econ\periodo.cpp
 	"Periodo.h"
@@ -962,7 +965,7 @@
 	<string>
 	"PreciosMedidores.h"
 
-1733702831 source:c:\users\nacho\desktop\work\econ\funcionesestadisticas.cpp
+1733704648 source:c:\users\nacho\desktop\work\econ\funcionesestadisticas.cpp
 	"FuncionesEstadisticas.h"
 	"Funciones.h"
 	"ArchivoFacturas.h"
@@ -970,7 +973,7 @@
 	<iostream>
 	<iomanip>
 
-1733701683 c:\users\nacho\desktop\work\econ\funcionesestadisticas.h
+1733704648 c:\users\nacho\desktop\work\econ\funcionesestadisticas.h
 	"Usuario.h"
 	"Factura.h"
 	"ArchivoFacturas.h"
@@ -1092,7 +1095,7 @@
 	<string>
 	<iostream>
 
-1733702831 source:c:\users\nacho\desktop\work\econ\funcionesmenus.cpp
+1733762475 source:c:\users\nacho\desktop\work\econ\funcionesmenus.cpp
 	<iostream>
 	"funcionesMenus.h"
 	"Funciones.h"
@@ -1105,7 +1108,7 @@
 	<string>
 	<iostream>
 
-1733699080 c:\users\nacho\desktop\work\econ\funcionesmenus.h
+1733752634 c:\users\nacho\desktop\work\econ\funcionesmenus.h
 	"RespuestaPedido.h"
 	"Usuario.h"
 	"Suministros.h"
@@ -1118,4 +1121,6 @@
 	"ArchivoReclamo.h"
 	"ArchivoPedido.h"
 	"ArchivoRespuestas.h"
+
+1733752054 source:c:\users\nacho\desktop\work\econ\funcionesreclamos.cpp
 

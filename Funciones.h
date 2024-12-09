@@ -115,7 +115,7 @@ int mostrarSuministrosDeuda(Usuario &usu);
 void usuariosConDeudas(ArchivoSuministro &archivoSumi, ArchivoUsuario &archivoUsu);
 
 //acciones
-void accionesReclamos(Reclamo &reclamo);
+void accionesReclamos(Reclamo &reclamo, Usuario &usuario,Usuario& usuAdmin);
 
 //seleccion
 void seleccionarTipoSuministro(char* tipoSuministro);

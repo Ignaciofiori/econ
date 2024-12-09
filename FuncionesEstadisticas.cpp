@@ -147,3 +147,48 @@ void recaudacionSuministros() {
     delete[] vectorFacturas;
 }
 
+void recaudacionMetodoPago() {
+    float recaudacionTarjeta = 0, recaudacionTransferencia = 0, recaudacionPaypal = 0, totalRecaudacion = 0;
+    ArchivoFactura archivoFacturas("facturas.dat");
+    int cantFacturas = archivoFacturas.CantidadFacturas();
+
+    Factura *vectorFacturas = new Factura[cantFacturas];
+    archivoFacturas.LeerFacturas(cantFacturas, vectorFacturas);
+
+    for (int i = 0; i < cantFacturas; i++) {
+        if (vectorFacturas[i].isPagada()) {
+            // Obtener el tipo de método de pago
+            char metodoPago[50];
+            strcpy(metodoPago, vectorFacturas[i].getMetodoPago());
+
+            // Comparar el método de pago y sumar el monto correspondiente
+            if (strcmp(metodoPago, "Tarjeta de credito/debito") == 0) {
+                recaudacionTarjeta += vectorFacturas[i].getMonto();
+            } else if (strcmp(metodoPago, "Transferencia bancaria") == 0) {
+                recaudacionTransferencia += vectorFacturas[i].getMonto();
+            } else if (strcmp(metodoPago, "Paypal") == 0) {
+                recaudacionPaypal += vectorFacturas[i].getMonto();
+            }
+        }
+    }
+
+    totalRecaudacion = recaudacionTarjeta + recaudacionTransferencia + recaudacionPaypal;
+
+    // Calcular porcentajes
+    float porcentajeTarjeta = (totalRecaudacion > 0) ? (recaudacionTarjeta / totalRecaudacion) * 100 : 0;
+    float porcentajeTransferencia = (totalRecaudacion > 0) ? (recaudacionTransferencia / totalRecaudacion) * 100 : 0;
+    float porcentajePaypal = (totalRecaudacion > 0) ? (recaudacionPaypal / totalRecaudacion) * 100 : 0;
+
+    // Mostrar la informacion de manera organizada
+    std::cout << std::fixed << std::setprecision(2);
+    std::cout << "\nRecaudacion total: " << totalRecaudacion << "$ \n";
+    std::cout << "\nRecaudacion por metodo de pago:\n";
+    std::cout << "---------------------------------------\n";
+    std::cout << "Tarjeta de credito/debito: $" << recaudacionTarjeta << " (" << porcentajeTarjeta << "%)\n";
+    std::cout << "Transferencia bancaria:    $" << recaudacionTransferencia << " (" << porcentajeTransferencia << "%)\n";
+    std::cout << "Paypal:                    $" << recaudacionPaypal << " (" << porcentajePaypal << "%)\n";
+    std::cout << "---------------------------------------\n";
+
+    delete[] vectorFacturas;
+}
+

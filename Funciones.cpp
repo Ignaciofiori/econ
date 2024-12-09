@@ -3,7 +3,7 @@
 #include "FuncionesPagos.h"
 #include "FuncionesPrecios.h"
 #include "FuncionesEstadisticas.h"
-
+#include "funcionesMostrar.h"
 #include <cstdlib>
 #include <limits> // Para std::numeric_limits
 #include <iomanip> // Para std::setw
@@ -249,22 +249,8 @@ int mostrarSuministrosAsociados(Usuario &usu) {
                 int idFechaBaja = fechaBaja.getId();
 
 
-                // Filtra por ID de usuario y estado activo
-                std::cout << "ID de Suministro: " << vectorSuministros[i].getSuministroId() << "\n";
-                std::cout << "Tipo de Suministro: " << vectorSuministros[i].getTipoSuministro() << "\n";
-                std::cout << "Activo: " << (vectorSuministros[i].isActivo() ? "Si" : "No") << "\n";
-                std::cout << "Direccion: " << vectorSuministros[i].getDireccion() << "\n";
-                std::cout << "Codigo Postal: " << vectorSuministros[i].getCodigoPostal() << "\n";
-                std::cout << "Fecha Alta: " << fechaAlta.toString() << "\n"; // O ajusta si tienes una clase Fecha
-                std::cout << "Fecha Baja: " <<(idFechaBaja == 0 ? "Sigue Activo." : fechaBaja.toString()) << std::endl;// O ajusta si tienes una clase Fecha
-                std::cout << "Contacto: " << vectorSuministros[i].getContacto() << "\n";
-                std::cout << "Medidor: " << vectorSuministros[i].getMedidor() << "\n";
-                std::cout << "Consumo por Mes: " << vectorSuministros[i].getConsumoPorMes() << " kWh\n";
-                std::cout << "Precio por kWh: $" << vectorSuministros[i].getPrecioKwh() << "\n";
-                std::cout << "Deuda: " << (vectorSuministros[i].hasDeuda() ? "Si" : "No") << "\n";
-                std::cout << "Reclamo: " << (vectorSuministros[i].hasReclamo() ? "Si" : "No") << "\n";
-                std::cout << "Monto de Deuda: $" << vectorSuministros[i].getMontoDeuda() << "\n";
-                std::cout << "-----------------------------\n";
+               vectorSuministros[i].mostrarSuministro();
+
             }
         }
 }else{
@@ -668,13 +654,8 @@ void seleccionarNivelPrioridad(char* nivelPrioridad) {
         std::cout << "2. Media\n";
         std::cout << "3. Baja\n";
         std::cout << "Seleccione una opcion (1-3): ";
-
-        if (!(std::cin >> opcion)) {
-            std::cin.clear(); // Limpiar el estado de error
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Limpiar el buffer
-            std::cout << "Entrada invalida. Por favor, intente nuevamente.\n";
-        } else {
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Limpiar buffer
+            opcion = leerEntero();
+            std::cin.ignore();
 
             switch (opcion) {
                 case 1:
@@ -695,12 +676,8 @@ void seleccionarNivelPrioridad(char* nivelPrioridad) {
             }
         }
 
-        if (!opcionValida) {
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        }
     }
-}
+
 
 // Función para cargar un nuevo Reclamo
 Reclamo cargarReclamo(Usuario &usu) {
@@ -709,70 +686,77 @@ Reclamo cargarReclamo(Usuario &usu) {
     ArchivoReclamo archivoReclamo("reclamos.dat");
 
     AcumuladorId acum = archivoAcum.LeerAcumuladorId(0);
-    int reclamoId = acum.getIdReclamos();
+    int reclamoId = acum.getIdReclamos(); // Obtener el ID del próximo reclamo
     int contador = 0;
     int suministroId, responsableDeAtencion;
-    char descripcion[150], estado[50], tipoDeReclamo[50], respuesta[50], prioridad[50];
+    char descripcion[150], estado[50], tipoDeReclamo[50], respuesta[256], prioridad[50];
 
+    // Mostrar los suministros asociados al usuario
     contador = mostrarSuministrosAsociados(usu);
 
-    if(contador == 0){
-        std::cout << "No tienes Ningun Suministro Asociado sobre el cual Puedas generar un Reclamo. \n";
-        return Reclamo();
-    }else{
-
-        std::cout << "Ingrese el ID del Suministro del cual desea Generar un Reclamo: \n";
+    if (contador == 0) {
+        std::cout << "No tienes ningún suministro asociado sobre el cual puedas generar un reclamo.\n";
+        return Reclamo(); // Devuelve un reclamo vacío si no hay suministros
+    } else {
+        // Ingreso del ID del suministro
+        std::cout << "Ingrese el ID del suministro del cual desea generar un reclamo:\n";
         suministroId = leerEntero();
         std::cin.ignore();
 
-    Suministro suministroAGenerarReclamo = buscarSuministroPorId(suministroId,usu);
-    if(suministroAGenerarReclamo.getSuministroId()!= 0){
-      int posSuministro = archivoSumi.BuscarSuministro(suministroId);
+        Suministro suministroAGenerarReclamo = buscarSuministroPorId(suministroId, usu);
+        if (suministroAGenerarReclamo.getSuministroId() != 0) {
+            int posSuministro = archivoSumi.BuscarSuministro(suministroId);
 
-    system("cls");
-             //tipo de reclamo
-    seleccionarTipoReclamo(tipoDeReclamo);
+            system("cls");
 
+            // Selección del tipo de reclamo
+            seleccionarTipoReclamo(tipoDeReclamo);
 
-    std::cout << "Ingrese la descripcion del reclamo: ";
-    std::cin.getline(descripcion, 150);
+            // Ingreso de la descripción
+            std::cout << "Ingrese la descripción del reclamo: ";
+            std::cin.getline(descripcion, sizeof(descripcion));
 
-    Fecha fechaDeReclamo;
-    fechaDeReclamo.FechaActual();
-    fechaDeReclamo.setId(1);
+            // Fecha del reclamo
+            Fecha fechaDeReclamo;
+            fechaDeReclamo.FechaActual();
+            fechaDeReclamo.setId(1);
 
-   //seteamos estado
-    strcpy(estado, "pendiente");
+            // Estado inicial del reclamo
+            strcpy(estado, "pendiente");
 
-    //id atencion
-    responsableDeAtencion = 1;
+            // ID del responsable de atención
+            responsableDeAtencion = 1;
 
-//seteo respuesta en string vacio
-    strcpy(respuesta, "");
+            // Respuesta vacía inicial
+            strcpy(respuesta, "");
 
-//nivel prioridad
-  seleccionarNivelPrioridad(prioridad);
+            // Nivel de prioridad
+            seleccionarNivelPrioridad(prioridad);
 
+            // Crear un nuevo objeto Reclamo
+            Reclamo nuevoReclamo(reclamoId, usu.getId(), suministroId, descripcion,
+                                  fechaDeReclamo, estado, tipoDeReclamo, responsableDeAtencion,
+                                  respuesta, prioridad);
 
-    // Crear un nuevo objeto Reclamo con los datos ingresados
-    Reclamo nuevoReclamo(reclamoId, usu.getId(), suministroId, descripcion, fechaDeReclamo, estado, tipoDeReclamo, responsableDeAtencion, respuesta, prioridad);
+            if (nuevoReclamo.getReclamoId() != 0) {
+                // Actualizar el suministro asociado
+                suministroAGenerarReclamo.setReclamo(true);
+                archivoSumi.EditarSuministro(suministroAGenerarReclamo, posSuministro);
 
-    if(nuevoReclamo.getReclamoId()!=0){
-        suministroAGenerarReclamo.setReclamo(true);
-        archivoSumi.EditarSuministro(suministroAGenerarReclamo,posSuministro);
-        archivoReclamo.GuardarReclamo(nuevoReclamo);
+                // Guardar el nuevo reclamo
+                archivoReclamo.GuardarReclamo(nuevoReclamo);
 
-     acum.setIdReclamos(acum.getIdReclamos()+1);
+                // Incrementar el ID de reclamos
+                acum.setIdReclamos(acum.getIdReclamos() + 1);
+                archivoAcum.EditarAcumuladorId(acum, 0);
+            }
 
-     archivoAcum.EditarAcumuladorId(acum,0);
-    }
+            return nuevoReclamo; // Retornar el nuevo reclamo creado
+        }
 
-
-    return nuevoReclamo ;
-    }
         system("cls");
-        std::cout << "No tienes ningun Suministro asociado con el id ingresado." << std::endl;
-        return Reclamo();
+        std::cout << "No tienes ningún suministro asociado con el ID ingresado.\n";
+        return Reclamo(); // Devuelve un reclamo vacío si el ID no es válido
     }
 }
 
@@ -1104,68 +1088,56 @@ Usuario login() {
 }
 
 
-void accionesReclamos(Reclamo &reclamo) {
+void accionesReclamos(Reclamo &reclamo, Usuario &usuario,Usuario& usuAdmin) {
+    ArchivoReclamo archivoReclamo("reclamos.dat");
+    int posReclamo = archivoReclamo.BuscarReclamo(reclamo.getReclamoId());
 
     ArchivoUsuario archivoU("usuarios.dat");
     int pos = archivoU.BuscarUsuario(reclamo.getUsuarioId());
     Usuario usu = archivoU.LeerUsuario(pos);
-
+    char estado[50] = "realizado";
+    int cantUsAdmin = 0;
     system("cls");
-    int opcion = -1;  // Inicializamos la opción con un valor que no sea válido
+    int opcion = -1; // Inicializamos la opción con un valor que no sea válido
 
-    while (opcion != 0) {
+        while (opcion != 0) {
+            // Mostrar menú de opciones
+            std::cout << "===== MENU DE ACCIONES PARA RECLAMO =====\n";
+            std::cout << "1. Responder Reclamo\n";
+            std::cout << "0. Salir\n";
+            std::cout << "Seleccione una opcion: ";
 
-        // Mostrar menú de opciones
-        std::cout << "===== MENU DE ACCIONES PARA RECLAMO =====\n";
-        std::cout << "1. Ver detalles del reclamo\n";
-        std::cout << "2. Cambiar estado del reclamo\n";
-        std::cout << "3. Eliminar reclamo\n";
-        std::cout << "0. Salir\n";
-        std::cout << "Seleccione una opción: ";
+            opcion = leerEntero();
+            std::cin.ignore();
 
-        std::cin >> opcion;
+            switch (opcion) {
+                case 1:
+                    system("cls");
+                    usu.mostrarUsuario();
+                    reclamo.mostrarReclamo();
+                    std::cout << "Ingrese Respuesta: \n";
+                    char respuesta[256]; // Tamaño fijo para la cadena de caracteres
+                    std::cin.getline(respuesta, sizeof(respuesta)); // Capturar la entrada del usuario
+                        // Declarar una cadena de caracteres constante
+                    reclamo.setEstado(estado);
+                    reclamo.setResponsableDeAtencion(usuario.getId());
+                    reclamo.setRespuesta(respuesta); // Asignar la respuesta al reclamo
+                    archivoReclamo.EditarReclamo(reclamo,posReclamo);
+                    system("cls");
+                    std::cout << "Respuesta registrada correctamente.\n";
+                    opcion = 0;
+                    break;
 
-        // Limpiar el buffer de entrada en caso de que se ingrese un dato incorrecto
-        if (std::cin.fail()) {
-            std::cin.clear();  // Limpiar el estado de error
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');  // Ignorar la entrada restante
-            std::cout << "Opción inválida. Intente nuevamente.\n";
-            continue;  // Continuar con la siguiente iteración del bucle
-        }
+                case 0:
+                    system("cls");
+                    std::cout << "Saliendo...\n";
+                    break;
 
-        switch (opcion) {
-            case 1:
-                // Ver detalles del reclamo
-                system("cls");
-
-                usu.mostrarUsuario();
-                reclamo.mostrarReclamo();
-                break;
-
-            case 2:
-                system("cls");
-                // Cambiar estado del reclamo
-                std::cout << "Cambiar estado del reclamo\n";
-                // Lógica para cambiar el estado del reclamo
-                break;
-
-            case 3:
-                system("cls");
-                // Eliminar reclamo
-                std::cout << "Eliminar reclamo\n";
-                // Lógica para eliminar el reclamo
-                break;
-
-            case 0:
-                system("cls");
-                std::cout << "Saliendo...\n";
-                break;
-
-            default:
-                std::cout << "Opción inválida. Intente nuevamente.\n";
+                default:
+                    std::cout << "Opción inválida. Intente nuevamente.\n";
+            }
         }
     }
-}
 
 
 int listarReclamosEstado(bool estado) {
@@ -1195,7 +1167,8 @@ int listarReclamosEstado(bool estado) {
     // Mostrar los reclamos según el estado
     if (estado) { // Mostrar "realizados"
         if (auxR == 0) {
-            std::cout << "No hay reclamos REALIZADOS \n";
+            std::cout << "No hay reclamos REALIZADOS\n";
+            delete[] vectorReclamos;
             return 0;
         } else {
             for (int i = 0; i < cantidadReclamos; i++) {
@@ -1208,7 +1181,8 @@ int listarReclamosEstado(bool estado) {
         }
     } else { // Mostrar "pendientes"
         if (auxP == 0) {
-            std::cout << "No hay reclamos PENDIENTES \n";
+            std::cout << "No hay reclamos PENDIENTES\n";
+            delete[] vectorReclamos;
             return 0;
         } else {
             for (int i = 0; i < cantidadReclamos; i++) {
@@ -1220,10 +1194,8 @@ int listarReclamosEstado(bool estado) {
             return auxP;
         }
     }
-
-
-
 }
+
 
 int mostrarSuministrosDeuda(Usuario &usu){
     ArchivoSuministro archivoSuministro("suministros.dat");
