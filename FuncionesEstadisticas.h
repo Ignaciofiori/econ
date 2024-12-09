@@ -6,3 +6,4 @@
 
 
 void usuariosConMasDeudas(Usuario* vectorUsuarioFinal, float* vectorMontosFinal);
+void recaudacionSuministros();

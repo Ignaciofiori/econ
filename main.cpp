@@ -12,19 +12,20 @@ int main() {
 
 
 
+
 /*
-Fecha fecha(1,8,12,2023);
+Fecha fecha(1,8,10,2024);
 
 ArchivoSuministro archivo("suministros.dat");
 
-int pos = archivo.BuscarSuministro(12);
+int pos = archivo.BuscarSuministro(14);
 Suministro sumi = archivo.LeerSuministro(pos);
 
 sumi.setFechaAlta(fecha);
 
 archivo.EditarSuministro(sumi,pos);
-*/
 
+/**/
     controlarPrecios();
     controlDeudaSuministros();
     menuPrincipal();

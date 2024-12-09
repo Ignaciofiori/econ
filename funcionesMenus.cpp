@@ -337,8 +337,8 @@ void menuEstadisticas() {
     while (opc != 0) {
             int opc = -1;
         std::cout << "\n===== MENU ESTADISTICAS =====\n";
-        std::cout << "1. Estadisticas Deudas\n";
-        std::cout << "2. Estadisticas Suministros\n";
+        std::cout << "1. Usuarios con Mas Deudas\n";
+        std::cout << "2. Recaudacion de Suministros\n";
         std::cout << "3. Estadisticas Facturas\n";
         std::cout << "4. Estadisticas Pedidos\n";
         std::cout << "5. Estadisticas Reclamos\n";
@@ -369,7 +369,7 @@ void menuEstadisticas() {
                // menuUsuariosEstadisticas();
                 break;
             case 2:
-                EstadisticaSuministros1();
+                recaudacionSuministros();
               //  menuSuministrosEstadisticas();
                 break;
             case 3:

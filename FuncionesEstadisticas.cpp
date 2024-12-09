@@ -5,74 +5,6 @@
 #include <iostream>
 #include <iomanip>
 
-void MenuUsuariosEstadisticas() {
-        Usuario usuariosMasDeudas[5];
-        float mayoresDeudas[5];
-        int opcion=  -1;
-    while (opcion !=0) {
-            int opcion = -1;
-        // Mostrar el men�
-        std::cout << "\n----- Menu de Usuarios y Estadisticas -----" << std::endl;
-        std::cout << "1. Mostrar Clientes Con Mas Deuda" << std::endl;
-        std::cout << "2. Mostrar Clientes de mayor Recaudacion " << std::endl;
-        std::cout << "3. Buscar usuario por ID" << std::endl;
-        std::cout << "4. Estadisticas avanzadas" << std::endl;
-        std::cout << "0. Salir" << std::endl;
-        std::cout << "\n------------------------------------------" << std::endl;
-        std::cout << "Seleccione una opcion: ";
-        opcion = leerEntero();
-        std::cin.ignore();
-
-        // Manejar las opciones del men� con un switch
-        switch (opcion) {
-            case 1:
-                system("cls");
-                usuariosConMasDeudas(usuariosMasDeudas,mayoresDeudas);
-                // Agregar funcionalidad aqu�
-                 for (int i = 0; i < 5; i++) {
-            if (mayoresDeudas[i] != -1 && mayoresDeudas[i] != 0) {  // Verifica si la deuda es v�lida
-                std::cout << "Usuario con mas deuda (puesto " << i + 1 << "): " << std::endl;
-                std::cout << "Nombre y Apellido: " << usuariosMasDeudas[i].getNombre() << " " << usuariosMasDeudas[i].getApellido() << std::endl;
-                std::cout << "Deuda: " << std::fixed << std::setprecision(2) << mayoresDeudas[i]<<"$" << std::endl;
-
-                // Mostrar m�s detalles del usuario
-                usuariosMasDeudas[i].mostrarUsuario();  // Asumiendo que 'mostrar' es un m�todo de la clase Usuario
-                std::cout << "--------------------------------------" << std::endl;
-            }
-        }
-                break;
-
-            case 2:
-                 system("cls");
-                std::cout << "Opcion 2: Mostrar estadisticas generales." << std::endl;
-                // Agregar funcionalidad aqu�
-                break;
-
-            case 3:
-                 system("cls");
-                std::cout << "Opcion 3: Buscar usuario por ID." << std::endl;
-                // Agregar funcionalidad aqu�
-                break;
-
-            case 4:
-                 system("cls");
-                std::cout << "Opcion 4: Estadisticas avanzadas." << std::endl;
-                // Agregar funcionalidad aqu�
-                break;
-
-            case 0:
-                 system("cls");
-                std::cout << "Saliendo del Menu..." << std::endl;
-                    opcion = 0;
-                    return;
-
-            default:
-                std::cout << "Opci�n inv�lida. Por favor, intente nuevamente." << std::endl;
-                break;
-        }
-    }
-}
-
 
 void usuariosConMasDeudas(Usuario* vectorUsuarioFinal, float* vectorMontosFinal){
 ArchivoFactura archivoFacturas("facturas.dat");
@@ -159,4 +91,59 @@ delete []vectorUsuarios;
 delete []vectorMontosDeudas;
 }
 
+void recaudacionSuministros() {
+    float recaudacionIndustrial = 0, recaudacionAgricola = 0, recaudacionResidencial = 0, recaudacionComercial = 0, totalRecaudacion = 0;
+    ArchivoFactura archivoFacturas("facturas.dat");
+    int cantFacturas = archivoFacturas.CantidadFacturas();
+    ArchivoSuministro archivoSums("suministros.dat");
+    int cantidadSums = archivoSums.CantidadSuministros();
+
+    Factura *vectorFacturas = new Factura[cantFacturas];
+    archivoFacturas.LeerFacturas(cantFacturas, vectorFacturas);
+
+    for (int i = 0; i < cantFacturas; i++) {
+        if (vectorFacturas[i].isPagada()) {
+            int sumId = vectorFacturas[i].getIdSuministro();
+            int posSum = archivoSums.BuscarSuministro(sumId);
+            Suministro sum = archivoSums.LeerSuministro(posSum);
+
+            // Variable para almacenar el tipo de suministro
+            char tipoSum[50];
+
+            // Copiar el valor de sum.getTipoSuministro() a tipoSum
+            strcpy(tipoSum, sum.getTipoSuministro());
+
+            // Comparar el tipo de suministro usando if-else
+            if (strcmp(tipoSum, "Comercial") == 0) {
+                recaudacionComercial += vectorFacturas[i].getMonto();
+            } else if (strcmp(tipoSum, "Industrial") == 0) {
+                recaudacionIndustrial += vectorFacturas[i].getMonto();
+            } else if (strcmp(tipoSum, "Agricola") == 0) {
+                recaudacionAgricola += vectorFacturas[i].getMonto();
+            } else if (strcmp(tipoSum, "Residencial") == 0) {
+                recaudacionResidencial += vectorFacturas[i].getMonto();
+            }
+        }
+    }
+    totalRecaudacion = recaudacionResidencial + recaudacionAgricola + recaudacionComercial + recaudacionIndustrial;
+
+    // Calcular porcentajes
+    float porcentajeComercial = (totalRecaudacion > 0) ? (recaudacionComercial / totalRecaudacion) * 100 : 0;
+    float porcentajeIndustrial = (totalRecaudacion > 0) ? (recaudacionIndustrial / totalRecaudacion) * 100 : 0;
+    float porcentajeAgricola = (totalRecaudacion > 0) ? (recaudacionAgricola / totalRecaudacion) * 100 : 0;
+    float porcentajeResidencial = (totalRecaudacion > 0) ? (recaudacionResidencial / totalRecaudacion) * 100 : 0;
+
+    // Mostrar la informacion de manera organizada
+    std::cout << std::fixed << std::setprecision(2);
+    std::cout << "\nRecaudacion total: " << totalRecaudacion << "$ \n";
+    std::cout << "\nRecaudacion por tipo de suministro:\n";
+    std::cout << "---------------------------------------\n";
+    std::cout << "Comercial:      $" << recaudacionComercial << " (" << porcentajeComercial << "%)\n";
+    std::cout << "Industrial:     $" << recaudacionIndustrial << " (" << porcentajeIndustrial << "%)\n";
+    std::cout << "Agricola:       $" << recaudacionAgricola << " (" << porcentajeAgricola << "%)\n";
+    std::cout << "Residencial:    $" << recaudacionResidencial << " (" << porcentajeResidencial << "%)\n";
+    std::cout << "---------------------------------------\n";
+
+    delete[] vectorFacturas;
+}
 

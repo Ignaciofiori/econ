@@ -1,7 +1,7 @@
 #include <cstring>
 #include "Suministros.h"
 #include "Fecha.h"
-
+#include <iomanip>
 Suministro::Suministro() {
     _suministroId = 0;
     _usuarioId = 0;
@@ -179,6 +179,6 @@ void Suministro::mostrarSuministro() {
     std::cout << "Precio por kWh: $" << getPrecioKwh() << std::endl;
     std::cout << "Deuda: " << (hasDeuda() ? "Si" : "No") << std::endl;
     std::cout << "Reclamo: " << (hasReclamo() ? "Si" : "No") << std::endl;
-    std::cout << "Monto de Deuda: $" << getMontoDeuda() << std::endl;
+    std::cout << "Monto de Deuda: $" << std::fixed << std::setprecision(2)  << getMontoDeuda() << std::endl;
     std::cout << "======================================\n";
 }
